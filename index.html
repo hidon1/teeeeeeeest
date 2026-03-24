@@ -975,14 +975,11 @@
           <div>
             <h2>המוצרים שלנו</h2>
             <p>
-              כאן נמצאת הקטגוריה המרכזית של המוצרים. באזור הזה הכנתי מקום מסודר להטמעת קוד ה-API שלך.
-              כאשר תדביק שם את הקוד, האתר יקרא את הנתונים, יציג את המוצרים, ויעביר את כל פרטי המוצר הנבחר לסל.
+              כאן מוצגים כל המוצרים שמגיעים מה-API שלך.
+              כאשר תדביק את הקוד, האתר יקרא את הנתונים, יציג את כל המוצרים באופן אוטומטי, ויעביר את כל פרטי המוצר הנבחר לסל.
             </p>
           </div>
         </div>
-
-
-        <div id="categoryRow" class="category-row"></div>
 
         <div class="products-layout">
           <div>
@@ -1019,7 +1016,7 @@
           </p>
           <div class="about-list">
             <div>עיצוב רך, נקי ואלגנטי עם אווירה פרחונית מודרנית.</div>
-            <div>אזור מוצרים דינמי עם קטגוריות, תמונות, מחיר ותיאור.</div>
+            <div>אזור מוצרים דינמי עם תמונות, מחיר ותיאור.</div>
             <div>סל קניות שמבוסס על הנתונים שמגיעים מהמוצר דרך ה-API.</div>
           </div>
         </div>
@@ -1027,7 +1024,7 @@
           <h3>למה המבנה הזה נוח?</h3>
           <p>
             במקום לכתוב את המוצרים ידנית בתוך ה-HTML, האתר בנוי כך שתוכל לנהל את המוצרים מבחוץ.
-            זה אומר שאפשר לעדכן שם מוצר, מחיר, תמונה, קטגוריה ומזהה מוצר דרך ה-API, בלי לשנות כל פעם את העיצוב של האתר.
+            זה אומר שאפשר לעדכן שם מוצר, מחיר, תמונה ומזהה מוצר דרך ה-API, בלי לשנות כל פעם את העיצוב של האתר.
           </p>
           <div class="about-list">
             <div>מפריד בין עיצוב האתר לבין ניהול המוצרים.</div>
@@ -1090,13 +1087,11 @@
   <script>
     const state = {
       products: [],
-      activeCategory: 'הכל',
       cart: []
     };
 
     const els = {
       productsGrid: document.getElementById('productsGrid'),
-      categoryRow: document.getElementById('categoryRow'),
       cartMiniList: document.getElementById('cartMiniList'),
       cartCountBadge: document.getElementById('cartCountBadge'),
       summaryItems: document.getElementById('summaryItems'),
@@ -1165,37 +1160,13 @@
       }));
     }
 
-    function buildCategories() {
-      const categories = ['הכל', ...new Set(state.products.map(product => product.category))];
-      els.categoryRow.innerHTML = categories.map(category => `
-        <button class="category-pill ${category === state.activeCategory ? 'active' : ''}" type="button" data-category="${escapeHtml(category)}">
-          ${escapeHtml(category)}
-        </button>
-      `).join('');
-
-      els.categoryRow.querySelectorAll('[data-category]').forEach(button => {
-        button.addEventListener('click', () => {
-          state.activeCategory = button.dataset.category;
-          buildCategories();
-          renderProducts();
-        });
-      });
-    }
-
-    function getVisibleProducts() {
-      if (state.activeCategory === 'הכל') return state.products;
-      return state.products.filter(product => product.category === state.activeCategory);
-    }
-
     function renderProducts() {
-      const visibleProducts = getVisibleProducts();
-
-      if (!visibleProducts.length) {
-        els.productsGrid.innerHTML = '<div class="empty-state">לא נמצאו מוצרים בקטגוריה הזאת.</div>';
+      if (!state.products.length) {
+        els.productsGrid.innerHTML = '<div class="empty-state">לא נמצאו מוצרים להצגה כרגע.</div>';
         return;
       }
 
-      els.productsGrid.innerHTML = visibleProducts.map(product => `
+      els.productsGrid.innerHTML = state.products.map(product => `
         <article class="product-card">
           <div class="product-image">
             <img src="${escapeAttribute(product.image)}" alt="${escapeAttribute(product.name)}" loading="lazy" />
@@ -1203,7 +1174,6 @@
           <div class="product-body">
             <div class="product-meta">
               <h3>${escapeHtml(product.name)}</h3>
-              <span class="tag">${escapeHtml(product.category)}</span>
             </div>
             <p>${escapeHtml(product.description)}</p>
             <div class="product-footer">
@@ -1283,7 +1253,7 @@
           <img src="${escapeAttribute(item.image)}" alt="${escapeAttribute(item.name)}" />
           <div>
             <h4>${escapeHtml(item.name)}</h4>
-            <p>${escapeHtml(item.category)} • ${formatPrice(item.price)}</p>
+            <p>${formatPrice(item.price)}</p>
             <div class="qty-controls">
               <button class="qty-btn" type="button" data-qty-action="minus" data-product-id="${escapeAttribute(item.id)}">−</button>
               <span class="qty-value">${item.quantity}</span>
@@ -1351,7 +1321,6 @@
     async function init() {
       bindUi();
       state.products = await loadProducts();
-      buildCategories();
       renderProducts();
       renderCart();
     }
