@@ -981,14 +981,6 @@
           </div>
         </div>
 
-        <div class="api-note">
-          <strong>איפה מטמיעים את קוד ה-API?</strong>
-          את קוד ה-API מדביקים בתוך קטע ה-JavaScript שמופיע בהמשך הקובץ, במקום שבו יש שורה עם 20 איקסים.
-          הקוד שלך צריך בסוף להזין אחד מהמבנים הבאים:
-          <code>window.FLOWER_PRODUCTS = [...]</code>
-          או
-          <code>window.FLOWER_STORE_API = { getProducts: async () =&gt; [...] }</code>
-        </div>
 
         <div id="categoryRow" class="category-row"></div>
 
@@ -1120,83 +1112,21 @@
       mainMenu: document.getElementById('mainMenu')
     };
 
-    const demoProducts = [
-      {
-        id: 'flower-001',
-        name: 'זר ורדים רומנטי',
-        price: 179,
-        image: 'https://images.unsplash.com/photo-1526397751294-331021109fbd?auto=format&fit=crop&w=900&q=80',
-        category: 'זרים',
-        description: 'זר ורדים עשיר בגוונים ורודים ואדומים, מושלם למתנה מרגשת.'
-      },
-      {
-        id: 'flower-002',
-        name: 'קופסת פרחים יוקרתית',
-        price: 229,
-        image: 'https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?auto=format&fit=crop&w=900&q=80',
-        category: 'קופסאות',
-        description: 'קופסה מעוצבת עם שילוב פרחים אלגנטי במראה יוקרתי ונקי.'
-      },
-      {
-        id: 'flower-003',
-        name: 'מארז חגיגי לבית',
-        price: 259,
-        image: 'https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=900&q=80',
-        category: 'מארזים',
-        description: 'שילוב פרחים ואווירה חגיגית למתנה חמה ומרשימה במיוחד.'
-      },
-      {
-        id: 'flower-004',
-        name: 'זר לבן קלאסי',
-        price: 189,
-        image: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=80',
-        category: 'זרים',
-        description: 'זר קלאסי בגוונים בהירים, מתאים לאירועים מרשימים ומתנות יוקרתיות.'
-      },
-      {
-        id: 'flower-005',
-        name: 'סידור שולחני מעוצב',
-        price: 149,
-        image: 'https://images.unsplash.com/photo-1455656678494-4d1b5f3e7ad1?auto=format&fit=crop&w=900&q=80',
-        category: 'סידורים',
-        description: 'סידור קומפקטי ואלגנטי לשולחן אירוח, משרד או מתנה.'
-      },
-      {
-        id: 'flower-006',
-        name: 'מארז ורוד עדין',
-        price: 199,
-        image: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=900&q=80',
-        category: 'מארזים',
-        description: 'מארז עדין ורומנטי עם תחושת פרימיום ועיצוב מושקע.'
+
+    window.FLOWER_STORE_API = {
+      async getProducts() {
+        const response = await fetch('https://hidon1.github.io/Product-Manager/?api=json&uid=MX9tV131QeNbwvVyhmpP06lAlvs1');
+        if (!response.ok) throw new Error(`API request failed: ${response.status}`);
+
+        const payload = await response.json();
+        if (Array.isArray(payload)) return payload;
+
+        if (Array.isArray(payload?.products)) return payload.products;
+        if (Array.isArray(payload?.items)) return payload.items;
+
+        return [];
       }
-    ];
-
-    /*
-      =============================================================
-      הדבק כאן את קוד ה-API שלך
-      השורה עם 20 איקסים מסמנת את המקום המדויק:
-      =============================================================
-    */
-
-    // XXXXXXXXXXXXXXXXXXXX
-
-    /*
-      דוגמאות חוקיות שהאתר יודע לקרוא:
-
-      אפשרות 1:
-      window.FLOWER_PRODUCTS = [
-        { id, name, price, image, category, description }
-      ];
-
-      אפשרות 2:
-      window.FLOWER_STORE_API = {
-        async getProducts() {
-          return [
-            { id, name, price, image, category, description }
-          ];
-        }
-      };
-    */
+    };
 
     function formatPrice(value) {
       const number = Number(value || 0);
@@ -1221,7 +1151,7 @@
         console.error('שגיאה בטעינת מוצרים מה-API:', error);
       }
 
-      return normalizeProducts(demoProducts);
+      return [];
     }
 
     function normalizeProducts(products) {
@@ -1229,8 +1159,8 @@
         id: product.id ?? `product-${index + 1}`,
         name: product.name ?? 'מוצר ללא שם',
         price: Number(product.price ?? 0),
-        image: product.image || 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=80',
-        category: product.category || 'כללי',
+        image: product.image || product.imageUrl || 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=80',
+        category: product.category || product.group || 'כללי',
         description: product.description || 'ללא תיאור מוצר.'
       }));
     }
