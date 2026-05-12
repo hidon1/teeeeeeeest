@@ -7,14 +7,15 @@
   <style>
     :root {
       --bg1: #fff7fb;
-      --bg2: #f4f7ff;
-      --primary: #9d5cff;
-      --primary2: #ff7ab6;
+      --bg2: #eef5ff;
+      --primary: #8f52ff;
+      --primary2: #ff74b8;
       --accent: #ffd166;
+      --mint: #8ee6cf;
       --text: #272235;
-      --muted: #766d84;
-      --card: rgba(255,255,255,.78);
-      --border: rgba(127, 87, 255, .16);
+      --muted: #746b82;
+      --card: rgba(255,255,255,.82);
+      --border: rgba(127, 87, 255, .18);
       --shadow: 0 18px 55px rgba(87, 60, 130, .16);
       --radius: 28px;
     }
@@ -27,8 +28,8 @@
       color: var(--text);
       min-height: 100vh;
       background:
-        radial-gradient(circle at 10% 10%, rgba(255,122,182,.28), transparent 26%),
-        radial-gradient(circle at 82% 12%, rgba(157,92,255,.24), transparent 25%),
+        radial-gradient(circle at 10% 10%, rgba(255,116,184,.28), transparent 26%),
+        radial-gradient(circle at 82% 12%, rgba(143,82,255,.24), transparent 25%),
         radial-gradient(circle at 50% 80%, rgba(255,209,102,.28), transparent 30%),
         linear-gradient(135deg, var(--bg1), var(--bg2));
       overflow-x: hidden;
@@ -54,13 +55,13 @@
     .app {
       position: relative;
       z-index: 1;
-      width: min(1180px, calc(100% - 28px));
+      width: min(1220px, calc(100% - 28px));
       margin: 0 auto;
       padding: 26px 0 60px;
     }
 
     .hero {
-      background: linear-gradient(135deg, rgba(255,255,255,.88), rgba(255,255,255,.55));
+      background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(255,255,255,.58));
       border: 1px solid rgba(255,255,255,.9);
       border-radius: 36px;
       box-shadow: var(--shadow);
@@ -81,7 +82,7 @@
       width: 260px;
       height: 260px;
       border-radius: 50%;
-      background: linear-gradient(135deg, rgba(255,122,182,.25), rgba(157,92,255,.2));
+      background: linear-gradient(135deg, rgba(255,116,184,.25), rgba(143,82,255,.2));
     }
 
     .badge {
@@ -90,8 +91,8 @@
       gap: 8px;
       padding: 9px 14px;
       border-radius: 999px;
-      background: rgba(157,92,255,.11);
-      color: #6f39c7;
+      background: rgba(143,82,255,.11);
+      color: #6d35c7;
       font-weight: 800;
       margin-bottom: 14px;
     }
@@ -108,7 +109,7 @@
       font-size: clamp(16px, 2.2vw, 20px);
       line-height: 1.75;
       margin: 0;
-      max-width: 780px;
+      max-width: 820px;
     }
 
     .hero-card {
@@ -116,7 +117,7 @@
       border: 1px solid var(--border);
       border-radius: 30px;
       padding: 22px;
-      box-shadow: 0 15px 40px rgba(157,92,255,.16);
+      box-shadow: 0 15px 40px rgba(143,82,255,.16);
     }
 
     .stat {
@@ -129,13 +130,14 @@
       background: rgba(255,255,255,.72);
       margin-bottom: 12px;
     }
+    .stat:last-child { margin-bottom: 0; }
     .stat-icon {
       width: 56px;
       height: 56px;
       border-radius: 18px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, rgba(157,92,255,.18), rgba(255,122,182,.18));
+      background: linear-gradient(135deg, rgba(143,82,255,.18), rgba(255,116,184,.18));
       font-size: 28px;
     }
     .stat b { display:block; font-size: 18px; }
@@ -147,7 +149,7 @@
       grid-template-columns: 1fr auto auto;
       gap: 12px;
       align-items: center;
-      background: rgba(255,255,255,.66);
+      background: rgba(255,255,255,.68);
       border: 1px solid rgba(255,255,255,.9);
       border-radius: 26px;
       padding: 12px;
@@ -155,11 +157,9 @@
       backdrop-filter: blur(12px);
     }
 
-    input, select, textarea, button {
-      font-family: inherit;
-    }
+    input, select, textarea, button { font-family: inherit; }
 
-    .search, .select {
+    .search, .select, .field-input, .field-textarea {
       width: 100%;
       border: 1px solid var(--border);
       border-radius: 18px;
@@ -169,6 +169,7 @@
       color: var(--text);
       font-weight: 700;
     }
+    .field-textarea { min-height: 86px; resize: vertical; line-height: 1.6; }
 
     .btn {
       border: none;
@@ -178,28 +179,30 @@
       cursor: pointer;
       background: linear-gradient(135deg, var(--primary), var(--primary2));
       color: white;
-      box-shadow: 0 12px 26px rgba(157,92,255,.24);
+      box-shadow: 0 12px 26px rgba(143,82,255,.24);
       transition: transform .18s ease, box-shadow .18s ease;
       white-space: nowrap;
     }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(157,92,255,.3); }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(143,82,255,.3); }
+    .btn.secondary { background: linear-gradient(135deg, #fff, #fff7fb); color: #6d35c7; border: 1px solid var(--border); box-shadow: none; }
+    .btn.small { padding: 10px 12px; border-radius: 14px; font-size: 13px; }
 
     .layout {
       display: grid;
-      grid-template-columns: 1fr 340px;
+      grid-template-columns: 1fr 350px;
       gap: 20px;
       align-items: start;
     }
 
     .weeks-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 14px;
     }
 
     .week-card {
-      min-height: 132px;
-      border: 1px solid rgba(255,255,255,.86);
+      min-height: 158px;
+      border: 1px solid rgba(255,255,255,.88);
       background: var(--card);
       border-radius: 26px;
       padding: 16px;
@@ -212,8 +215,8 @@
     }
     .week-card:hover {
       transform: translateY(-5px) scale(1.01);
-      border-color: rgba(157,92,255,.34);
-      background: rgba(255,255,255,.92);
+      border-color: rgba(143,82,255,.34);
+      background: rgba(255,255,255,.94);
     }
     .week-card:after {
       content: "";
@@ -223,61 +226,35 @@
       border-radius: 50%;
       left: -24px;
       bottom: -24px;
-      background: linear-gradient(135deg, rgba(255,122,182,.2), rgba(255,209,102,.2));
+      background: linear-gradient(135deg, rgba(255,116,184,.2), rgba(255,209,102,.2));
     }
-    .week-number {
-      font-size: 28px;
-      font-weight: 950;
-      letter-spacing: -.5px;
-    }
-    .week-title {
-      color: var(--muted);
-      font-weight: 800;
-      margin-top: 6px;
-      line-height: 1.35;
-    }
-    .week-emoji {
-      position: absolute;
-      left: 14px;
-      top: 14px;
-      font-size: 28px;
-    }
+    .week-number { font-size: 28px; font-weight: 950; letter-spacing: -.5px; }
+    .week-title { color: var(--muted); font-weight: 800; margin-top: 6px; line-height: 1.35; }
+    .week-meta { color: #6d35c7; font-size: 12px; font-weight: 900; margin-top: 10px; line-height: 1.45; }
+    .week-emoji { position: absolute; left: 14px; top: 14px; font-size: 28px; }
     .week-chip {
       display:inline-flex;
-      margin-top: 14px;
+      margin-top: 12px;
       padding: 6px 10px;
       border-radius: 999px;
-      background: rgba(157,92,255,.10);
+      background: rgba(143,82,255,.10);
       color: #6937ba;
       font-size: 12px;
       font-weight: 900;
     }
 
-    .side-panel {
-      position: sticky;
-      top: 14px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .panel {
-      background: rgba(255,255,255,.75);
-      border: 1px solid rgba(255,255,255,.9);
+    .side-panel { position: sticky; top: 14px; display: grid; gap: 14px; }
+    .panel, .dashboard {
+      background: rgba(255,255,255,.77);
+      border: 1px solid rgba(255,255,255,.92);
       border-radius: 28px;
       padding: 18px;
       box-shadow: 0 14px 34px rgba(87,60,130,.11);
       backdrop-filter: blur(14px);
     }
-    .panel h2 {
-      font-size: 20px;
-      margin: 0 0 12px;
-    }
-    .panel p, .panel li {
-      color: var(--muted);
-      line-height: 1.65;
-    }
+    .panel h2, .dashboard h2 { font-size: 20px; margin: 0 0 12px; }
+    .panel p, .panel li { color: var(--muted); line-height: 1.65; }
     .panel ul { margin: 0; padding-right: 20px; }
-
     .note-box textarea {
       width: 100%;
       min-height: 130px;
@@ -291,6 +268,42 @@
       line-height: 1.6;
     }
 
+    .dashboard {
+      margin-top: 24px;
+      border-radius: 34px;
+      padding: clamp(18px, 3vw, 28px);
+    }
+    .dashboard-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .summary-card {
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(255,255,255,.86), rgba(255,247,251,.78));
+      border-radius: 22px;
+      padding: 15px;
+    }
+    .summary-card strong { display:block; font-size: 26px; margin-bottom: 4px; }
+    .summary-card span { color: var(--muted); font-weight: 800; }
+
+    .data-table-wrap { overflow-x: auto; border-radius: 22px; border: 1px solid var(--border); background: rgba(255,255,255,.72); }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    th, td { padding: 13px 14px; text-align: right; border-bottom: 1px solid rgba(127,87,255,.12); vertical-align: top; }
+    th { background: rgba(143,82,255,.10); color: #5e2fae; font-size: 13px; }
+    td { color: var(--muted); line-height: 1.55; }
+    tr:last-child td { border-bottom: none; }
+    .empty-state { color: var(--muted); line-height: 1.7; padding: 18px; text-align: center; }
+
     .modal {
       position: fixed;
       inset: 0;
@@ -303,10 +316,10 @@
     }
     .modal.open { display: grid; }
     .modal-card {
-      width: min(920px, 100%);
-      max-height: min(88vh, 820px);
+      width: min(1060px, 100%);
+      max-height: min(90vh, 900px);
       overflow: auto;
-      background: linear-gradient(145deg, rgba(255,255,255,.97), rgba(255,248,252,.96));
+      background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(255,248,252,.97));
       border: 1px solid rgba(255,255,255,.92);
       border-radius: 34px;
       box-shadow: 0 30px 80px rgba(20, 15, 33, .28);
@@ -315,58 +328,30 @@
     }
     @keyframes pop { from { transform: scale(.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-    .modal-head {
-      display:flex;
-      align-items: start;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-    .modal-title h2 {
-      margin: 0;
-      font-size: clamp(26px, 4vw, 42px);
-    }
-    .modal-title p {
-      margin: 8px 0 0;
-      color: var(--muted);
-      line-height: 1.65;
-    }
+    .modal-head { display:flex; align-items: start; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+    .modal-title h2 { margin: 0; font-size: clamp(26px, 4vw, 42px); }
+    .modal-title p { margin: 8px 0 0; color: var(--muted); line-height: 1.65; }
     .close {
       border: none;
       width: 46px;
       height: 46px;
       border-radius: 16px;
       cursor: pointer;
-      background: rgba(157,92,255,.11);
+      background: rgba(143,82,255,.11);
       color: #6f39c7;
       font-size: 24px;
       font-weight: 950;
     }
 
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin: 18px 0;
-    }
-    .info-box {
-      padding: 16px;
-      border-radius: 22px;
-      background: rgba(255,255,255,.82);
-      border: 1px solid var(--border);
-    }
+    .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+    .info-box { padding: 16px; border-radius: 22px; background: rgba(255,255,255,.82); border: 1px solid var(--border); }
     .info-box b { display:block; margin-bottom: 7px; }
     .info-box span { color: var(--muted); line-height: 1.55; }
+    .section-title { margin: 24px 0 10px; font-size: 20px; }
+    .weekly-table table { min-width: 620px; }
 
-    .section-title {
-      margin: 24px 0 10px;
-      font-size: 20px;
-    }
-    .task-list {
-      display: grid;
-      gap: 10px;
-    }
-    .task {
+    .task-list, .saved-list { display: grid; gap: 10px; }
+    .task, .saved-item {
       display: flex;
       gap: 10px;
       align-items: flex-start;
@@ -377,32 +362,24 @@
       color: var(--muted);
       line-height: 1.55;
     }
-    .task input { margin-top: 5px; accent-color: #9d5cff; }
+    .task input { margin-top: 5px; accent-color: #8f52ff; }
+    .saved-item { justify-content: space-between; }
+    .saved-item-main { display: grid; gap: 4px; }
+    .saved-item b { color: var(--text); }
 
-    .week-notes {
-      width: 100%;
-      min-height: 100px;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 14px;
-      line-height: 1.65;
-      outline: none;
-      background: white;
-    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-grid .wide { grid-column: 1 / -1; }
+    .week-notes { min-height: 112px; }
+    .action-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
 
-    .footer {
-      margin-top: 26px;
-      text-align: center;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 14px;
-    }
+    .footer { margin-top: 26px; text-align: center; color: var(--muted); line-height: 1.7; font-size: 14px; }
 
     @media (max-width: 920px) {
       .hero, .layout { grid-template-columns: 1fr; }
-      .toolbar { grid-template-columns: 1fr; }
+      .toolbar, .summary-grid { grid-template-columns: 1fr; }
       .side-panel { position: static; }
-      .info-grid { grid-template-columns: 1fr; }
+      .info-grid, .form-grid { grid-template-columns: 1fr; }
+      .form-grid .wide { grid-column: auto; }
     }
   </style>
 </head>
@@ -414,28 +391,28 @@
   <main class="app">
     <section class="hero">
       <div>
-        <div class="badge">👶 יומן משפחתי שבועי</div>
+        <div class="badge">👶 יומן משפחתי שבועי עשיר</div>
         <h1>מסע ההריון שלנו<br>שבוע אחרי שבוע</h1>
         <p>
-          אתר אישי, יפה ונעים למעקב משפחתי: 40 שבועות, כרטיס לכל שבוע, משימות, הערות, קניות, שאלות לרופא ותיעוד רגעים קטנים בדרך.
+          יומן אישי ומעוצב עם 40 שבועות מלאים במידע: גודל העובר, גודל הרחם, שלבי התפתחות, תופעות נפוצות, מה צפוי בהמשך, טיפים, רעיונות, משימות, הערות, בדיקות ותוצאות — הכל נשמר בדפדפן בצורה מסודרת.
         </p>
       </div>
       <aside class="hero-card">
-        <div class="stat"><div class="stat-icon">📅</div><div><b>40 שבועות</b><small>לחיצה על כל כרטיס פותחת דף שבועי מעוצב.</small></div></div>
-        <div class="stat"><div class="stat-icon">📝</div><div><b>הערות אישיות</b><small>כל שבוע שומר הערות בדפדפן באמצעות localStorage.</small></div></div>
-        <div class="stat"><div class="stat-icon">✅</div><div><b>משימות</b><small>רשימות כלליות למשפחה, קניות, ארגון ושאלות לבדיקה.</small></div></div>
+        <div class="stat"><div class="stat-icon">📅</div><div><b>40 שבועות מפורטים</b><small>כל שבוע כולל טבלה שבועית עשירה ונוחה לקריאה.</small></div></div>
+        <div class="stat"><div class="stat-icon">📝</div><div><b>הערות ומשימות</b><small>אפשר לכתוב הערות, להוסיף משימות אישיות ולסמן מה בוצע.</small></div></div>
+        <div class="stat"><div class="stat-icon">🧪</div><div><b>בדיקות ותוצאות</b><small>תיעוד בדיקות לפי שבוע ודשבורד מסכם בתחתית האתר.</small></div></div>
       </aside>
     </section>
 
     <section class="toolbar">
-      <input class="search" id="searchInput" placeholder="חיפוש שבוע, לדוגמה: שבוע 12 / קניות / הכנה" />
+      <input class="search" id="searchInput" placeholder="חיפוש: שבוע 12 / סקירה / בחילות / תיק לידה / ברזל" />
       <select class="select" id="phaseFilter">
         <option value="all">כל התקופות</option>
         <option value="early">שבועות 1–13</option>
         <option value="middle">שבועות 14–27</option>
         <option value="late">שבועות 28–40</option>
       </select>
-      <button class="btn" id="clearNotes">איפוס הערות</button>
+      <button class="btn" id="clearNotes">איפוס נתונים</button>
     </section>
 
     <section class="layout">
@@ -445,23 +422,40 @@
         <div class="panel">
           <h2>⭐ מה אפשר לעשות כאן?</h2>
           <ul>
-            <li>לפתוח כל שבוע ולכתוב סיכום אישי.</li>
-            <li>לסמן משימות כלליות שבוצעו.</li>
-            <li>להכין שאלות מסודרות לרופא או לאחות.</li>
-            <li>לשמור רעיונות לשמות, קניות וסידורים.</li>
+            <li>לפתוח כל שבוע ולקבל טבלת מידע עשירה.</li>
+            <li>לכתוב הערות אישיות, תחושות ושאלות לרופא.</li>
+            <li>להוסיף משימות משפחתיות או רפואיות לכל שבוע.</li>
+            <li>לתעד בדיקות שבוצעו, תוצאות והערות להמשך.</li>
           </ul>
         </div>
 
         <div class="panel note-box">
           <h2>💌 פתק משפחתי כללי</h2>
-          <textarea id="globalNote" placeholder="כתבו כאן מחשבות, תאריכים חשובים, דברים לזכור..."></textarea>
+          <textarea id="globalNote" placeholder="כתבו כאן מחשבות, תאריכים חשובים, דברים לזכור, שמות שאוהבים..."></textarea>
         </div>
 
         <div class="panel">
-          <h2>⚠️ הבהרה</h2>
-          <p>האתר הוא יומן משפחתי כללי ואינו מחליף ייעוץ, מעקב או הנחיה רפואית. לכל שאלה מעשית יש לפנות לגורם רפואי מוסמך.</p>
+          <h2>⚠️ הבהרה חשובה</h2>
+          <p>המידע באתר כללי, חווייתי ולארגון אישי בלבד. הוא אינו מחליף ייעוץ, מעקב או הנחיה רפואית. בכל שאלה, תסמין חריג או החלטה רפואית יש לפנות לגורם רפואי מוסמך.</p>
         </div>
       </aside>
+    </section>
+
+    <section class="dashboard" id="dashboard">
+      <div class="dashboard-head">
+        <div>
+          <h2>📊 דשבורד בדיקות, תוצאות ומשימות</h2>
+          <p class="empty-state" style="padding:0;text-align:right;margin:0;">סיכום אוטומטי של כל מה שתועד בשבועות השונים.</p>
+        </div>
+        <button class="btn secondary" id="refreshDashboard">רענון דשבורד</button>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card"><strong id="testsCount">0</strong><span>בדיקות שתועדו</span></div>
+        <div class="summary-card"><strong id="tasksCount">0</strong><span>משימות אישיות</span></div>
+        <div class="summary-card"><strong id="notesCount">0</strong><span>שבועות עם הערות</span></div>
+        <div class="summary-card"><strong id="completedCount">0</strong><span>סימוני משימות שבוצעו</span></div>
+      </div>
+      <div class="data-table-wrap" id="dashboardTableWrap"></div>
     </section>
 
     <div class="footer">נבנה כקובץ HTML יחיד — אפשר לשמור, לפתוח בדפדפן, ולערוך את הטקסטים בקוד לפי הצורך.</div>
@@ -483,35 +477,67 @@
         <div class="info-box"><b>💬 שיחה טובה</b><span id="talkText"></span></div>
       </div>
 
-      <h3 class="section-title">✅ משימות כלליות לשבוע</h3>
+      <h3 class="section-title">📋 טבלת מידע לשבוע הזה</h3>
+      <div class="data-table-wrap weekly-table">
+        <table>
+          <tbody id="weeklyInfoTable"></tbody>
+        </table>
+      </div>
+
+      <h3 class="section-title">✅ משימות מומלצות לשבוע</h3>
       <div class="task-list" id="taskList"></div>
 
+      <h3 class="section-title">➕ משימות אישיות לשבוע הזה</h3>
+      <div class="form-grid">
+        <input class="field-input wide" id="customTaskInput" placeholder="לדוגמה: לקבוע תור, להזמין בדיקה, לקנות קלסר מסמכים" />
+      </div>
+      <div class="action-row"><button class="btn small" id="addCustomTask">הוספת משימה</button></div>
+      <div class="saved-list" id="customTasksList"></div>
+
+      <h3 class="section-title">🧪 בדיקות שנעשו ותוצאות</h3>
+      <div class="form-grid">
+        <input class="field-input" id="testName" placeholder="שם הבדיקה: אולטרסאונד / דם / סקירה" />
+        <input class="field-input" id="testDate" type="date" />
+        <input class="field-input wide" id="testResult" placeholder="תוצאה קצרה: תקין / ממתינים / יש המשך בירור" />
+        <textarea class="field-textarea wide" id="testNotes" placeholder="הערות, ערכים חשובים, מה נאמר בבדיקה, מה צריך לשאול בהמשך..."></textarea>
+      </div>
+      <div class="action-row"><button class="btn small" id="addTest">שמירת בדיקה לשבוע</button></div>
+      <div class="saved-list" id="testsList"></div>
+
       <h3 class="section-title">📝 הערות אישיות לשבוע הזה</h3>
-      <textarea class="week-notes" id="weekNotes" placeholder="מה היה השבוע? מה חשוב לזכור? מה לשאול בבדיקה הבאה?"></textarea>
+      <textarea class="field-textarea week-notes" id="weekNotes" placeholder="מה היה השבוע? איך הרגשת? מה חשוב לזכור? מה לשאול בבדיקה הבאה?"></textarea>
     </div>
   </div>
 
   <script>
     const emojis = ["🌱","✨","🌙","🧸","💛","🌸","🎀","⭐","🍼","🍯"];
+    const comparisons = [
+      "זרע פרג", "שומשום", "עדשה", "אוכמנייה", "גרגר אפונה", "פטל קטן", "זית", "ענב", "תות שדה", "שזיף קטן",
+      "ליים", "אפרסק", "לימון", "תפוח קטן", "אבוקדו", "אגס", "פלפל", "בטטה", "בננה", "מנגו",
+      "רימון", "פפאיה", "אשכולית", "קלח תירס", "קישוא", "חסה קטנה", "כרובית", "חציל", "דלעת קטנה", "כרוב",
+      "קוקוס", "אננס", "מלון", "דלורית", "דבשית", "מלון גדול", "אבטיח קטן", "דלעת", "אבטיח", "תינוק מוכן למפגש"
+    ];
+    const lengths = ["כמעט בלתי נראה", "כ־1 מ״מ", "כ־2 מ״מ", "כ־4 מ״מ", "כ־6 מ״מ", "כ־1 ס״מ", "כ־1.6 ס״מ", "כ־2.3 ס״מ", "כ־3.1 ס״מ", "כ־4.1 ס״מ", "כ־5.4 ס״מ", "כ־6.7 ס״מ", "כ־7.4 ס״מ", "כ־8.7 ס״מ", "כ־10 ס״מ", "כ־11.6 ס״מ", "כ־13 ס״מ", "כ־14.2 ס״מ", "כ־15.3 ס״מ", "כ־16.4 ס״מ", "כ־26.7 ס״מ", "כ־27.8 ס״מ", "כ־28.9 ס״מ", "כ־30 ס״מ", "כ־34.6 ס״מ", "כ־35.6 ס״מ", "כ־36.6 ס״מ", "כ־37.6 ס״מ", "כ־38.6 ס״מ", "כ־39.9 ס״מ", "כ־41.1 ס״מ", "כ־42.4 ס״מ", "כ־43.7 ס״מ", "כ־45 ס״מ", "כ־46.2 ס״מ", "כ־47.4 ס״מ", "כ־48.6 ס״מ", "כ־49.8 ס״מ", "כ־50.7 ס״מ", "כ־51.2 ס״מ"];
+    const weights = ["עדיין זעיר מאוד", "פחות מגרם", "פחות מגרם", "פחות מגרם", "פחות מגרם", "כ־1 גרם", "כ־1 גרם", "כ־2 גרם", "כ־4 גרם", "כ־7 גרם", "כ־14 גרם", "כ־23 גרם", "כ־43 גרם", "כ־70 גרם", "כ־100 גרם", "כ־140 גרם", "כ־190 גרם", "כ־240 גרם", "כ־300 גרם", "כ־330 גרם", "כ־360 גרם", "כ־430 גרם", "כ־500 גרם", "כ־600 גרם", "כ־660 גרם", "כ־760 גרם", "כ־875 גרם", "כ־1 ק״ג", "כ־1.15 ק״ג", "כ־1.3 ק״ג", "כ־1.5 ק״ג", "כ־1.7 ק״ג", "כ־1.9 ק״ג", "כ־2.1 ק״ג", "כ־2.4 ק״ג", "כ־2.6 ק״ג", "כ־2.9 ק״ג", "כ־3.1 ק״ג", "כ־3.3 ק״ג", "כ־3.4 ק״ג"];
 
     const phases = {
       early: {
         title: "התחלה שקטה ומרגשת",
-        focus: "לסמן תאריכים, להתחיל יומן אישי, ולרכז מסמכים ותזכורות במקום אחד.",
-        home: "להכין תיקייה דיגיטלית או פיזית למסמכים, תוצאות, תורים ורשימות.",
-        talk: "לשבת כמה דקות יחד ולכתוב מה חשוב לכם בתקופה הקרובה."
+        focus: "סימון תאריכים, פתיחת יומן, ריכוז מסמכים ותשומת לב לשינויים הראשונים בגוף.",
+        home: "להכין תיקייה דיגיטלית או פיזית למסמכים, תוצאות, תורים ורשימות שאלות.",
+        talk: "לדבר על פרטיות, למי מספרים ומתי, ואיך שומרים על רוגע בתקופה של הרבה אי־ודאות."
       },
       middle: {
         title: "שלב התארגנות ותכנון",
-        focus: "להתחיל לחשוב על ציוד, סדרי בית, תקציב, שמות ורעיונות למשפחה.",
-        home: "לבדוק מה כבר יש, מה צריך לקנות, ומה אפשר לקבל או להשאיל.",
-        talk: "לדבר על חלוקת תפקידים, עזרה מהמשפחה וסדר יום אחרי הלידה."
+        focus: "העמקת המעקב, תכנון ציוד, תקציב, בדיקות, שמות ורעיונות לבית.",
+        home: "לבדוק מה כבר יש, מה צריך לקנות, ומה אפשר לקבל או להשאיל בלי לחץ.",
+        talk: "לדבר על חלוקת תפקידים, עזרה מהמשפחה וסדר יום אפשרי אחרי הלידה."
       },
       late: {
         title: "הכנות אחרונות ורוגע",
-        focus: "לסגור רשימות, להכין תיק, לסדר מסמכים חשובים ולהשאיר מקום למנוחה.",
-        home: "לארגן פינה נעימה, כביסות בסיסיות, ציוד ראשוני ותיק מסודר.",
-        talk: "לכתוב מי אנשי הקשר החשובים ומה עושים בכל תרחיש לוגיסטי."
+        focus: "סגירת רשימות, הכנת תיק, תיעוד בדיקות אחרונות, מנוחה וארגון תמיכה.",
+        home: "לארגן פינה נעימה, כביסות בסיסיות, ציוד ראשוני, תיק ומסמכים זמינים.",
+        talk: "לכתוב מי אנשי הקשר החשובים, מה עושים בכל תרחיש לוגיסטי ומה יעזור לשמור על שקט."
       }
     };
 
@@ -533,15 +559,78 @@
       return "לקראת המפגש";
     }
 
+    function developmentText(week) {
+      if (week <= 4) return "הגוף מתחיל תהליך מוקדם מאוד של השרשה ובניית בסיס לשק ההריון והשליה. זה שלב עדין שבו רוב השינויים עדיין אינם מורגשים.";
+      if (week <= 8) return "מתחילה בנייה מהירה של מערכות מרכזיות: לב ראשוני, ניצני גפיים, מערכת עצבים ואיברים בסיסיים. הכול קטן מאוד אך מתקדם בקצב מרשים.";
+      if (week <= 13) return "האיברים המרכזיים כבר מתארגנים, הפנים מקבלות צורה, והעובר מתחיל תנועות זעירות שלרוב עדיין לא מרגישים.";
+      if (week <= 18) return "השלד מתחזק, תווי הפנים ברורים יותר, והעובר מתרגל תנועות, בליעה ותיאום ראשוני בין מערכות.";
+      if (week <= 23) return "חושים ותנועה מתפתחים: שמיעה, תגובה לקול, תנועות מורגשות יותר, גדילה של שרירים ועור שעדיין עדין ודק.";
+      if (week <= 27) return "הריאות והמוח ממשיכים להבשיל, מחזורי שינה וערות נעשים מובחנים יותר, והעובר צובר משקל בקצב עולה.";
+      if (week <= 32) return "העובר מתמלא, שכבת שומן עדינה מצטברת, התנועות חזקות יותר, והמוח והריאות ממשיכים תהליך הבשלה חשוב.";
+      if (week <= 36) return "רוב המערכות מתקדמות לקראת בשלות, העובר עשוי להתמקם נמוך יותר, והגוף מתכונן בהדרגה ללידה.";
+      return "העובר כבר בשל יותר לקראת המפגש, ממשיך לעלות במשקל, לתרגל נשימה ותנועות, ולשמור על דפוסי פעילות אישיים.";
+    }
+
+    function symptomsText(week) {
+      if (week <= 6) return "עייפות, רגישות בחזה, צורך במנוחה, שינויי מצב רוח ולעיתים בחילות או רגישות לריחות. אצל כל אחת זה נראה אחרת.";
+      if (week <= 13) return "בחילות, עייפות, תיאבון משתנה, נפיחות, רגישות לריחות ושינויים רגשיים. כדאי לתעד מה מקל ומה מחמיר.";
+      if (week <= 20) return "לעיתים יש יותר אנרגיה, אך ייתכנו צרבות, כאבי גב, מתיחות בבטן, גודש באף ושינויים בשינה.";
+      if (week <= 27) return "תנועות עשויות להיות מורגשות יותר, לצד עומס בגב, התכווצויות קלות, צרבות, בצקות קלות או עייפות בסוף היום.";
+      if (week <= 34) return "לחץ באגן, קוצר נשימה קל, קושי בשינה, בצקות, צרבות ותנועות חזקות יותר. חשוב לעקוב אחרי מה חריג עבורך.";
+      return "הכובד מורגש יותר, שינה יכולה להיות מאתגרת, ייתכנו צירים מדומים, לחץ באגן ורצון טבעי לסיים סידורים אחרונים.";
+    }
+
+    function uterusText(week) {
+      if (week <= 8) return "הרחם גדל בהדרגה אך לרוב עדיין נמצא עמוק באגן, ולכן מבחוץ בדרך כלל לא רואים שינוי משמעותי.";
+      if (week <= 12) return "הרחם ממשיך לגדול ולקראת סוף השליש הראשון מתחיל לעלות מעט מתוך האגן.";
+      if (week <= 20) return "הרחם כבר עולה יותר בבטן, ולעיתים מתחילה בליטה עדינה. סביב שבוע 20 גובה הרחם לרוב סביב אזור הטבור.";
+      if (week <= 28) return "הרחם מתרחב כלפי מעלה, הבטן נראית ברורה יותר, וייתכן עומס על הגב, הסרעפת ושלפוחית השתן.";
+      if (week <= 36) return "הרחם גדול ומגיע גבוה יותר בבטן. לפעמים יש לחץ בצלעות או באגן, בהתאם למנח העובר.";
+      return "לקראת הסוף הרחם מלא יותר, ולעיתים הבטן יורדת מעט אם העובר מתבסס נמוך יותר באגן.";
+    }
+
+    function upcomingText(week) {
+      if (week <= 10) return "בשבועות הקרובים בדרך כלל מתמקדים באימות גיל ההריון, תורים ראשונים, בדיקות דם ושאלות על מעקב מסודר.";
+      if (week <= 14) return "בקרוב מתחילים לחשוב על המשך בדיקות השליש הראשון והשני, תיאום תורים ותיעוד תוצאות במקום אחד.";
+      if (week <= 22) return "בהמשך צפויות יותר תנועות, בדיקות המשך, תכנון ציוד ראשוני ושיחות על תמיכה משפחתית.";
+      if (week <= 28) return "לקראת השליש השלישי כדאי להתחיל לסגור פערים: תוצאות, תורים, ציוד בסיסי ותוכנית לוגיסטית.";
+      if (week <= 34) return "בקרוב הדגש עובר להכנות לידה, תיק, מסמכים, מעקב תנועות לפי הנחיית גורם רפואי וסידור הבית.";
+      return "בשלב הקרוב כדאי לשמור הכול זמין: תיק, מסמכים, אנשי קשר, תוצאות בדיקות ותוכנית הגעה במקרה הצורך.";
+    }
+
+    function tipsText(week) {
+      if (week <= 13) return "טיפ: לאכול מנות קטנות אם זה מקל, לשתות מים, לנוח כשאפשר, ולכתוב שאלות מיד כשהן עולות כדי לא לשכוח בתור.";
+      if (week <= 27) return "טיפ: לפתוח רשימת ציוד בשלוש רמות — חובה, נחמד שיהיה, אפשר אחר כך — כדי להימנע מקניות מיותרות.";
+      return "טיפ: להכין עמדת מסמכים ותיק קטן עם דברים חיוניים, ולחלק משימות בין בני המשפחה כדי להפחית עומס.";
+    }
+
+    function ideaText(week) {
+      if (week <= 13) return "רעיון משפחתי: לצלם תמונה שבועית קטנה או לכתוב משפט אחד שמסכם את השבוע, גם אם עדיין לא משתפים אחרים.";
+      if (week <= 27) return "רעיון משפחתי: ערב שמות, פלייליסט רגוע, רשימת קניות חכמה או סיור קצר בבית כדי להבין מה צריך לארגן.";
+      return "רעיון משפחתי: להכין כרטיס אנשי קשר, רשימת אוכל קל לשבוע הראשון, ותוכנית מי עוזר במה אחרי החזרה הביתה.";
+    }
+
     function weeklyTasks(week) {
       const base = [
         "לכתוב סיכום קצר של השבוע ביומן.",
         "לרשום שאלות לבדיקה או לשיחה עם גורם מקצועי.",
-        "לבדוק ביומן אם יש תור, מסמך או משימה פתוחה."
+        "לבדוק אם יש תור, מסמך או תוצאה שצריך להעלות לדשבורד."
       ];
-      if (week <= 13) return [...base, "לפתוח תיקייה למסמכים חשובים.", "לחשוב איך רוצים לבשר למשפחה הקרובה, אם רלוונטי."];
-      if (week <= 27) return [...base, "להתחיל רשימת ציוד בסיסית.", "לבדוק תקציב וקניות מתוכננות.", "לרשום רעיונות לשמות שאוהבים."];
+      if (week <= 13) return [...base, "לרכז בדיקות ותוצאות ראשונות במקום אחד.", "לבדוק מה עוזר לתופעות כמו עייפות או בחילות ולתעד ביומן."];
+      if (week <= 27) return [...base, "להתחיל רשימת ציוד לפי סדר עדיפות.", "לבדוק תקציב וקניות מתוכננות.", "לרשום רעיונות לשמות או דברים שמרגשים אתכם."];
       return [...base, "להכין רשימת אנשי קשר חשובים.", "לארגן תיק ודברים זמינים לבית.", "לסדר פינה רגועה ונקייה לקראת ההמשך."];
+    }
+
+    function buildWeeklyInfo(week) {
+      return [
+        ["גודל העובר", `${comparisons[week - 1]} — אורך ${lengths[week - 1]}, משקל ${weights[week - 1]}. הנתונים משוערים ומשתנים מהריון להריון.`],
+        ["גודל הרחם / הגוף", uterusText(week)],
+        ["שלב התפתחות", developmentText(week)],
+        ["תופעות נפוצות", symptomsText(week)],
+        ["מה צפוי בעתיד", upcomingText(week)],
+        ["טיפ לשבוע", tipsText(week)],
+        ["רעיון נחמד", ideaText(week)]
+      ];
     }
 
     const weeks = Array.from({ length: 40 }, (_, i) => {
@@ -556,6 +645,7 @@
         focus: phases[phase].focus,
         home: phases[phase].home,
         talk: phases[phase].talk,
+        info: buildWeeklyInfo(week),
         tasks: weeklyTasks(week)
       };
     });
@@ -570,11 +660,35 @@
     const focusText = document.getElementById("focusText");
     const homeText = document.getElementById("homeText");
     const talkText = document.getElementById("talkText");
+    const weeklyInfoTable = document.getElementById("weeklyInfoTable");
     const taskList = document.getElementById("taskList");
     const weekNotes = document.getElementById("weekNotes");
     const globalNote = document.getElementById("globalNote");
+    const customTaskInput = document.getElementById("customTaskInput");
+    const customTasksList = document.getElementById("customTasksList");
+    const addCustomTask = document.getElementById("addCustomTask");
+    const testName = document.getElementById("testName");
+    const testDate = document.getElementById("testDate");
+    const testResult = document.getElementById("testResult");
+    const testNotes = document.getElementById("testNotes");
+    const addTest = document.getElementById("addTest");
+    const testsList = document.getElementById("testsList");
 
     let currentWeek = null;
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
+    }
+
+    function readJson(key, fallback) {
+      try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
+      catch { return fallback; }
+    }
+
+    function writeJson(key, value) {
+      localStorage.setItem(key, JSON.stringify(value));
+      renderDashboard();
+    }
 
     function renderWeeks() {
       const q = searchInput.value.trim().toLowerCase();
@@ -584,7 +698,7 @@
       weeks
         .filter(item => selected === "all" || item.phase === selected)
         .filter(item => {
-          const haystack = `שבוע ${item.week} ${item.title} ${item.subtitle} ${item.focus} ${item.home} ${item.talk}`.toLowerCase();
+          const haystack = `שבוע ${item.week} ${item.title} ${item.subtitle} ${item.focus} ${item.home} ${item.talk} ${item.info.flat().join(" ")} ${item.tasks.join(" ")}`.toLowerCase();
           return !q || haystack.includes(q);
         })
         .forEach(item => {
@@ -594,11 +708,49 @@
             <div class="week-emoji">${item.emoji}</div>
             <div class="week-number">שבוע ${item.week}</div>
             <div class="week-title">${item.title}</div>
-            <span class="week-chip">פתח דף שבועי</span>
+            <div class="week-meta">${comparisons[item.week - 1]} · ${lengths[item.week - 1]}</div>
+            <span class="week-chip">פתח טבלה שבועית</span>
           `;
           card.addEventListener("click", () => openWeek(item.week));
           grid.appendChild(card);
         });
+    }
+
+    function renderCustomTasks(week) {
+      const tasks = readJson(`custom_tasks_${week}`, []);
+      customTasksList.innerHTML = tasks.length ? "" : `<div class="empty-state">אין עדיין משימות אישיות לשבוע הזה.</div>`;
+      tasks.forEach((task, idx) => {
+        const row = document.createElement("div");
+        row.className = "saved-item";
+        row.innerHTML = `<div class="saved-item-main"><b>${escapeHtml(task.text)}</b><span>${task.done ? "בוצע ✅" : "פתוח"}</span></div><div class="action-row"><button class="btn small secondary" data-toggle="${idx}">${task.done ? "סימון כפתוח" : "סימון בוצע"}</button><button class="btn small secondary" data-delete="${idx}">מחיקה</button></div>`;
+        row.querySelector("[data-toggle]").addEventListener("click", () => {
+          tasks[idx].done = !tasks[idx].done;
+          writeJson(`custom_tasks_${week}`, tasks);
+          renderCustomTasks(week);
+        });
+        row.querySelector("[data-delete]").addEventListener("click", () => {
+          tasks.splice(idx, 1);
+          writeJson(`custom_tasks_${week}`, tasks);
+          renderCustomTasks(week);
+        });
+        customTasksList.appendChild(row);
+      });
+    }
+
+    function renderTests(week) {
+      const tests = readJson(`tests_${week}`, []);
+      testsList.innerHTML = tests.length ? "" : `<div class="empty-state">אין עדיין בדיקות שמורות לשבוע הזה.</div>`;
+      tests.forEach((test, idx) => {
+        const row = document.createElement("div");
+        row.className = "saved-item";
+        row.innerHTML = `<div class="saved-item-main"><b>${escapeHtml(test.name || "בדיקה")}</b><span>${escapeHtml(test.date || "ללא תאריך")} · ${escapeHtml(test.result || "ללא תוצאה")}</span><span>${escapeHtml(test.notes || "")}</span></div><button class="btn small secondary" data-delete="${idx}">מחיקה</button>`;
+        row.querySelector("[data-delete]").addEventListener("click", () => {
+          tests.splice(idx, 1);
+          writeJson(`tests_${week}`, tests);
+          renderTests(week);
+        });
+        testsList.appendChild(row);
+      });
     }
 
     function openWeek(week) {
@@ -609,67 +761,129 @@
       focusText.textContent = item.focus;
       homeText.textContent = item.home;
       talkText.textContent = item.talk;
+      weeklyInfoTable.innerHTML = item.info.map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join("");
       taskList.innerHTML = "";
 
       item.tasks.forEach((task, idx) => {
         const id = `task_${week}_${idx}`;
         const row = document.createElement("label");
         row.className = "task";
-        row.innerHTML = `<input type="checkbox" id="${id}"> <span>${task}</span>`;
+        row.innerHTML = `<input type="checkbox" id="${id}"> <span>${escapeHtml(task)}</span>`;
         const checkbox = row.querySelector("input");
         checkbox.checked = localStorage.getItem(id) === "1";
-        checkbox.addEventListener("change", () => localStorage.setItem(id, checkbox.checked ? "1" : "0"));
+        checkbox.addEventListener("change", () => {
+          localStorage.setItem(id, checkbox.checked ? "1" : "0");
+          renderDashboard();
+        });
         taskList.appendChild(row);
       });
 
       weekNotes.value = localStorage.getItem(`week_note_${week}`) || "";
+      customTaskInput.value = "";
+      testName.value = "";
+      testDate.value = "";
+      testResult.value = "";
+      testNotes.value = "";
+      renderCustomTasks(week);
+      renderTests(week);
       modal.classList.add("open");
     }
 
     function saveCurrentWeekNote() {
-      if (currentWeek) localStorage.setItem(`week_note_${currentWeek}`, weekNotes.value);
+      if (currentWeek) {
+        localStorage.setItem(`week_note_${currentWeek}`, weekNotes.value);
+        renderDashboard();
+      }
     }
 
-    closeModal.addEventListener("click", () => {
-      saveCurrentWeekNote();
-      modal.classList.remove("open");
-    });
+    function addTaskForCurrentWeek() {
+      if (!currentWeek || !customTaskInput.value.trim()) return;
+      const tasks = readJson(`custom_tasks_${currentWeek}`, []);
+      tasks.push({ text: customTaskInput.value.trim(), done: false, createdAt: new Date().toISOString() });
+      customTaskInput.value = "";
+      writeJson(`custom_tasks_${currentWeek}`, tasks);
+      renderCustomTasks(currentWeek);
+    }
 
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        saveCurrentWeekNote();
-        modal.classList.remove("open");
+    function addTestForCurrentWeek() {
+      if (!currentWeek || (!testName.value.trim() && !testResult.value.trim())) return;
+      const tests = readJson(`tests_${currentWeek}`, []);
+      tests.push({
+        name: testName.value.trim() || "בדיקה",
+        date: testDate.value,
+        result: testResult.value.trim(),
+        notes: testNotes.value.trim(),
+        createdAt: new Date().toISOString()
+      });
+      testName.value = "";
+      testDate.value = "";
+      testResult.value = "";
+      testNotes.value = "";
+      writeJson(`tests_${currentWeek}`, tests);
+      renderTests(currentWeek);
+    }
+
+    function collectTests() {
+      return weeks.flatMap(item => readJson(`tests_${item.week}`, []).map(test => ({ week: item.week, ...test })));
+    }
+
+    function renderDashboard() {
+      const allTests = collectTests();
+      const customTasks = weeks.flatMap(item => readJson(`custom_tasks_${item.week}`, []).map(task => ({ week: item.week, ...task })));
+      const notesCount = weeks.filter(item => (localStorage.getItem(`week_note_${item.week}`) || "").trim()).length;
+      const completedRecommended = Object.keys(localStorage).filter(key => key.startsWith("task_") && localStorage.getItem(key) === "1").length;
+      const completedCustom = customTasks.filter(task => task.done).length;
+
+      document.getElementById("testsCount").textContent = allTests.length;
+      document.getElementById("tasksCount").textContent = customTasks.length;
+      document.getElementById("notesCount").textContent = notesCount;
+      document.getElementById("completedCount").textContent = completedRecommended + completedCustom;
+
+      const wrap = document.getElementById("dashboardTableWrap");
+      if (!allTests.length) {
+        wrap.innerHTML = `<div class="empty-state">עדיין אין בדיקות בדשבורד. פתחו שבוע, הוסיפו בדיקה ותוצאה, והיא תופיע כאן בצורה מסודרת.</div>`;
+        return;
       }
-    });
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal.classList.contains("open")) {
-        saveCurrentWeekNote();
-        modal.classList.remove("open");
-      }
-    });
+      wrap.innerHTML = `
+        <table>
+          <thead><tr><th>שבוע</th><th>תאריך</th><th>בדיקה</th><th>תוצאה</th><th>הערות</th></tr></thead>
+          <tbody>
+            ${allTests.map(test => `<tr><td>שבוע ${escapeHtml(test.week)}</td><td>${escapeHtml(test.date || "—")}</td><td>${escapeHtml(test.name || "בדיקה")}</td><td>${escapeHtml(test.result || "—")}</td><td>${escapeHtml(test.notes || "—")}</td></tr>`).join("")}
+          </tbody>
+        </table>`;
+    }
 
+    closeModal.addEventListener("click", () => { saveCurrentWeekNote(); modal.classList.remove("open"); });
+    modal.addEventListener("click", (e) => { if (e.target === modal) { saveCurrentWeekNote(); modal.classList.remove("open"); } });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && modal.classList.contains("open")) { saveCurrentWeekNote(); modal.classList.remove("open"); } });
     weekNotes.addEventListener("input", saveCurrentWeekNote);
+    addCustomTask.addEventListener("click", addTaskForCurrentWeek);
+    customTaskInput.addEventListener("keydown", (e) => { if (e.key === "Enter") addTaskForCurrentWeek(); });
+    addTest.addEventListener("click", addTestForCurrentWeek);
 
     globalNote.value = localStorage.getItem("global_pregnancy_family_note") || "";
     globalNote.addEventListener("input", () => localStorage.setItem("global_pregnancy_family_note", globalNote.value));
 
     document.getElementById("clearNotes").addEventListener("click", () => {
-      const ok = confirm("לאפס את כל ההערות והסימונים שנשמרו בדפדפן?");
+      const ok = confirm("לאפס את כל ההערות, המשימות, הבדיקות והתוצאות שנשמרו בדפדפן?");
       if (!ok) return;
       Object.keys(localStorage).forEach(key => {
-        if (key.startsWith("week_note_") || key.startsWith("task_") || key === "global_pregnancy_family_note") {
+        if (key.startsWith("week_note_") || key.startsWith("task_") || key.startsWith("custom_tasks_") || key.startsWith("tests_") || key === "global_pregnancy_family_note") {
           localStorage.removeItem(key);
         }
       });
       globalNote.value = "";
       if (currentWeek) openWeek(currentWeek);
+      renderDashboard();
     });
 
+    document.getElementById("refreshDashboard").addEventListener("click", renderDashboard);
     searchInput.addEventListener("input", renderWeeks);
     phaseFilter.addEventListener("change", renderWeeks);
 
     renderWeeks();
+    renderDashboard();
   </script>
 </body>
 </html>
