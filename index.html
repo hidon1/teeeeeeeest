@@ -1,889 +1,1415 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>יומן הריון משפחתי | שבועות 1–40</title>
-  <style>
-    :root {
-      --bg1: #fff7fb;
-      --bg2: #eef5ff;
-      --primary: #8f52ff;
-      --primary2: #ff74b8;
-      --accent: #ffd166;
-      --mint: #8ee6cf;
-      --text: #272235;
-      --muted: #746b82;
-      --card: rgba(255,255,255,.82);
-      --border: rgba(127, 87, 255, .18);
-      --shadow: 0 18px 55px rgba(87, 60, 130, .16);
-      --radius: 28px;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>יומן הריון משפחתי מורחב | שבועות 1–40</title>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;700;900&family=Heebo:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg1: #fdf6ff;
+  --bg2: #f0f4ff;
+  --primary: #7c3aed;
+  --primary2: #ec4899;
+  --primary3: #f59e0b;
+  --accent: #06b6d4;
+  --green: #10b981;
+  --red: #ef4444;
+  --text: #1e1033;
+  --muted: #6b5f7a;
+  --card: rgba(255,255,255,.82);
+  --border: rgba(124,58,237,.15);
+  --shadow: 0 20px 60px rgba(80,40,140,.14);
+  --radius: 28px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Heebo',sans-serif;
+  color:var(--text);
+  min-height:100vh;
+  background:
+    radial-gradient(ellipse at 0% 0%,rgba(236,72,153,.18),transparent 40%),
+    radial-gradient(ellipse at 100% 0%,rgba(124,58,237,.18),transparent 40%),
+    radial-gradient(ellipse at 50% 100%,rgba(245,158,11,.14),transparent 45%),
+    linear-gradient(160deg,var(--bg1),var(--bg2));
+  overflow-x:hidden;
+}
+.float-bg span{
+  position:fixed;z-index:0;opacity:.2;filter:blur(1px);
+  animation:floaty 10s ease-in-out infinite;pointer-events:none;font-size:26px;
+}
+.float-bg span:nth-child(1){top:8%;right:5%;animation-delay:0s}
+.float-bg span:nth-child(2){top:22%;left:6%;animation-delay:1.5s}
+.float-bg span:nth-child(3){bottom:15%;right:10%;animation-delay:3s}
+.float-bg span:nth-child(4){bottom:28%;left:14%;animation-delay:4.5s}
+.float-bg span:nth-child(5){top:50%;right:3%;animation-delay:6s}
+.float-bg span:nth-child(6){top:70%;left:5%;animation-delay:7.5s}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-20px) rotate(6deg)}}
 
-    * { box-sizing: border-box; }
+.app{position:relative;z-index:1;width:min(1240px,calc(100% - 24px));margin:0 auto;padding:22px 0 70px}
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(255,116,184,.28), transparent 26%),
-        radial-gradient(circle at 82% 12%, rgba(143,82,255,.24), transparent 25%),
-        radial-gradient(circle at 50% 80%, rgba(255,209,102,.28), transparent 30%),
-        linear-gradient(135deg, var(--bg1), var(--bg2));
-      overflow-x: hidden;
-    }
+/* HERO */
+.hero{
+  background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(255,255,255,.6));
+  border:1px solid rgba(255,255,255,.95);
+  border-radius:36px;box-shadow:var(--shadow);
+  padding:clamp(20px,5vw,52px);
+  display:grid;grid-template-columns:1.3fr .7fr;gap:28px;
+  align-items:center;backdrop-filter:blur(18px);overflow:hidden;position:relative;
+  margin-bottom:22px;
+}
+.hero:before{
+  content:"";position:absolute;inset:auto auto -80px -60px;
+  width:240px;height:240px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(236,72,153,.2),rgba(124,58,237,.15));
+}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;border-radius:999px;
+  background:rgba(124,58,237,.1);color:#5b21b6;
+  font-weight:800;font-size:14px;margin-bottom:14px;
+}
+h1{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:clamp(28px,5vw,58px);line-height:1.05;letter-spacing:-1px;
+  margin-bottom:12px;
+}
+.hero>div>p{color:var(--muted);font-size:clamp(15px,2vw,18px);line-height:1.8;max-width:700px}
+.hero-stats{
+  background:linear-gradient(155deg,#fff,#fdf6ff);
+  border:1px solid var(--border);border-radius:28px;
+  padding:20px;box-shadow:0 14px 40px rgba(124,58,237,.14);
+}
+.stat{
+  display:grid;grid-template-columns:50px 1fr;gap:12px;
+  align-items:center;padding:12px;border-radius:20px;
+  background:rgba(255,255,255,.7);margin-bottom:10px;
+}
+.stat:last-child{margin-bottom:0}
+.stat-icon{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;
+  background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(236,72,153,.15));font-size:24px}
+.stat b{display:block;font-size:15px}
+.stat small{color:var(--muted);font-size:13px;line-height:1.5}
 
-    .float-shapes span {
-      position: fixed;
-      z-index: 0;
-      opacity: .35;
-      filter: blur(.1px);
-      animation: floaty 9s ease-in-out infinite;
-      user-select: none;
-      pointer-events: none;
-      font-size: 24px;
-    }
-    .float-shapes span:nth-child(1){ top: 10%; right: 6%; animation-delay: 0s; }
-    .float-shapes span:nth-child(2){ top: 26%; left: 8%; animation-delay: 1s; }
-    .float-shapes span:nth-child(3){ bottom: 12%; right: 12%; animation-delay: 2s; }
-    .float-shapes span:nth-child(4){ bottom: 24%; left: 16%; animation-delay: 3s; }
-    .float-shapes span:nth-child(5){ top: 54%; right: 4%; animation-delay: 4s; }
-    @keyframes floaty { 0%,100%{ transform: translateY(0) rotate(0deg);} 50%{ transform: translateY(-22px) rotate(8deg);} }
+/* TABS */
+.tabs{
+  display:flex;gap:8px;margin-bottom:18px;
+  background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.95);
+  border-radius:22px;padding:8px;backdrop-filter:blur(12px);
+  box-shadow:0 8px 26px rgba(80,40,140,.09);
+  overflow-x:auto;
+}
+.tab{
+  border:none;border-radius:16px;padding:11px 20px;
+  font-family:'Heebo',sans-serif;font-weight:800;font-size:14px;
+  cursor:pointer;white-space:nowrap;transition:all .2s ease;
+  background:transparent;color:var(--muted);
+}
+.tab.active{
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:white;box-shadow:0 8px 22px rgba(124,58,237,.25);
+}
+.tab:not(.active):hover{background:rgba(124,58,237,.08);color:var(--primary)}
 
-    .app {
-      position: relative;
-      z-index: 1;
-      width: min(1220px, calc(100% - 28px));
-      margin: 0 auto;
-      padding: 26px 0 60px;
-    }
+/* TOOLBAR */
+.toolbar{
+  margin-bottom:18px;display:grid;
+  grid-template-columns:1fr auto auto;gap:10px;align-items:center;
+  background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.95);
+  border-radius:22px;padding:10px;
+  box-shadow:0 8px 28px rgba(80,40,140,.09);backdrop-filter:blur(12px);
+}
+.search,.filter-sel{
+  width:100%;border:1px solid var(--border);border-radius:16px;
+  background:white;padding:12px 16px;outline:none;
+  color:var(--text);font-family:'Heebo',sans-serif;font-weight:600;font-size:14px;
+}
+.btn{
+  border:none;border-radius:16px;padding:12px 18px;
+  font-family:'Heebo',sans-serif;font-weight:900;font-size:14px;
+  cursor:pointer;white-space:nowrap;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:white;box-shadow:0 8px 22px rgba(124,58,237,.22);
+  transition:transform .18s,box-shadow .18s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(124,58,237,.3)}
+.btn-sm{padding:8px 14px;font-size:13px}
+.btn-green{background:linear-gradient(135deg,#059669,#10b981)}
+.btn-amber{background:linear-gradient(135deg,#d97706,#f59e0b)}
+.btn-red{background:linear-gradient(135deg,#dc2626,#ef4444)}
 
-    .hero {
-      background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(255,255,255,.58));
-      border: 1px solid rgba(255,255,255,.9);
-      border-radius: 36px;
-      box-shadow: var(--shadow);
-      padding: clamp(22px, 5vw, 50px);
-      display: grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 28px;
-      align-items: center;
-      backdrop-filter: blur(16px);
-      overflow: hidden;
-      position: relative;
-    }
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
+.weeks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
 
-    .hero:before {
-      content: "";
-      position: absolute;
-      inset: auto auto -90px -80px;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(255,116,184,.25), rgba(143,82,255,.2));
-    }
+/* WEEK CARD */
+.week-card{
+  min-height:140px;border:1px solid rgba(255,255,255,.88);
+  background:var(--card);border-radius:24px;padding:14px;
+  box-shadow:0 10px 30px rgba(80,40,140,.09);
+  backdrop-filter:blur(12px);cursor:pointer;
+  position:relative;overflow:hidden;
+  transition:transform .18s ease,border-color .18s ease,background .18s ease;
+}
+.week-card:hover{transform:translateY(-5px) scale(1.015);border-color:rgba(124,58,237,.3);background:rgba(255,255,255,.94)}
+.week-card:after{content:"";position:absolute;width:70px;height:70px;border-radius:50%;left:-20px;bottom:-20px;background:linear-gradient(135deg,rgba(236,72,153,.18),rgba(245,158,11,.18))}
+.week-card.has-data:before{content:"✓";position:absolute;top:8px;left:8px;background:var(--green);color:white;width:20px;height:20px;border-radius:50%;font-size:10px;font-weight:900;display:grid;place-items:center}
+.week-num{font-family:'Frank Ruhl Libre',serif;font-size:26px;font-weight:900;letter-spacing:-.5px}
+.week-lbl{color:var(--muted);font-weight:700;font-size:13px;margin-top:5px;line-height:1.3}
+.week-emoji{position:absolute;left:12px;top:12px;font-size:24px}
+.week-chip{display:inline-flex;margin-top:12px;padding:5px 10px;border-radius:999px;background:rgba(124,58,237,.1);color:#5b21b6;font-size:11px;font-weight:900}
+.week-size{font-size:11px;color:var(--primary2);font-weight:700;margin-top:4px}
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 14px;
-      border-radius: 999px;
-      background: rgba(143,82,255,.11);
-      color: #6d35c7;
-      font-weight: 800;
-      margin-bottom: 14px;
-    }
+/* SIDE PANEL */
+.side-panel{position:sticky;top:14px;display:grid;gap:14px}
+.panel{
+  background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.95);
+  border-radius:26px;padding:18px;
+  box-shadow:0 12px 32px rgba(80,40,140,.1);backdrop-filter:blur(14px);
+}
+.panel h2{font-size:18px;margin-bottom:12px}
+.panel p,.panel li{color:var(--muted);line-height:1.65;font-size:14px}
+.panel ul{padding-right:18px}
+.note-box textarea{
+  width:100%;min-height:120px;resize:vertical;
+  border:1px solid var(--border);border-radius:16px;padding:12px;
+  outline:none;background:rgba(255,255,255,.9);
+  color:var(--text);line-height:1.6;font-family:'Heebo',sans-serif;font-size:14px;
+}
 
-    h1 {
-      font-size: clamp(32px, 6vw, 64px);
-      line-height: 1.02;
-      margin: 0 0 14px;
-      letter-spacing: -1.4px;
-    }
+/* MODAL */
+.modal{
+  position:fixed;inset:0;z-index:100;display:none;
+  place-items:center;padding:16px;
+  background:rgba(20,10,40,.5);backdrop-filter:blur(12px);
+}
+.modal.open{display:grid}
+.modal-card{
+  width:min(980px,100%);max-height:min(90vh,860px);overflow:auto;
+  background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(255,248,252,.96));
+  border:1px solid rgba(255,255,255,.95);border-radius:32px;
+  box-shadow:0 32px 90px rgba(20,10,40,.3);
+  padding:clamp(16px,4vw,32px);animation:pop .2s ease-out;
+}
+@keyframes pop{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-head{display:flex;align-items:start;justify-content:space-between;gap:14px;margin-bottom:18px}
+.modal-head h2{font-family:'Frank Ruhl Libre',serif;font-size:clamp(24px,4vw,40px);margin-bottom:6px}
+.modal-head p{color:var(--muted);font-size:15px;line-height:1.6}
+.close-btn{
+  border:none;width:44px;height:44px;border-radius:14px;cursor:pointer;
+  background:rgba(124,58,237,.1);color:#5b21b6;font-size:22px;font-weight:950;
+  flex-shrink:0;
+}
 
-    .hero p {
-      color: var(--muted);
-      font-size: clamp(16px, 2.2vw, 20px);
-      line-height: 1.75;
-      margin: 0;
-      max-width: 820px;
-    }
+/* INFO SECTIONS INSIDE MODAL */
+.sec-title{
+  font-size:17px;font-weight:900;margin:22px 0 10px;
+  display:flex;align-items:center;gap:8px;color:var(--primary);
+}
+.sec-title:after{content:"";flex:1;height:2px;background:linear-gradient(to left,transparent,rgba(124,58,237,.15))}
 
-    .hero-card {
-      background: linear-gradient(160deg, #fff, #fff7fb);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      padding: 22px;
-      box-shadow: 0 15px 40px rgba(143,82,255,.16);
-    }
+/* DEV INFO GRID */
+.dev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:4px}
+.dev-box{
+  padding:14px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(255,255,255,.9),rgba(253,246,255,.85));
+  border:1px solid var(--border);
+}
+.dev-box .dev-icon{font-size:28px;margin-bottom:8px}
+.dev-box .dev-label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.dev-box .dev-val{font-size:16px;font-weight:900;color:var(--primary)}
+.dev-box .dev-desc{font-size:13px;color:var(--muted);line-height:1.5;margin-top:4px}
 
-    .stat {
-      display: grid;
-      grid-template-columns: 56px 1fr;
-      gap: 12px;
-      align-items: center;
-      padding: 14px;
-      border-radius: 22px;
-      background: rgba(255,255,255,.72);
-      margin-bottom: 12px;
-    }
-    .stat:last-child { margin-bottom: 0; }
-    .stat-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(143,82,255,.18), rgba(255,116,184,.18));
-      font-size: 28px;
-    }
-    .stat b { display:block; font-size: 18px; }
-    .stat small { color: var(--muted); line-height: 1.5; }
+/* SYMPTOMS / TIPS */
+.chips-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{
+  padding:6px 14px;border-radius:999px;font-size:13px;font-weight:700;
+  background:rgba(124,58,237,.09);color:#5b21b6;
+}
+.chip.sym{background:rgba(239,68,68,.09);color:#b91c1c}
+.chip.tip{background:rgba(16,185,129,.09);color:#065f46}
+.chip.warn{background:rgba(245,158,11,.12);color:#92400e}
 
-    .toolbar {
-      margin: 22px 0;
-      display: grid;
-      grid-template-columns: 1fr auto auto;
-      gap: 12px;
-      align-items: center;
-      background: rgba(255,255,255,.68);
-      border: 1px solid rgba(255,255,255,.9);
-      border-radius: 26px;
-      padding: 12px;
-      box-shadow: 0 12px 34px rgba(87,60,130,.10);
-      backdrop-filter: blur(12px);
-    }
+/* INFO BOXES */
+.info-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
+.info-box{
+  padding:14px;border-radius:20px;
+  background:rgba(255,255,255,.82);border:1px solid var(--border);
+}
+.info-box b{display:block;font-size:13px;margin-bottom:6px}
+.info-box span{color:var(--muted);line-height:1.55;font-size:13px}
 
-    input, select, textarea, button { font-family: inherit; }
+/* TASKS */
+.task-grid{display:grid;gap:8px}
+.task{
+  display:flex;gap:10px;align-items:flex-start;
+  background:rgba(255,255,255,.8);border:1px solid var(--border);
+  border-radius:16px;padding:11px;color:var(--muted);
+  line-height:1.55;font-size:14px;
+}
+.task input{margin-top:4px;accent-color:var(--primary)}
 
-    .search, .select, .field-input, .field-textarea {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: white;
-      padding: 14px 16px;
-      outline: none;
-      color: var(--text);
-      font-weight: 700;
-    }
-    .field-textarea { min-height: 86px; resize: vertical; line-height: 1.6; }
+/* WEEK NOTES */
+.week-notes-area{
+  width:100%;min-height:90px;resize:vertical;
+  border:1px solid var(--border);border-radius:18px;padding:12px;
+  line-height:1.65;outline:none;background:white;
+  font-family:'Heebo',sans-serif;font-size:14px;color:var(--text);
+}
 
-    .btn {
-      border: none;
-      border-radius: 18px;
-      padding: 14px 18px;
-      font-weight: 900;
-      cursor: pointer;
-      background: linear-gradient(135deg, var(--primary), var(--primary2));
-      color: white;
-      box-shadow: 0 12px 26px rgba(143,82,255,.24);
-      transition: transform .18s ease, box-shadow .18s ease;
-      white-space: nowrap;
-    }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(143,82,255,.3); }
-    .btn.secondary { background: linear-gradient(135deg, #fff, #fff7fb); color: #6d35c7; border: 1px solid var(--border); box-shadow: none; }
-    .btn.small { padding: 10px 12px; border-radius: 14px; font-size: 13px; }
+/* TESTS TABLE INSIDE MODAL */
+.tests-table-wrap{overflow-x:auto;margin-top:4px}
+.tests-table{width:100%;border-collapse:collapse;font-size:14px}
+.tests-table th{
+  background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(236,72,153,.08));
+  color:var(--primary);font-weight:900;padding:10px 12px;text-align:right;
+  border-bottom:2px solid rgba(124,58,237,.15);
+}
+.tests-table td{padding:9px 12px;border-bottom:1px solid rgba(124,58,237,.07);vertical-align:middle}
+.tests-table tr:last-child td{border-bottom:none}
+.tests-table tr:hover td{background:rgba(124,58,237,.03)}
+.test-name{font-weight:700;color:var(--text)}
+.test-result-input{
+  border:1px solid var(--border);border-radius:10px;padding:6px 10px;
+  font-family:'Heebo',sans-serif;font-size:13px;width:100%;outline:none;
+  background:rgba(255,255,255,.9);
+}
+.test-status{
+  display:inline-flex;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:800;
+  cursor:pointer;border:none;font-family:'Heebo',sans-serif;
+}
+.test-status.done{background:rgba(16,185,129,.12);color:#065f46}
+.test-status.pending{background:rgba(245,158,11,.12);color:#92400e}
+.test-status.na{background:rgba(107,114,128,.1);color:#4b5563}
 
-    .layout {
-      display: grid;
-      grid-template-columns: 1fr 350px;
-      gap: 20px;
-      align-items: start;
-    }
+/* ========================
+   DASHBOARD TAB
+======================== */
+#dashboardTab{display:none}
+#dashboardTab.active{display:block}
 
-    .weeks-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 14px;
-    }
+.dash-header{
+  background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(255,255,255,.6));
+  border:1px solid rgba(255,255,255,.95);border-radius:28px;
+  padding:22px 28px;margin-bottom:18px;
+  box-shadow:var(--shadow);backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+}
+.dash-header h2{font-family:'Frank Ruhl Libre',serif;font-size:28px}
+.dash-header p{color:var(--muted);font-size:14px;margin-top:4px}
 
-    .week-card {
-      min-height: 158px;
-      border: 1px solid rgba(255,255,255,.88);
-      background: var(--card);
-      border-radius: 26px;
-      padding: 16px;
-      box-shadow: 0 14px 36px rgba(87,60,130,.10);
-      backdrop-filter: blur(12px);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
-    }
-    .week-card:hover {
-      transform: translateY(-5px) scale(1.01);
-      border-color: rgba(143,82,255,.34);
-      background: rgba(255,255,255,.94);
-    }
-    .week-card:after {
-      content: "";
-      position: absolute;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      left: -24px;
-      bottom: -24px;
-      background: linear-gradient(135deg, rgba(255,116,184,.2), rgba(255,209,102,.2));
-    }
-    .week-number { font-size: 28px; font-weight: 950; letter-spacing: -.5px; }
-    .week-title { color: var(--muted); font-weight: 800; margin-top: 6px; line-height: 1.35; }
-    .week-meta { color: #6d35c7; font-size: 12px; font-weight: 900; margin-top: 10px; line-height: 1.45; }
-    .week-emoji { position: absolute; left: 14px; top: 14px; font-size: 28px; }
-    .week-chip {
-      display:inline-flex;
-      margin-top: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(143,82,255,.10);
-      color: #6937ba;
-      font-size: 12px;
-      font-weight: 900;
-    }
+.dash-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:18px}
+.kpi{
+  background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.95);
+  border-radius:22px;padding:18px;box-shadow:0 8px 24px rgba(80,40,140,.09);
+  backdrop-filter:blur(12px);display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;
+}
+.kpi-icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:22px;background:linear-gradient(135deg,rgba(124,58,237,.14),rgba(236,72,153,.12))}
+.kpi-num{font-family:'Frank Ruhl Libre',serif;font-size:28px;font-weight:900;color:var(--primary);line-height:1}
+.kpi-lbl{font-size:13px;color:var(--muted);font-weight:600;margin-top:2px}
 
-    .side-panel { position: sticky; top: 14px; display: grid; gap: 14px; }
-    .panel, .dashboard {
-      background: rgba(255,255,255,.77);
-      border: 1px solid rgba(255,255,255,.92);
-      border-radius: 28px;
-      padding: 18px;
-      box-shadow: 0 14px 34px rgba(87,60,130,.11);
-      backdrop-filter: blur(14px);
-    }
-    .panel h2, .dashboard h2 { font-size: 20px; margin: 0 0 12px; }
-    .panel p, .panel li { color: var(--muted); line-height: 1.65; }
-    .panel ul { margin: 0; padding-right: 20px; }
-    .note-box textarea {
-      width: 100%;
-      min-height: 130px;
-      resize: vertical;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 14px;
-      outline: none;
-      background: rgba(255,255,255,.9);
-      color: var(--text);
-      line-height: 1.6;
-    }
+.dash-all-tests{
+  background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.95);
+  border-radius:28px;padding:22px;box-shadow:0 12px 34px rgba(80,40,140,.1);
+  backdrop-filter:blur(14px);
+}
+.dash-all-tests h3{font-size:20px;font-weight:900;margin-bottom:16px;display:flex;align-items:center;gap:8px}
 
-    .dashboard {
-      margin-top: 24px;
-      border-radius: 34px;
-      padding: clamp(18px, 3vw, 28px);
-    }
-    .dashboard-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(140px, 1fr));
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-    .summary-card {
-      border: 1px solid var(--border);
-      background: linear-gradient(145deg, rgba(255,255,255,.86), rgba(255,247,251,.78));
-      border-radius: 22px;
-      padding: 15px;
-    }
-    .summary-card strong { display:block; font-size: 26px; margin-bottom: 4px; }
-    .summary-card span { color: var(--muted); font-weight: 800; }
+.big-tests-table{width:100%;border-collapse:collapse;font-size:14px}
+.big-tests-table thead th{
+  background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(236,72,153,.07));
+  color:var(--primary);font-weight:900;padding:12px 14px;text-align:right;
+  border-bottom:2px solid rgba(124,58,237,.13);position:sticky;top:0;z-index:2;
+}
+.big-tests-table td{padding:10px 14px;border-bottom:1px solid rgba(124,58,237,.07);vertical-align:middle}
+.big-tests-table tr:hover td{background:rgba(124,58,237,.03)}
+.result-pill{
+  display:inline-flex;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:800;
+}
+.result-pill.done{background:rgba(16,185,129,.12);color:#065f46}
+.result-pill.pending{background:rgba(245,158,11,.12);color:#92400e}
+.result-pill.empty{background:rgba(107,114,128,.1);color:#6b7280}
+.week-tag{
+  display:inline-flex;padding:3px 10px;border-radius:999px;
+  background:rgba(124,58,237,.1);color:#5b21b6;font-size:12px;font-weight:800;
+}
 
-    .data-table-wrap { overflow-x: auto; border-radius: 22px; border: 1px solid var(--border); background: rgba(255,255,255,.72); }
-    table { width: 100%; border-collapse: collapse; min-width: 760px; }
-    th, td { padding: 13px 14px; text-align: right; border-bottom: 1px solid rgba(127,87,255,.12); vertical-align: top; }
-    th { background: rgba(143,82,255,.10); color: #5e2fae; font-size: 13px; }
-    td { color: var(--muted); line-height: 1.55; }
-    tr:last-child td { border-bottom: none; }
-    .empty-state { color: var(--muted); line-height: 1.7; padding: 18px; text-align: center; }
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.filter-chip{
+  border:none;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:700;
+  cursor:pointer;font-family:'Heebo',sans-serif;
+  background:rgba(124,58,237,.08);color:#5b21b6;transition:all .15s;
+}
+.filter-chip.active{background:linear-gradient(135deg,var(--primary),var(--primary2));color:white;box-shadow:0 4px 14px rgba(124,58,237,.22)}
 
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-      display: none;
-      place-items: center;
-      padding: 18px;
-      background: rgba(37,30,49,.46);
-      backdrop-filter: blur(10px);
-    }
-    .modal.open { display: grid; }
-    .modal-card {
-      width: min(1060px, 100%);
-      max-height: min(90vh, 900px);
-      overflow: auto;
-      background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(255,248,252,.97));
-      border: 1px solid rgba(255,255,255,.92);
-      border-radius: 34px;
-      box-shadow: 0 30px 80px rgba(20, 15, 33, .28);
-      padding: clamp(18px, 4vw, 34px);
-      animation: pop .2s ease-out;
-    }
-    @keyframes pop { from { transform: scale(.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+/* FOOTER */
+.footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px;line-height:1.7}
 
-    .modal-head { display:flex; align-items: start; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
-    .modal-title h2 { margin: 0; font-size: clamp(26px, 4vw, 42px); }
-    .modal-title p { margin: 8px 0 0; color: var(--muted); line-height: 1.65; }
-    .close {
-      border: none;
-      width: 46px;
-      height: 46px;
-      border-radius: 16px;
-      cursor: pointer;
-      background: rgba(143,82,255,.11);
-      color: #6f39c7;
-      font-size: 24px;
-      font-weight: 950;
-    }
-
-    .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
-    .info-box { padding: 16px; border-radius: 22px; background: rgba(255,255,255,.82); border: 1px solid var(--border); }
-    .info-box b { display:block; margin-bottom: 7px; }
-    .info-box span { color: var(--muted); line-height: 1.55; }
-    .section-title { margin: 24px 0 10px; font-size: 20px; }
-    .weekly-table table { min-width: 620px; }
-
-    .task-list, .saved-list { display: grid; gap: 10px; }
-    .task, .saved-item {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      background: rgba(255,255,255,.78);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 12px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-    .task input { margin-top: 5px; accent-color: #8f52ff; }
-    .saved-item { justify-content: space-between; }
-    .saved-item-main { display: grid; gap: 4px; }
-    .saved-item b { color: var(--text); }
-
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .form-grid .wide { grid-column: 1 / -1; }
-    .week-notes { min-height: 112px; }
-    .action-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
-
-    .footer { margin-top: 26px; text-align: center; color: var(--muted); line-height: 1.7; font-size: 14px; }
-
-    @media (max-width: 920px) {
-      .hero, .layout { grid-template-columns: 1fr; }
-      .toolbar, .summary-grid { grid-template-columns: 1fr; }
-      .side-panel { position: static; }
-      .info-grid, .form-grid { grid-template-columns: 1fr; }
-      .form-grid .wide { grid-column: auto; }
-    }
-  </style>
+@media(max-width:900px){
+  .hero,.layout{grid-template-columns:1fr}
+  .toolbar{grid-template-columns:1fr}
+  .side-panel{position:static}
+  .info-3{grid-template-columns:1fr}
+  .dev-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:500px){
+  .dev-grid{grid-template-columns:1fr 1fr}
+  .tabs{flex-wrap:nowrap}
+}
+</style>
 </head>
 <body>
-  <div class="float-shapes" aria-hidden="true">
-    <span>✨</span><span>🧸</span><span>🌙</span><span>💛</span><span>🌸</span>
+<div class="float-bg" aria-hidden="true">
+  <span>✨</span><span>🧸</span><span>🌙</span><span>💛</span><span>🌸</span><span>⭐</span>
+</div>
+
+<main class="app">
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="badge">👶 יומן הריון מורחב שבועי</div>
+      <h1>מסע ההריון שלנו<br>שבוע אחרי שבוע</h1>
+      <p>מידע רפואי מפורט לכל שבוע · גודל העובר · שלבי התפתחות · תסמינים · טיפים · בדיקות · הערות אישיות · דשבורד תוצאות.</p>
+    </div>
+    <aside class="hero-stats">
+      <div class="stat"><div class="stat-icon">📅</div><div><b>40 שבועות</b><small>מידע מפורט לכל שבוע</small></div></div>
+      <div class="stat"><div class="stat-icon">🔬</div><div><b>מעקב בדיקות</b><small>תיעוד תוצאות ודשבורד</small></div></div>
+      <div class="stat"><div class="stat-icon">📝</div><div><b>הערות אישיות</b><small>נשמרות בדפדפן</small></div></div>
+    </aside>
+  </section>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" data-tab="weeks">📅 לוח שבועות</button>
+    <button class="tab" data-tab="dashboard">🔬 דשבורד בדיקות</button>
   </div>
 
-  <main class="app">
-    <section class="hero">
-      <div>
-        <div class="badge">👶 יומן משפחתי שבועי עשיר</div>
-        <h1>מסע ההריון שלנו<br>שבוע אחרי שבוע</h1>
-        <p>
-          יומן אישי ומעוצב עם 40 שבועות מלאים במידע: גודל העובר, גודל הרחם, שלבי התפתחות, תופעות נפוצות, מה צפוי בהמשך, טיפים, רעיונות, משימות, הערות, בדיקות ותוצאות — הכל נשמר בדפדפן בצורה מסודרת.
-        </p>
-      </div>
-      <aside class="hero-card">
-        <div class="stat"><div class="stat-icon">📅</div><div><b>40 שבועות מפורטים</b><small>כל שבוע כולל טבלה שבועית עשירה ונוחה לקריאה.</small></div></div>
-        <div class="stat"><div class="stat-icon">📝</div><div><b>הערות ומשימות</b><small>אפשר לכתוב הערות, להוסיף משימות אישיות ולסמן מה בוצע.</small></div></div>
-        <div class="stat"><div class="stat-icon">🧪</div><div><b>בדיקות ותוצאות</b><small>תיעוד בדיקות לפי שבוע ודשבורד מסכם בתחתית האתר.</small></div></div>
-      </aside>
-    </section>
-
-    <section class="toolbar">
-      <input class="search" id="searchInput" placeholder="חיפוש: שבוע 12 / סקירה / בחילות / תיק לידה / ברזל" />
-      <select class="select" id="phaseFilter">
+  <!-- WEEKS TAB -->
+  <div id="weeksTab">
+    <div class="toolbar">
+      <input class="search" id="searchInput" placeholder="חיפוש שבוע, תסמין, בדיקה..."/>
+      <select class="filter-sel" id="phaseFilter">
         <option value="all">כל התקופות</option>
-        <option value="early">שבועות 1–13</option>
-        <option value="middle">שבועות 14–27</option>
-        <option value="late">שבועות 28–40</option>
+        <option value="tri1">שליש ראשון 1–13</option>
+        <option value="tri2">שליש שני 14–27</option>
+        <option value="tri3">שליש שלישי 28–40</option>
       </select>
-      <button class="btn" id="clearNotes">איפוס נתונים</button>
-    </section>
+      <button class="btn btn-sm btn-red" id="clearAll">איפוס נתונים</button>
+    </div>
 
-    <section class="layout">
+    <div class="layout">
       <div class="weeks-grid" id="weeksGrid"></div>
-
       <aside class="side-panel">
         <div class="panel">
-          <h2>⭐ מה אפשר לעשות כאן?</h2>
+          <h2>⭐ איך להשתמש?</h2>
           <ul>
-            <li>לפתוח כל שבוע ולקבל טבלת מידע עשירה.</li>
-            <li>לכתוב הערות אישיות, תחושות ושאלות לרופא.</li>
-            <li>להוסיף משימות משפחתיות או רפואיות לכל שבוע.</li>
-            <li>לתעד בדיקות שבוצעו, תוצאות והערות להמשך.</li>
+            <li>לחץ על שבוע לפתיחת דף מפורט.</li>
+            <li>ראה גודל עובר, התפתחות ותסמינים.</li>
+            <li>תעד בדיקות ותוצאות בטבלה.</li>
+            <li>כתוב הערות אישיות לכל שבוע.</li>
+            <li>עבור לדשבורד לסקירת כל הבדיקות.</li>
           </ul>
         </div>
-
         <div class="panel note-box">
-          <h2>💌 פתק משפחתי כללי</h2>
-          <textarea id="globalNote" placeholder="כתבו כאן מחשבות, תאריכים חשובים, דברים לזכור, שמות שאוהבים..."></textarea>
+          <h2>💌 פתק כללי</h2>
+          <textarea id="globalNote" placeholder="מחשבות, תאריכים, דברים לזכור..."></textarea>
         </div>
-
         <div class="panel">
-          <h2>⚠️ הבהרה חשובה</h2>
-          <p>המידע באתר כללי, חווייתי ולארגון אישי בלבד. הוא אינו מחליף ייעוץ, מעקב או הנחיה רפואית. בכל שאלה, תסמין חריג או החלטה רפואית יש לפנות לגורם רפואי מוסמך.</p>
+          <h2>⚠️ הבהרה רפואית</h2>
+          <p>המידע הוא כללי ואינו מחליף ייעוץ רפואי מקצועי. לכל שאלה יש לפנות לרופא או לאחות מוסמכת.</p>
         </div>
       </aside>
-    </section>
-
-    <section class="dashboard" id="dashboard">
-      <div class="dashboard-head">
-        <div>
-          <h2>📊 דשבורד בדיקות, תוצאות ומשימות</h2>
-          <p class="empty-state" style="padding:0;text-align:right;margin:0;">סיכום אוטומטי של כל מה שתועד בשבועות השונים.</p>
-        </div>
-        <button class="btn secondary" id="refreshDashboard">רענון דשבורד</button>
-      </div>
-      <div class="summary-grid">
-        <div class="summary-card"><strong id="testsCount">0</strong><span>בדיקות שתועדו</span></div>
-        <div class="summary-card"><strong id="tasksCount">0</strong><span>משימות אישיות</span></div>
-        <div class="summary-card"><strong id="notesCount">0</strong><span>שבועות עם הערות</span></div>
-        <div class="summary-card"><strong id="completedCount">0</strong><span>סימוני משימות שבוצעו</span></div>
-      </div>
-      <div class="data-table-wrap" id="dashboardTableWrap"></div>
-    </section>
-
-    <div class="footer">נבנה כקובץ HTML יחיד — אפשר לשמור, לפתוח בדפדפן, ולערוך את הטקסטים בקוד לפי הצורך.</div>
-  </main>
-
-  <div class="modal" id="weekModal" role="dialog" aria-modal="true">
-    <div class="modal-card">
-      <div class="modal-head">
-        <div class="modal-title">
-          <h2 id="modalTitle"></h2>
-          <p id="modalSubtitle"></p>
-        </div>
-        <button class="close" id="closeModal" aria-label="סגירה">×</button>
-      </div>
-
-      <div class="info-grid">
-        <div class="info-box"><b>🎯 מיקוד שבועי</b><span id="focusText"></span></div>
-        <div class="info-box"><b>🏠 ארגון בבית</b><span id="homeText"></span></div>
-        <div class="info-box"><b>💬 שיחה טובה</b><span id="talkText"></span></div>
-      </div>
-
-      <h3 class="section-title">📋 טבלת מידע לשבוע הזה</h3>
-      <div class="data-table-wrap weekly-table">
-        <table>
-          <tbody id="weeklyInfoTable"></tbody>
-        </table>
-      </div>
-
-      <h3 class="section-title">✅ משימות מומלצות לשבוע</h3>
-      <div class="task-list" id="taskList"></div>
-
-      <h3 class="section-title">➕ משימות אישיות לשבוע הזה</h3>
-      <div class="form-grid">
-        <input class="field-input wide" id="customTaskInput" placeholder="לדוגמה: לקבוע תור, להזמין בדיקה, לקנות קלסר מסמכים" />
-      </div>
-      <div class="action-row"><button class="btn small" id="addCustomTask">הוספת משימה</button></div>
-      <div class="saved-list" id="customTasksList"></div>
-
-      <h3 class="section-title">🧪 בדיקות שנעשו ותוצאות</h3>
-      <div class="form-grid">
-        <input class="field-input" id="testName" placeholder="שם הבדיקה: אולטרסאונד / דם / סקירה" />
-        <input class="field-input" id="testDate" type="date" />
-        <input class="field-input wide" id="testResult" placeholder="תוצאה קצרה: תקין / ממתינים / יש המשך בירור" />
-        <textarea class="field-textarea wide" id="testNotes" placeholder="הערות, ערכים חשובים, מה נאמר בבדיקה, מה צריך לשאול בהמשך..."></textarea>
-      </div>
-      <div class="action-row"><button class="btn small" id="addTest">שמירת בדיקה לשבוע</button></div>
-      <div class="saved-list" id="testsList"></div>
-
-      <h3 class="section-title">📝 הערות אישיות לשבוע הזה</h3>
-      <textarea class="field-textarea week-notes" id="weekNotes" placeholder="מה היה השבוע? איך הרגשת? מה חשוב לזכור? מה לשאול בבדיקה הבאה?"></textarea>
     </div>
   </div>
 
-  <script>
-    const emojis = ["🌱","✨","🌙","🧸","💛","🌸","🎀","⭐","🍼","🍯"];
-    const comparisons = [
-      "זרע פרג", "שומשום", "עדשה", "אוכמנייה", "גרגר אפונה", "פטל קטן", "זית", "ענב", "תות שדה", "שזיף קטן",
-      "ליים", "אפרסק", "לימון", "תפוח קטן", "אבוקדו", "אגס", "פלפל", "בטטה", "בננה", "מנגו",
-      "רימון", "פפאיה", "אשכולית", "קלח תירס", "קישוא", "חסה קטנה", "כרובית", "חציל", "דלעת קטנה", "כרוב",
-      "קוקוס", "אננס", "מלון", "דלורית", "דבשית", "מלון גדול", "אבטיח קטן", "דלעת", "אבטיח", "תינוק מוכן למפגש"
-    ];
-    const lengths = ["כמעט בלתי נראה", "כ־1 מ״מ", "כ־2 מ״מ", "כ־4 מ״מ", "כ־6 מ״מ", "כ־1 ס״מ", "כ־1.6 ס״מ", "כ־2.3 ס״מ", "כ־3.1 ס״מ", "כ־4.1 ס״מ", "כ־5.4 ס״מ", "כ־6.7 ס״מ", "כ־7.4 ס״מ", "כ־8.7 ס״מ", "כ־10 ס״מ", "כ־11.6 ס״מ", "כ־13 ס״מ", "כ־14.2 ס״מ", "כ־15.3 ס״מ", "כ־16.4 ס״מ", "כ־26.7 ס״מ", "כ־27.8 ס״מ", "כ־28.9 ס״מ", "כ־30 ס״מ", "כ־34.6 ס״מ", "כ־35.6 ס״מ", "כ־36.6 ס״מ", "כ־37.6 ס״מ", "כ־38.6 ס״מ", "כ־39.9 ס״מ", "כ־41.1 ס״מ", "כ־42.4 ס״מ", "כ־43.7 ס״מ", "כ־45 ס״מ", "כ־46.2 ס״מ", "כ־47.4 ס״מ", "כ־48.6 ס״מ", "כ־49.8 ס״מ", "כ־50.7 ס״מ", "כ־51.2 ס״מ"];
-    const weights = ["עדיין זעיר מאוד", "פחות מגרם", "פחות מגרם", "פחות מגרם", "פחות מגרם", "כ־1 גרם", "כ־1 גרם", "כ־2 גרם", "כ־4 גרם", "כ־7 גרם", "כ־14 גרם", "כ־23 גרם", "כ־43 גרם", "כ־70 גרם", "כ־100 גרם", "כ־140 גרם", "כ־190 גרם", "כ־240 גרם", "כ־300 גרם", "כ־330 גרם", "כ־360 גרם", "כ־430 גרם", "כ־500 גרם", "כ־600 גרם", "כ־660 גרם", "כ־760 גרם", "כ־875 גרם", "כ־1 ק״ג", "כ־1.15 ק״ג", "כ־1.3 ק״ג", "כ־1.5 ק״ג", "כ־1.7 ק״ג", "כ־1.9 ק״ג", "כ־2.1 ק״ג", "כ־2.4 ק״ג", "כ־2.6 ק״ג", "כ־2.9 ק״ג", "כ־3.1 ק״ג", "כ־3.3 ק״ג", "כ־3.4 ק״ג"];
+  <!-- DASHBOARD TAB -->
+  <div id="dashboardTab">
+    <div class="dash-header">
+      <div>
+        <h2>🔬 דשבורד בדיקות ותוצאות</h2>
+        <p>סקירה כוללת של כל הבדיקות שתועדו לאורך ההריון</p>
+      </div>
+      <button class="btn btn-sm" id="exportBtn">📥 ייצוא CSV</button>
+    </div>
 
-    const phases = {
-      early: {
-        title: "התחלה שקטה ומרגשת",
-        focus: "סימון תאריכים, פתיחת יומן, ריכוז מסמכים ותשומת לב לשינויים הראשונים בגוף.",
-        home: "להכין תיקייה דיגיטלית או פיזית למסמכים, תוצאות, תורים ורשימות שאלות.",
-        talk: "לדבר על פרטיות, למי מספרים ומתי, ואיך שומרים על רוגע בתקופה של הרבה אי־ודאות."
-      },
-      middle: {
-        title: "שלב התארגנות ותכנון",
-        focus: "העמקת המעקב, תכנון ציוד, תקציב, בדיקות, שמות ורעיונות לבית.",
-        home: "לבדוק מה כבר יש, מה צריך לקנות, ומה אפשר לקבל או להשאיל בלי לחץ.",
-        talk: "לדבר על חלוקת תפקידים, עזרה מהמשפחה וסדר יום אפשרי אחרי הלידה."
-      },
-      late: {
-        title: "הכנות אחרונות ורוגע",
-        focus: "סגירת רשימות, הכנת תיק, תיעוד בדיקות אחרונות, מנוחה וארגון תמיכה.",
-        home: "לארגן פינה נעימה, כביסות בסיסיות, ציוד ראשוני, תיק ומסמכים זמינים.",
-        talk: "לכתוב מי אנשי הקשר החשובים, מה עושים בכל תרחיש לוגיסטי ומה יעזור לשמור על שקט."
-      }
-    };
+    <div class="dash-kpis" id="dashKpis"></div>
 
-    function getPhase(week) {
-      if (week <= 13) return "early";
-      if (week <= 27) return "middle";
-      return "late";
-    }
+    <div class="dash-all-tests">
+      <h3>📋 כל הבדיקות</h3>
+      <div class="filter-row">
+        <button class="filter-chip active" data-filter="all">הכל</button>
+        <button class="filter-chip" data-filter="done">בוצע ✓</button>
+        <button class="filter-chip" data-filter="pending">ממתין ⏳</button>
+        <button class="filter-chip" data-filter="has-result">עם תוצאה</button>
+        <input class="search" id="dashSearch" placeholder="חיפוש בדיקה..." style="max-width:220px;padding:7px 12px;font-size:13px"/>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="big-tests-table" id="dashTable">
+          <thead>
+            <tr>
+              <th>שבוע</th>
+              <th>שם הבדיקה</th>
+              <th>תיאור</th>
+              <th>סטטוס</th>
+              <th>תוצאה / ערכים</th>
+            </tr>
+          </thead>
+          <tbody id="dashTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-    function weekTitle(week) {
-      if (week <= 4) return "פתיחת הדרך";
-      if (week <= 8) return "התרגשות ותיאום";
-      if (week <= 13) return "בניית שגרה";
-      if (week <= 18) return "תכנון רגוע";
-      if (week <= 23) return "בית, ציוד ורעיונות";
-      if (week <= 27) return "סידור עדיפויות";
-      if (week <= 32) return "הכנות מתקדמות";
-      if (week <= 36) return "ארגון אחרון";
-      return "לקראת המפגש";
-    }
+  <div class="footer">יומן הריון אישי — שמור כקובץ HTML ופתח בכל דפדפן. כל הנתונים נשמרים מקומית בדפדפן שלך.</div>
+</main>
 
-    function developmentText(week) {
-      if (week <= 4) return "הגוף מתחיל תהליך מוקדם מאוד של השרשה ובניית בסיס לשק ההריון והשליה. זה שלב עדין שבו רוב השינויים עדיין אינם מורגשים.";
-      if (week <= 8) return "מתחילה בנייה מהירה של מערכות מרכזיות: לב ראשוני, ניצני גפיים, מערכת עצבים ואיברים בסיסיים. הכול קטן מאוד אך מתקדם בקצב מרשים.";
-      if (week <= 13) return "האיברים המרכזיים כבר מתארגנים, הפנים מקבלות צורה, והעובר מתחיל תנועות זעירות שלרוב עדיין לא מרגישים.";
-      if (week <= 18) return "השלד מתחזק, תווי הפנים ברורים יותר, והעובר מתרגל תנועות, בליעה ותיאום ראשוני בין מערכות.";
-      if (week <= 23) return "חושים ותנועה מתפתחים: שמיעה, תגובה לקול, תנועות מורגשות יותר, גדילה של שרירים ועור שעדיין עדין ודק.";
-      if (week <= 27) return "הריאות והמוח ממשיכים להבשיל, מחזורי שינה וערות נעשים מובחנים יותר, והעובר צובר משקל בקצב עולה.";
-      if (week <= 32) return "העובר מתמלא, שכבת שומן עדינה מצטברת, התנועות חזקות יותר, והמוח והריאות ממשיכים תהליך הבשלה חשוב.";
-      if (week <= 36) return "רוב המערכות מתקדמות לקראת בשלות, העובר עשוי להתמקם נמוך יותר, והגוף מתכונן בהדרגה ללידה.";
-      return "העובר כבר בשל יותר לקראת המפגש, ממשיך לעלות במשקל, לתרגל נשימה ותנועות, ולשמור על דפוסי פעילות אישיים.";
-    }
+<!-- WEEK MODAL -->
+<div class="modal" id="weekModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div>
+        <h2 id="mTitle"></h2>
+        <p id="mSubtitle"></p>
+      </div>
+      <button class="close-btn" id="closeModal">×</button>
+    </div>
 
-    function symptomsText(week) {
-      if (week <= 6) return "עייפות, רגישות בחזה, צורך במנוחה, שינויי מצב רוח ולעיתים בחילות או רגישות לריחות. אצל כל אחת זה נראה אחרת.";
-      if (week <= 13) return "בחילות, עייפות, תיאבון משתנה, נפיחות, רגישות לריחות ושינויים רגשיים. כדאי לתעד מה מקל ומה מחמיר.";
-      if (week <= 20) return "לעיתים יש יותר אנרגיה, אך ייתכנו צרבות, כאבי גב, מתיחות בבטן, גודש באף ושינויים בשינה.";
-      if (week <= 27) return "תנועות עשויות להיות מורגשות יותר, לצד עומס בגב, התכווצויות קלות, צרבות, בצקות קלות או עייפות בסוף היום.";
-      if (week <= 34) return "לחץ באגן, קוצר נשימה קל, קושי בשינה, בצקות, צרבות ותנועות חזקות יותר. חשוב לעקוב אחרי מה חריג עבורך.";
-      return "הכובד מורגש יותר, שינה יכולה להיות מאתגרת, ייתכנו צירים מדומים, לחץ באגן ורצון טבעי לסיים סידורים אחרונים.";
-    }
+    <!-- DEV INFO -->
+    <div class="sec-title">📐 מידע על העובר</div>
+    <div class="dev-grid" id="mDevGrid"></div>
 
-    function uterusText(week) {
-      if (week <= 8) return "הרחם גדל בהדרגה אך לרוב עדיין נמצא עמוק באגן, ולכן מבחוץ בדרך כלל לא רואים שינוי משמעותי.";
-      if (week <= 12) return "הרחם ממשיך לגדול ולקראת סוף השליש הראשון מתחיל לעלות מעט מתוך האגן.";
-      if (week <= 20) return "הרחם כבר עולה יותר בבטן, ולעיתים מתחילה בליטה עדינה. סביב שבוע 20 גובה הרחם לרוב סביב אזור הטבור.";
-      if (week <= 28) return "הרחם מתרחב כלפי מעלה, הבטן נראית ברורה יותר, וייתכן עומס על הגב, הסרעפת ושלפוחית השתן.";
-      if (week <= 36) return "הרחם גדול ומגיע גבוה יותר בבטן. לפעמים יש לחץ בצלעות או באגן, בהתאם למנח העובר.";
-      return "לקראת הסוף הרחם מלא יותר, ולעיתים הבטן יורדת מעט אם העובר מתבסס נמוך יותר באגן.";
-    }
+    <!-- DEVELOPMENT -->
+    <div class="sec-title">🧬 התפתחות השבוע</div>
+    <div id="mDev" style="color:var(--muted);line-height:1.75;font-size:14px"></div>
 
-    function upcomingText(week) {
-      if (week <= 10) return "בשבועות הקרובים בדרך כלל מתמקדים באימות גיל ההריון, תורים ראשונים, בדיקות דם ושאלות על מעקב מסודר.";
-      if (week <= 14) return "בקרוב מתחילים לחשוב על המשך בדיקות השליש הראשון והשני, תיאום תורים ותיעוד תוצאות במקום אחד.";
-      if (week <= 22) return "בהמשך צפויות יותר תנועות, בדיקות המשך, תכנון ציוד ראשוני ושיחות על תמיכה משפחתית.";
-      if (week <= 28) return "לקראת השליש השלישי כדאי להתחיל לסגור פערים: תוצאות, תורים, ציוד בסיסי ותוכנית לוגיסטית.";
-      if (week <= 34) return "בקרוב הדגש עובר להכנות לידה, תיק, מסמכים, מעקב תנועות לפי הנחיית גורם רפואי וסידור הבית.";
-      return "בשלב הקרוב כדאי לשמור הכול זמין: תיק, מסמכים, אנשי קשר, תוצאות בדיקות ותוכנית הגעה במקרה הצורך.";
-    }
+    <!-- SYMPTOMS -->
+    <div class="sec-title">🤒 תסמינים נפוצים</div>
+    <div class="chips-row" id="mSymptoms"></div>
 
-    function tipsText(week) {
-      if (week <= 13) return "טיפ: לאכול מנות קטנות אם זה מקל, לשתות מים, לנוח כשאפשר, ולכתוב שאלות מיד כשהן עולות כדי לא לשכוח בתור.";
-      if (week <= 27) return "טיפ: לפתוח רשימת ציוד בשלוש רמות — חובה, נחמד שיהיה, אפשר אחר כך — כדי להימנע מקניות מיותרות.";
-      return "טיפ: להכין עמדת מסמכים ותיק קטן עם דברים חיוניים, ולחלק משימות בין בני המשפחה כדי להפחית עומס.";
-    }
+    <!-- TIPS -->
+    <div class="sec-title">💡 טיפים לשבוע</div>
+    <div class="chips-row" id="mTips"></div>
 
-    function ideaText(week) {
-      if (week <= 13) return "רעיון משפחתי: לצלם תמונה שבועית קטנה או לכתוב משפט אחד שמסכם את השבוע, גם אם עדיין לא משתפים אחרים.";
-      if (week <= 27) return "רעיון משפחתי: ערב שמות, פלייליסט רגוע, רשימת קניות חכמה או סיור קצר בבית כדי להבין מה צריך לארגן.";
-      return "רעיון משפחתי: להכין כרטיס אנשי קשר, רשימת אוכל קל לשבוע הראשון, ותוכנית מי עוזר במה אחרי החזרה הביתה.";
-    }
+    <!-- WHAT TO EXPECT -->
+    <div class="sec-title">🔭 מה צפוי בהמשך</div>
+    <div id="mExpect" style="color:var(--muted);line-height:1.75;font-size:14px"></div>
 
-    function weeklyTasks(week) {
-      const base = [
-        "לכתוב סיכום קצר של השבוע ביומן.",
-        "לרשום שאלות לבדיקה או לשיחה עם גורם מקצועי.",
-        "לבדוק אם יש תור, מסמך או תוצאה שצריך להעלות לדשבורד."
-      ];
-      if (week <= 13) return [...base, "לרכז בדיקות ותוצאות ראשונות במקום אחד.", "לבדוק מה עוזר לתופעות כמו עייפות או בחילות ולתעד ביומן."];
-      if (week <= 27) return [...base, "להתחיל רשימת ציוד לפי סדר עדיפות.", "לבדוק תקציב וקניות מתוכננות.", "לרשום רעיונות לשמות או דברים שמרגשים אתכם."];
-      return [...base, "להכין רשימת אנשי קשר חשובים.", "לארגן תיק ודברים זמינים לבית.", "לסדר פינה רגועה ונקייה לקראת ההמשך."];
-    }
+    <!-- INFO BOXES -->
+    <div class="info-3" id="mInfoBoxes"></div>
 
-    function buildWeeklyInfo(week) {
-      return [
-        ["גודל העובר", `${comparisons[week - 1]} — אורך ${lengths[week - 1]}, משקל ${weights[week - 1]}. הנתונים משוערים ומשתנים מהריון להריון.`],
-        ["גודל הרחם / הגוף", uterusText(week)],
-        ["שלב התפתחות", developmentText(week)],
-        ["תופעות נפוצות", symptomsText(week)],
-        ["מה צפוי בעתיד", upcomingText(week)],
-        ["טיפ לשבוע", tipsText(week)],
-        ["רעיון נחמד", ideaText(week)]
-      ];
-    }
+    <!-- TASKS -->
+    <div class="sec-title">✅ משימות לשבוע</div>
+    <div class="task-grid" id="mTasks"></div>
 
-    const weeks = Array.from({ length: 40 }, (_, i) => {
-      const week = i + 1;
-      const phase = getPhase(week);
-      return {
-        week,
-        phase,
-        title: weekTitle(week),
-        emoji: emojis[i % emojis.length],
-        subtitle: `${phases[phase].title} — שבוע ${week}`,
-        focus: phases[phase].focus,
-        home: phases[phase].home,
-        talk: phases[phase].talk,
-        info: buildWeeklyInfo(week),
-        tasks: weeklyTasks(week)
-      };
-    });
+    <!-- TESTS TABLE -->
+    <div class="sec-title">🔬 בדיקות לשבוע זה</div>
+    <div class="tests-table-wrap">
+      <table class="tests-table">
+        <thead>
+          <tr>
+            <th>שם הבדיקה</th>
+            <th>מה בודקים?</th>
+            <th>סטטוס</th>
+            <th>תוצאה / ערכים</th>
+            <th>הערות</th>
+          </tr>
+        </thead>
+        <tbody id="mTestsBody"></tbody>
+      </table>
+    </div>
 
-    const grid = document.getElementById("weeksGrid");
-    const searchInput = document.getElementById("searchInput");
-    const phaseFilter = document.getElementById("phaseFilter");
-    const modal = document.getElementById("weekModal");
-    const closeModal = document.getElementById("closeModal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalSubtitle = document.getElementById("modalSubtitle");
-    const focusText = document.getElementById("focusText");
-    const homeText = document.getElementById("homeText");
-    const talkText = document.getElementById("talkText");
-    const weeklyInfoTable = document.getElementById("weeklyInfoTable");
-    const taskList = document.getElementById("taskList");
-    const weekNotes = document.getElementById("weekNotes");
-    const globalNote = document.getElementById("globalNote");
-    const customTaskInput = document.getElementById("customTaskInput");
-    const customTasksList = document.getElementById("customTasksList");
-    const addCustomTask = document.getElementById("addCustomTask");
-    const testName = document.getElementById("testName");
-    const testDate = document.getElementById("testDate");
-    const testResult = document.getElementById("testResult");
-    const testNotes = document.getElementById("testNotes");
-    const addTest = document.getElementById("addTest");
-    const testsList = document.getElementById("testsList");
+    <!-- NOTES -->
+    <div class="sec-title">📝 הערות אישיות</div>
+    <textarea class="week-notes-area" id="mNotes" placeholder="מה היה השבוע? מה חשוב לזכור? תחושות, שאלות לרופא..."></textarea>
+  </div>
+</div>
 
-    let currentWeek = null;
+<script>
+// =============================================
+// DATA: Full 40 weeks detailed info
+// =============================================
+const WEEK_DATA = {
+1:{
+  emoji:"🌱",
+  size:"0.1 מ״מ",
+  sizeCompare:"ראש סיכה",
+  weight:"כמעט אפס",
+  dev:"השבוע הוא למעשה השבועיים האחרונים של המחזור הקודם. הביצה טרם הופרתה. הגוף מתכונן לביוץ בסוף השבוע הזה. רירית הרחם מתחדשת ומתעבה.",
+  symptoms:["מחזור חודשי","כאבי בטן קלים","שינויים הורמונליים"],
+  tips:["התחילי ליטול חומצה פולית 400 מק\"ג ביום","הפחיתי קפאין","הימנעי מאלכוהול","עקבי אחרי מחזור סדיר"],
+  expect:"בסוף השבוע צפוי ביוץ ואפשרות להפריה. שבוע 2-3 יהיו שלבי ההפריה וההשתרשות.",
+  focus:"להתחיל נטילת חומצה פולית ולעקוב אחרי מחזור",
+  home:"לסדר תיקייה לתיעוד רפואי",
+  talk:"לשתף ולדון בתכנון עם בן/בת הזוג",
+  tasks:["התחילי חומצה פולית יומית","עקבי אחרי מועד הביוץ","הפחיתי קפאין ואלכוהול"],
+  tests:[{name:"תכנון היריון",desc:"ייעוץ רופא/ה לפני הריון",stdRange:""}]
+},
+2:{
+  emoji:"✨",
+  size:"0.2 מ״מ",
+  sizeCompare:"ראש סיכה",
+  weight:"זניח",
+  dev:"הביצה מופרית ויוצרת ציגוטה (תא אחד). הציגוטה מתחלקת שוב ושוב ויוצרת בלסטוציסט. עד סוף השבוע הבלסטוציסט מגיע לרחם ומתחיל להשתרש.",
+  symptoms:["אין תסמינים גלויים","ייתכן דמם קל של השתרשות","עייפות קלה"],
+  tips:["המשיכי בחומצה פולית","הימנעי מתרופות לא מאושרות","שמרי על שינה מספקת"],
+  expect:"בשבוע 3-4 ייתכן דמם קל מהשתרשות, ואחריו יתפתחו הסימנים הראשונים.",
+  focus:"תזונה בריאה והמשך חומצה פולית",
+  home:"הכיני רשימת רופאים וביטוח",
+  talk:"לדבר על ציפיות ותכניות",
+  tasks:["המשיכי חומצה פולית","אכלי מזון מאוזן","הכיני פרטי קשר של רופא/ה"],
+  tests:[{name:"בדיקת הריון ביתית",desc:"מדידת hCG בשתן",stdRange:"חיובי/שלילי"}]
+},
+3:{
+  emoji:"🌙",
+  size:"1-2 מ״מ",
+  sizeCompare:"פרג קטן",
+  weight:"זניח",
+  dev:"ההפריה הושלמה. האמבריון מתפתח בשלב הגסטרולה. מתחילים להיווצר שלושת שכבות הנבט: אקטודרם, מזודרם, אנדודרם. אלה יהפכו לכל האיברים. הלב מתחיל לנצנץ בסיום השבוע.",
+  symptoms:["השתרשות עלולה לגרום לדמם קל","כאבי חזה קלים","עייפות","שינויים בריח"],
+  tips:["אל תיקחי ויטמין A בעודף","שמרי על הידרציה טובה","הימנעי מחום גבוה (ג'קוזי, סאונה)","אכלי פירות וירקות"],
+  expect:"בשבועות הקרובים יתחיל בחילה של הבוקר ויתרחשו שינויים ברגישות בחזה.",
+  focus:"חשוב לזהות הריון ולפנות לרופא מהר",
+  home:"לתעד תאריך אחרון של מחזור",
+  talk:"לדון מתי לבשר לאנשים קרובים",
+  tasks:["עשי בדיקת הריון","קבעי תור לרופא/ה","תעדי תאריך הופעת הסימנים"],
+  tests:[{name:"בדיקת hCG בדם",desc:"רמת הורמון ההריון",stdRange:"25-200 mIU/mL"},{name:"בדיקת הריון ביתית",desc:"אישור הריון",stdRange:"חיובי"}]
+},
+4:{
+  emoji:"💛",
+  size:"2-3 מ״מ",
+  sizeCompare:"פרג",
+  weight:"< 1 גרם",
+  dev:"העובר עומד בגודל של כ-2-3 מ\"מ. הלב מתחיל לפעום. מתחילים להיווצר ניצני המוח, עמוד השדרה, הלב, וחלק ממערכת העיכול. השבוע הוא קריטי מאוד להתפתחות.",
+  symptoms:["בחילה בבוקר","עייפות קיצונית","רגישות בחזה","תכיפות שתן","הפרשות נרתיקיות","שינויים בחוש ריח"],
+  tips:["אכלי ארוחות קטנות ותכופות","ביסקויט מלוח בבוקר לפני קימה","שתי הרבה מים","הימנעי מריחות מגרים"],
+  expect:"הבחילות צפויות להיות בשיאן בשבועות 6-10. הלב יתחיל לפעום בבירור.",
+  focus:"אישור הריון רשמי ותחילת מעקב",
+  home:"לרכוש ויטמינים לנשים הרות",
+  talk:"לקבוע רופא/ת מיילדות",
+  tasks:["קבעי תור לרופא/ה לאישור הריון","התחילי ויטמינים לנשים הרות","הפסיקי עישון ואלכוהול לחלוטין"],
+  tests:[{name:"בדיקת hCG בדם",desc:"אישור ורמת הורמון",stdRange:"1000-50000 mIU/mL"},{name:"בדיקת TSH (בלוטת תירואיד)",desc:"תפקוד בלוטת התריס",stdRange:"0.1-2.5 mIU/L בהריון"}]
+},
+5:{
+  emoji:"🌸",
+  size:"4-6 מ״מ",
+  sizeCompare:"גרעין תפוח",
+  weight:"< 1 גרם",
+  dev:"הניצנים של הידיים והרגליים מתחילים להופיע. המוח מתחלק לשלושה חלקים עיקריים. מערכת הלב מתפתחת במהירות — הלב עובד! הרשת הדמית הראשונית מתפתחת.",
+  symptoms:["בחילות חזקות","הקאות","עייפות קשה","כאבי ראש קלים","תכיפות שתן","שינויי מצב רוח"],
+  tips:["ג'ינג'ר מסייע לבחילות","שמרי על שינה סדירה","הימנעי מחשיפה לכימיקלים","שתי לפחות 8 כוסות מים"],
+  expect:"בשבוע 6 יתאפשר לראות את הלב פועם באולטרסאונד. הבחילות בשיא.",
+  focus:"ניהול בחילות ותחילת קשר עם הצוות הרפואי",
+  home:"להכין את הסביבה הביתית לנוחות מרבית",
+  talk:"לדון עם מעסיק על יציאה מוקדמת אם נדרש",
+  tasks:["נהלי יומן תסמינים","קבעי אולטרסאונד ראשון","שוחח עם הרופא על כל תרופה שאת נוטלת"],
+  tests:[{name:"אולטרסאונד ראשון",desc:"אישור הריון ברחם, מספר עוברים",stdRange:"לב פועם ≥6 שבועות"},{name:"בדיקות דם בסיסיות",desc:"ספירת דם, סוג דם, Rh",stdRange:""}]
+},
+6:{
+  emoji:"🎀",
+  size:"6-8 מ״מ",
+  sizeCompare:"אפון",
+  weight:"< 1 גרם",
+  dev:"הלב פועם ב-100-160 פעימות לדקה. ניתן לראות אותו באולטרסאונד! מתחילות להיווצר עיניים, אוזניים, ואף. ניצני הזרועות גדולים. הצוואר מתחיל להיווצר.",
+  symptoms:["בחילות שיא","עייפות קשה מאוד","רגישות בחזה","כבדות בבטן","שינויים בטעם","ריאקציה לריחות"],
+  tips:["שנה שינה בצד שמאל לשיפור זרימת דם","נסי צמידי לחץ לבחילות","חטיפי חלבון עוזרים","שתפי את הסובבים לקבלת עזרה"],
+  expect:"בשבוע 8-9 יתפתחו האצבעות. הבחילות יתחילו לדעוך בשבועות 10-12.",
+  focus:"אישור לב פועם באולטרסאונד",
+  home:"להכין שקית עם חטיפים קטנים לשאת בכל מקום",
+  talk:"לדון על התמיכה הנדרשת בבית",
+  tasks:["בצעי אולטרסאונד לאישור לב פועם","ספרי לרופא על כל בחילה חריגה","הכיני רשימת שאלות לביקור הראשון"],
+  tests:[{name:"אולטרסאונד שבוע 6",desc:"לב פועם, שק הריון",stdRange:"FHR: 100-160 bpm"},{name:"TSH",desc:"בלוטת תריס",stdRange:"0.1-2.5 mIU/L"},{name:"CBC - ספירת דם",desc:"המוגלובין, טסיות",stdRange:"Hgb: 11-13 g/dL"}]
+},
+7:{
+  emoji:"⭐",
+  size:"9-13 מ״מ",
+  sizeCompare:"אוכמנייה",
+  weight:"< 1 גרם",
+  dev:"האמבריון מתארך. הפנים מתחילות לקבל צורה. הידיים גדולות, האצבעות מתחילות להיפרד. הכבד מתחיל לייצר תאי דם אדומים. הגינאקולוגיה הפנימית מתפתחת.",
+  symptoms:["בחילות ממשיכות","עצירות","ריח מוגבר","שינויי מצב רוח","חלומות חיים","עייפות"],
+  tips:["הגדילי צריכת סיבים תזונתיים לעצירות","עמדי ישר לשיפור עיכול","ספורט קל מאוד מסייע","הימנעי מאכילת דגים גדולים"],
+  expect:"השבוע שובר שיא — מפעם הלב! יש לתעד את הדופק בביקור.",
+  focus:"ביקור רפואי שני ובדיקות ראשוניות",
+  home:"לרכוש ספר על הריון",
+  talk:"לדון במי יהיה רופא הילדים",
+  tasks:["עדכן ביטוח בריאות","בדק זכאויות ביטוח לאומי","שאל על תוסף ויטמין D ואומגה 3"],
+  tests:[{name:"שתן כללי",desc:"זיהום, חלבון, סוכר",stdRange:"ללא ממצאים"},{name:"פרופיל דם",desc:"בילירובין, פרוטרומבין",stdRange:""}]
+},
+8:{
+  emoji:"🍼",
+  size:"14-20 מ״מ",
+  sizeCompare:"פטל",
+  weight:"1 גרם",
+  dev:"האמבריון הופך רשמית ל'עובר' (פטוס). כל האיברים העיקריים נמצאים במקומם! האצבעות מופרדות, העיניים נעות לחזית הפנים. ניתן לראות אוזניים ואף.",
+  symptoms:["בחילות ממשיכות","עצירות","גזים","עייפות עמוקה","כאבי גב תחתון","דמעות קלות"],
+  tips:["אכלי בשר עוף או דגים קטנים לחלבון","פעילות עדינה כמו הליכה","מדיטציה לניהול לחץ","שוח עם רופא על כאבי גב"],
+  expect:"בסוף שליש ראשון (שבוע 12-13) הסיכון להפלה יורד משמעותית.",
+  focus:"מעקב גידול ורווחת העובר",
+  home:"להכין פינה נוחה עם כריות תמיכה",
+  talk:"לדון בתוכנית לידה ראשונית",
+  tasks:["תאם בדיקת נוזל עורפי בשבוע 11-13","התחל לחקור קורסי הכנה ללידה","עדכן רשומות רפואיות"],
+  tests:[{name:"אולטרסאונד הבטן",desc:"בדיקת גדילה",stdRange:"CRL: 14-20 מ\"מ"},{name:"בדיקת שתן כללי",desc:"ניטור חלבון וזיהום",stdRange:"ללא ממצאים"}]
+},
+9:{
+  emoji:"🍯",
+  size:"22-30 מ״מ",
+  sizeCompare:"דובדבן",
+  weight:"2 גרם",
+  dev:"כל איברי הגוף נמצאים, עכשיו הם גדלים ומתבגרים. השרירים מתחילים לפעול. התנועות הראשונות של העובר מתרחשות (לא מורגשות עדיין). אצבעות הידיים והרגליים ברורות.",
+  symptoms:["עייפות מופחתת מעט","בחילות עדיין","עלייה קלה במשקל","כאבי ראש","הפרשות לבנות נרמאליות"],
+  tips:["הוסיפי ברזל לתזונה (עדשות, בשר)","שינה על הצד מומלצת","הכיני בגדי הריון נוחים","שמרי על פעילות גופנית מתונה"],
+  expect:"בשבוע 10-11 שאפשרות לביופסיה כורי (CVS) אם נדרש סיקור גנטי.",
+  focus:"תזונה נכונה ועלייה מבוקרת במשקל",
+  home:"להחליף לבגדים נוחים יותר",
+  talk:"לדון בסיקור גנטי לפי גיל וסיכון",
+  tasks:["שקלי אפשרות CVS אם מעל 35","בדקי רמות ברזל עם הרופא","תכנני קורס הכנה ללידה"],
+  tests:[{name:"בדיקת דם לסיקור גנטי",desc:"חלק מסיקור T21",stdRange:""},{name:"CBC",desc:"ספירת דם",stdRange:"Hgb ≥ 11 g/dL"}]
+},
+10:{
+  emoji:"🌱",
+  size:"31-42 מ״מ",
+  sizeCompare:"תות",
+  weight:"4 גרם",
+  dev:"הפנים מפותחות לחלוטין! העיניים מכוסות בעפעפיים שיהיו סגורים עד שבוע 25. השיניים המפוחמות מתחילות להיווצר. המוח צומח בקצב מדהים — 250,000 נוירונים לדקה.",
+  symptoms:["בחילות מתחילות להירגע","אנרגיה מתחילה לחזור","בטן מתחילה להבחין","כאבי גב","כבדות"],
+  tips:["קראי על שיטות לידה שונות","שאלי על כיתות הכנה ללידה","שמרי על שתייה מספקת","הוסיפי קלציום (חלב, שקדים)"],
+  expect:"בשבוע 11-14 תתבצע בדיקת נוזל עורפי — חשובה מאוד!",
+  focus:"הכנה לבדיקת נוזל עורפי ושבוע 11-14",
+  home:"להתחיל לחשוב על חדר הילד",
+  talk:"לדון בתוכניות לחופשת לידה ועזרה",
+  tasks:["קבע בדיקת נוזל עורפי לשבוע 11-14","שאל על NIPT אם רלוונטי","תכנן ביקורים רפואיים קדימה"],
+  tests:[{name:"NIPT (בדיקת DNA עוברי)",desc:"סיקור כרומוזומלי בדם אם",stdRange:"שלילי לאנאופלואידיה"},{name:"שתן",desc:"מעקב שגרתי",stdRange:""}]
+},
+11:{
+  emoji:"✨",
+  size:"44-60 מ״מ",
+  sizeCompare:"תאנה",
+  weight:"7 גרם",
+  dev:"כמעט כל המבנים האנטומיים קיימים. הכליות מייצרות שתן. המעיים מתפתחים. הגניטליה החיצונית מתחילה להיות מובחנת (עדיין לא ברורה). שיעור ה-nuchal translucency נמדד.",
+  symptoms:["סיום מרבית הבחילות","אנרגיה משתפרת","בטן בולטת יותר","ייתכן כאבי רצועה"],
+  tips:["בצעי את בדיקת הנוזל העורפי השבוע","הכירי את תוצאות הבדיקה עם הרופא","שמרי על פעילות עדינה — יוגה להריון מומלצת"],
+  expect:"לאחר שבוע 13 הסיכון להפלה יורד ל-1% בלבד. אפשר לבשר!",
+  focus:"בדיקת נוזל עורפי — חשובה מאוד",
+  home:"להתחיל ליצור מרשימת ציוד",
+  talk:"לדון מתי לבשר לעמיתים בעבודה",
+  tasks:["בצע/י בדיקת נוזל עורפי","בדיקת שתן","בדק תוצאות NIPT אם נשלח"],
+  tests:[{name:"אולטרסאונד נוזל עורפי (NT)",desc:"מדידת שכבת נוזל בעורף העובר",stdRange:"NT < 3 מ\"מ"},{name:"PAPP-A + hCG חופשי",desc:"סיקון כרומוזומלי בדם",stdRange:"MoM: 0.5-2.0"},{name:"שתן",desc:"שגרה",stdRange:""}]
+},
+12:{
+  emoji:"🌙",
+  size:"61-75 מ״מ",
+  sizeCompare:"ליים",
+  weight:"14 גרם",
+  dev:"העובר יכול לפתוח ולסגור אגרופים! הרפלקס לבליעה קיים. הכליות מגיעות לבשלות מסוימת. הפנים מקבלות ביטוי. אפשר לראות הבדל בין ילד לילדה בחלק מהמקרים.",
+  symptoms:["שיפור משמעותי בבחילות","אנרגיה חוזרת","בטן בולטת","ייתכן ורידים כחולים בולטים"],
+  tips:["אפשר לבשר לחברים ומשפחה","הכיני רשימת שמות","שמרי על משקל תקין","בצעי ספורט מתאים להריון"],
+  expect:"בשבוע 13-14 נכנסות לשליש שני — תקופה נוחה יותר בדרך כלל!",
+  focus:"סיום שליש ראשון — חגיגה!",
+  home:"לתחיל לחפש גינקולוג/ית לליווי המשך",
+  talk:"לבשר לאנשים הקרובים",
+  tasks:["קבל תוצאות נוזל עורפי","תכנן אולטרסאונד מורפולוגי בשבוע 20","בחר/י קורס הכנה ללידה"],
+  tests:[{name:"אולטרסאונד שגרתי",desc:"גדילה, מים, שליה",stdRange:"CRL ≈ 61-75 מ\"מ"},{name:"בדיקת שתן",desc:"שגרה",stdRange:""},{name:"לחץ דם",desc:"ניטור רגיל",stdRange:"< 130/80 mmHg"}]
+},
+13:{
+  emoji:"💛",
+  size:"76-87 מ״מ",
+  sizeCompare:"אפרסק קטן",
+  weight:"23 גרם",
+  dev:"סוף השליש הראשון! העובר עומד על 8-9 ס\"מ. הגוף גדל מהר יותר מהראש. טביעות האצבע מתפתחות. תנועות ראשונות עלולות להיות מורגשות בנשים שילדו בעבר.",
+  symptoms:["סיום מרבית הבחילות","אנרגיה טובה","בטן בולטת יפה","שינויים בעור","אנרגיה מחודשת"],
+  tips:["חגגי את סוף שליש ראשון!","קבעי אולטרסאונד מורפולוגי לשבוע 20","חפשי קורס הכנה ללידה","עשי מניקור/פדיקור בזמן שעדיין נוח"],
+  expect:"השליש השני בדרך כלל הנעים ביותר — אנרגיה טובה וסיכון נמוך.",
+  focus:"כניסה לשליש שני בבריאות",
+  home:"להתחיל לחשוב על עיצוב חדר ילדים",
+  talk:"לסיים הכרזה לכל הסובבים",
+  tasks:["בדיקות רגילות לפי הוראות","תכנן מסע רומנטי בשליש השני","חקור ביטוח לידה"],
+  tests:[{name:"ספירת דם",desc:"בדיקת אנמיה ועוד",stdRange:"Hgb ≥ 11 g/dL"},{name:"לחץ דם",desc:"שגרה",stdRange:"< 130/80"},{name:"שתן",desc:"שגרה",stdRange:""}]
+},
+14:{
+  emoji:"🌸",
+  size:"88-100 מ״מ",
+  sizeCompare:"לימון",
+  weight:"43 גרם",
+  dev:"ברוכים הבאים לשליש השני! הגבות מתחילות לצמוח. הגוף מכוסה בשיערות לנוגו (lanugo). המוח שולט יותר על תנועות הגוף. העובר בולע נוזל אמניוטי ומשתין.",
+  symptoms:["אנרגיה טובה","שינויי עור (כתמים, קו שחור)","כבדות בגב","ייתכן כאבי ראש"],
+  tips:["קרמים ללחות העור ולמניעת סימני מתיחה","ספורט קל — שחייה, הליכה","הוסיפי אומגה 3 לתזונה","כרית בין הברכיים בשינה"],
+  expect:"בשבוע 16-18 חלקן מרגישות תנועות ראשונות (flutter) — תחושת בועות קטנות.",
+  focus:"שמירת אנרגיה, תזונה נכונה",
+  home:"לקבוע ביקורים משפחתיים תומכים",
+  talk:"לדון בחלוקת משימות בית",
+  tasks:["קנה/י ויטמינים להמשך","תכנן/י טיול זוגי לפני שיקשה","שאל/י על בדיקת מי שפיר אם רלוונטי"],
+  tests:[{name:"שתן",desc:"שגרה",stdRange:""},{name:"לחץ דם",desc:"ניטור",stdRange:"< 130/80"}]
+},
+15:{
+  emoji:"🎀",
+  size:"10-11 ס\"מ",
+  sizeCompare:"תפוח",
+  weight:"70 גרם",
+  dev:"העובר שומע! הוא יכול לשמוע את קול האם. העצמות מתקשות (מסתיידות). שריר הדיאפרגמה מתפתח — ייתכן שהעובר 'מקבל שיהוקים'. השיניים הבסיסיות ממשיכות להיווצר.",
+  symptoms:["כאבי גב עלולים להחמיר","גודש באף","דמם קל מחניכיים","כבדות ברגליים","בטן גדלה בבירור"],
+  tips:["דברי ושירי לעובר — הוא שומע!","עסקי בשינה על הצד","הכינו שם?","פיזיותרפיה לכאבי גב"],
+  expect:"בשבוע 16 ייתכן תנועות ראשונות. בשבוע 18-20 אולטרסאונד מורפולוגי!",
+  focus:"הכנה לאולטרסאונד המורפולוגי",
+  home:"לתחיל לחפש מיטה ועגלה",
+  talk:"לדון ברשימת שמות",
+  tasks:["קבע/י אולטרסאונד מורפולוגי לשבוע 18-20","בדק/י רמות ברזל","שוח/י עם רופא על כאבי גב"],
+  tests:[{name:"בדיקת ברזל ופריטין",desc:"מניעת אנמיה",stdRange:"פריטין > 20 ng/mL"},{name:"שתן",desc:"שגרה",stdRange:""}]
+},
+16:{
+  emoji:"⭐",
+  size:"11-12 ס\"מ",
+  sizeCompare:"אבוקדו",
+  weight:"100 גרם",
+  dev:"מאת שבוע 16 — 100 גרם! העיניים זעות צידה לצידה מאחורי העפעפיים. תנועות ראשונות מורגשות (בדרך כלל). מערכת הדם מבוססת. ייתכן לגלות מין העובר באולטרסאונד.",
+  symptoms:["תנועות ראשונות (בועות קטנות)","שיפור בתאבון","גדילה ניכרת","ייתכן נפיחות ברגליים"],
+  tips:["ראי אם ניתן לגלות מין","תעדי את התנועה הראשונה!","הכיני בגדי הריון","קני נעליים עם תמיכה טובה"],
+  expect:"האולטרסאונד המורפולוגי בשבוע 18-20 הוא הבדיקה החשובה ביותר בשליש השני.",
+  focus:"גילוי מין (אופציונלי) ואולטרסאונד",
+  home:"לקבוע ביקור לעיצוב חדר ילדים",
+  talk:"לספר לאנשים הקרובים אם הגלית את המין",
+  tasks:["קבע/י אולטרסאונד","בצע/י בדיקת מי שפיר אם מעל 35","תכנן/י מסיבת גילוי מין אם רוצים"],
+  tests:[{name:"אמניוצנטזה (אם נדרש)",desc:"בדיקה גנטית מלאה",stdRange:"תוצאות תוך 2-3 שבועות"},{name:"CBC",desc:"ספירת דם שגרה",stdRange:""},{name:"לחץ דם",desc:"ניטור",stdRange:""}]
+},
+17:{
+  emoji:"🍼",
+  size:"12-13 ס\"מ",
+  sizeCompare:"צנון",
+  weight:"140 גרם",
+  dev:"רקמת השומן (הלבנה) מתחילה להצטבר תחת העור. מיאלין מתפתח סביב העצבים. השומן חשוב לוויסות חום. תנועות העובר גדלות בתדירות.",
+  symptoms:["תנועות גדלות","כאבי גב","נפיחות ברגליים בערב","שינויי מצב רוח"],
+  tips:["הרמי רגליים כשיושבת","קנה/י חגורת הריון לגב","שחייה מצוינת כעת","מדיטציה ו-mindfulness"],
+  expect:"האולטרסאונד המורפולוגי בשבוע 18-20 יבדוק את כל האנטומיה של העובר.",
+  focus:"הכנה מנטלית לאולטרסאונד הגדול",
+  home:"להכין שאלות לאולטרסאונד המורפולוגי",
+  talk:"להחליט אם לדעת מין — לפני האולטרסאונד",
+  tasks:["הכן/י שאלות לאולטרסאונד","בדק/י עם רופא על ויטמין D","שאל/י על קורס הנקה"],
+  tests:[{name:"שתן",desc:"שגרה",stdRange:""},{name:"לחץ דם",desc:"שגרה",stdRange:""}]
+},
+18:{
+  emoji:"🍯",
+  size:"13-14 ס\"מ",
+  sizeCompare:"בטטה",
+  weight:"190 גרם",
+  dev:"תנועות נחוות בבירור! הידיים ורגליים פעילות. מיאלין מתפתח במהירות. המין חיצוני בולט. השמיעה מפותחת — העובר מגיב לקולות חזקים.",
+  symptoms:["תנועות חזקות יותר","כאבי גב","נפיחות","עלייה מהירה יותר במשקל"],
+  tips:["שירי שירים לתינוק","ספרי לו/לה סיפורים","הכיני רשימת שאלות לאולטרסאונד","חגרי חגורת הריון"],
+  expect:"האולטרסאונד המורפולוגי הוא בדיקת ה-ANATOMY הגדולה — מחכים לה!",
+  focus:"אולטרסאונד מורפולוגי! בדיקה מרכזית",
+  home:"להתחיל לחפש מוצרי בסיס לתינוק",
+  talk:"לדון במי יהיה בחדר לידה",
+  tasks:["בצע/י אולטרסאונד מורפולוגי","קרא/י על שלבי לידה","בחר/י חדר לידה"],
+  tests:[{name:"אולטרסאונד מורפולוגי",desc:"בדיקת כל אנטומיית העובר",stdRange:"תקין"},{name:"Triple Test / Quad Screen",desc:"סיקון T21, T18",stdRange:"סיכון נמוך < 1:270"},{name:"שתן",desc:"שגרה",stdRange:""}]
+},
+19:{
+  emoji:"🌱",
+  size:"15 ס\"מ",
+  sizeCompare:"מנגו",
+  weight:"240 גרם",
+  dev:"ציפוי ה-Vernix Caseosa (שכבה לבנה מגינה) מכסה את עור העובר. שיניים בוגרות מתחילות להתפתח מאחורי שיני החלב. המוח מגדיר אזורים חושיים: ריח, טעם, שמיעה, ראייה.",
+  symptoms:["כאבי גב מחמירים","נפיחות ברגליים","כאב אגן (SPD אפשרי)","שינה קשה יותר"],
+  tips:["שכבי עם כרית בין הברכיים","פיזיותרפיה לכאבי אגן","הימנעי מעמידה ממושכת","הורידי ציוד כבד"],
+  expect:"מחצית הדרך! שבוע 20 הוא אמצע ההריון.",
+  focus:"מחצית הדרך — מה הושג ומה נשאר",
+  home:"להתחיל לסדר חדר ילדים",
+  talk:"לדון בתמיכה אחרי הלידה (אמא, חמות וכו')",
+  tasks:["צלמ/י תמונת הריון ב-20 שבועות","עדכן/י צוואה ומסמכים","שאל/י על קורס הנקה"],
+  tests:[{name:"שתן",desc:"שגרה",stdRange:""},{name:"לחץ דם",desc:"שגרה",stdRange:""}]
+},
+20:{
+  emoji:"✨",
+  size:"16 ס\"מ (ראש-עקב)",
+  sizeCompare:"בננה",
+  weight:"300 גרם",
+  dev:"אמצע ההריון! מכאן מודדים CRL ראש-עקב. הרחם כבר מגיע לגובה הטבור. התנועות עזות. שיער הראש מתחיל לגדול. שמיעה מצוינת — מגיב למוזיקה.",
+  symptoms:["תנועות חזקות ותכופות","ייתכן נחירות","קשיי נשימה קלים","צרבות"],
+  tips:["שמעי מוזיקה רגועה — העובר שומע!","הכיני תיק ללידה (עוד מוקדם אבל...)","כתבי מכתב לתינוק","תני לבן/בת הזוג לשים יד על הבטן"],
+  expect:"בשבועות 22-24 גבול 'כדאיות חיים'. בשבוע 24 העובר סיכוי הישרדות אם יולד.",
+  focus:"חגיגת מחצית הדרך!",
+  home:"לארגן חדר ילדים — צבע, ריהוט",
+  talk:"לחגוג! לצאת לארוחת ערב זוגית",
+  tasks:["צלמ/י תמונות הריון","תכנן/י בייבי שאוור","כתב/י מכתב לתינוק"],
+  tests:[{name:"אולטרסאונד מורפולוגי (אם לא נעשה)",desc:"אנטומיה מלאה",stdRange:"ללא ממצאים"},{name:"בדיקת גלוקוז ראשונית",desc:"סקר סוכר",stdRange:"< 140 mg/dL לאחר שעה"}]
+},
+21:{
+  emoji:"🌙",
+  size:"27 ס\"מ (ראש-עקב)",
+  sizeCompare:"גזר",
+  weight:"360 גרם",
+  dev:"בנות: הנרתיק מוגדר. בנים: האשכים מתחילים לרדת. כולם: מעיים בשלים. העובר בולע נוזל אמניוטי ומייצר מקוניום. השינה מסודרת בדפוסים.",
+  symptoms:["עלייה מהירה במשקל","כאבי גב","ייתכן כאבי רגליים בלילה","נפיחות"],
+  tips:["מגנזיום לכאבי רגליים","הרמי רגליים","קח/י הפסקות מהעבודה","הכיני רשימת 'דברים לסגור לפני הלידה'"],
+  expect:"בשבועות 24-28 בדיקת סוכר גלוקוז. חשובה מאוד לזיהוי סוכרת הריון.",
+  focus:"מעקב תנועות עובר",
+  home:"לרכוש עגלה ומיטה",
+  talk:"לדון בתוכניות אחר הלידה",
+  tasks:["ספרי תנועות עובר יומי","שאל/י על קורס הכנה ללידה אם לא נרשמת","בדק/י ביטוח ילד"],
+  tests:[{name:"CBC",desc:"ספירת דם",stdRange:""},{name:"לחץ דם",desc:"ניטור",stdRange:""}]
+},
+22:{
+  emoji:"💛",
+  size:"28 ס\"מ",
+  sizeCompare:"תירס",
+  weight:"430 גרם",
+  dev:"חוש הראייה מתחיל. העפעפיים עדיין סגורים, אבל העיניים מגיבות לאור. פניות מהאם לגבי תנועה. שריר הלב מחוזק. הריאות מתפתחות — עדיין לא בשלות.",
+  symptoms:["ייתכן נפיחות ידיים","כאבי גב חזקים יותר","עצירות","צרבות חזקות"],
+  tips:["הרמי ידיים בלילה לנפיחות","אכלי ארוחות קטנות לצרבות","שמרי על שתייה","אל תישני על הגב"],
+  expect:"בשבוע 24 העובר יכול לשרוד עם טיפול נמרץ. ציון דרך חשוב!",
+  focus:"מעקב לחץ דם לסימני רעלת הריון",
+  home:"לרכוש כרית הריון",
+  talk:"לדון בתוכנית אם יהיה לידה מוקדמת",
+  tasks:["ספרי תנועות יומי","בדק/י לחץ דם בבית","שאל/י על אפידורל ואפשרויות הקלת כאב"],
+  tests:[{name:"לחץ דם",desc:"מניעת רעלת הריון",stdRange:"< 140/90"},{name:"שתן",desc:"חלבון בשתן",stdRange:"ללא חלבון"}]
+},
+23:{
+  emoji:"🌸",
+  size:"29 ס\"מ",
+  sizeCompare:"פפאיה",
+  weight:"500 גרם",
+  dev:"חצי קילוגרם! העור האדום-ורדרד מתמלא בשומן. שיניים בוגרות ממשיכות. הריאות מייצרות Surfactant — חיוני לנשימה אחרי הלידה. שמיעה מעולה.",
+  symptoms:["כבדות גדולה","כאבי גב חזקים","קוצר נשימה קל","עלייה במשקל 0.5-1 ק\"ג/שבוע"],
+  tips:["יוגה לכאבי גב","שחייה מומלצת מאוד","הכיני בגדי הנקה","הירשמי לקורס הנקה"],
+  expect:"בשבוע 24 ציון דרך כדאיות חיים. בשבוע 28 ייתכן חיסון שפעת.",
+  focus:"ניהול אי-נוחות גופנית",
+  home:"להכין חדר ילדים",
+  talk:"לדבר על לידה, אפידורל, אפשרויות",
+  tasks:["הכן/י חדר ילדים","תכנן/י בייבי שאוור","עדכן/י ביטוח לידה"],
+  tests:[{name:"שתן",desc:"שגרה",stdRange:""},{name:"לחץ דם",desc:"שגרה",stdRange:""}]
+},
+24:{
+  emoji:"🎀",
+  size:"30 ס\"מ",
+  sizeCompare:"מלון",
+  weight:"600 גרם",
+  dev:"ציון דרך חשוב מאוד — 'כדאיות חיים'! מכאן ייתכן שהעובר ישרוד עם טיפול נמרץ. ריאות מייצרות Surfactant. מוח ממשיך להתפתח בקצב מרשים.",
+  symptoms:["קוצר נשימה","כאבי גב","נפיחות ברגליים","ייתכן כאב ברצועות"],
+  tips:["נוחי ממש הרבה","הכיני בגדי לידה ואחרי לידה","קבעי בדיקת גלוקוז לשבוע 24-28","עשי מדיטציה יומית"],
+  expect:"בדיקת גלוקוז (O'Sullivan) בשבועות 24-28 לסיקור סוכרת הריון!",
+  focus:"בדיקת סוכרת הריון — O'Sullivan",
+  home:"לסיים קניות לחדר ילדים",
+  talk:"לדון בתמיכה ראשונית מהמשפחה",
+  tasks:["קבע/י בדיקת O'Sullivan","עשי/י קורס הכנה ללידה","כתב/י תוכנית לידה"],
+  tests:[{name:"O'Sullivan (בדיקת גלוקוז 50 גרם)",desc:"סיקון סוכרת הריון",stdRange:"< 140 mg/dL אחרי שעה"},{name:"לחץ דם",desc:"ניטור רעלת הריון",stdRange:"< 140/90"},{name:"שתן",desc:"חלבון",stdRange:"ללא חלבון"}]
+},
+25:{
+  emoji:"⭐",
+  size:"34 ס\"מ",
+  sizeCompare:"כרובית",
+  weight:"660 גרם",
+  dev:"שיפור מתמיד בריאות. גדילה מהירה. שומן מצטבר מהר. הידיים והרגליים שמנמנות. תנועות עזות ומורגשות היטב. ייתכן שיהוקים! תגובה לקול ואור.",
+  symptoms:["כאבי גב","הידרציה נמוכה עלולה לגרום לצירים","כבדות","קוצר נשימה"],
+  tips:["שתי הרבה מים!","אם יש צירים שאינם קבועים — שתי ונחי","ספרי תנועות פעמיים ביום","חשבי על צילומי בטן"],
+  expect:"בשבוע 28 ייתכן חיסון DTP לאם ובדיקות שליש שלישי.",
+  focus:"ספירת תנועות עובר",
+  home:"לסיים ציוד בסיסי לחדר",
+  talk:"לדון בנושא ניהול כאב בלידה",
+  tasks:["ספר/י תנועות יומיות","צלמ/י תמונות הריון","קנ/י ממשטחי הנקה"],
+  tests:[{name:"שתן",desc:"שגרה",stdRange:""},{name:"לחץ דם",desc:"שגרה",stdRange:""}]
+},
+26:{
+  emoji:"🍼",
+  size:"35 ס\"מ",
+  sizeCompare:"חסה",
+  weight:"760 גרם",
+  dev:"העיניים נפתחות! לראשונה העיניים פקוחות מאחורי העפעפיים. שמיעה מצוינת. ריאות מתפתחות. מערכת החיסון מתחילה להיבנות. עור ורדרד.",
+  symptoms:["כאבי גב חזקים","נפיחות","ייתכן קרפל טונל","קשיי שינה","תכיפות שתן"],
+  tips:["אל תישני על הגב","כרית הריון גדולה מסייעת","שוח/י עם רופא על קרפל טונל","הרמי ידיים מאחורי הראש"],
+  expect:"שליש שלישי מתקרב! בשבוע 28 בדיקות חשובות.",
+  focus:"מעקב רעלת הריון ותנועות",
+  home:"לסיים ציוד ולמיין בגדים",
+  talk:"לקבוע תמיכה ראשונית בשבוע הלידה",
+  tasks:["קבל/י תוצאות O'Sullivan","בצע/י בדיקת ברזל","הכין/י תיק ללידה (ראשוני)"],
+  tests:[{name:"CBC",desc:"ספירת דם שגרתית",stdRange:"Hgb ≥ 11"},{name:"לחץ דם",desc:"ניטור",stdRange:""},{name:"שתן",desc:"שגרה",stdRange:""}]
+},
+27:{
+  emoji:"🍯",
+  size:"36 ס\"מ",
+  sizeCompare:"כרוב",
+  weight:"875 גרם",
+  dev:"כמעט קילוגרם! הריאות מתפתחות מהר. מוח ממשיך להגדיל. דפוסי שינה וערות ברורים. העובר יכול לפקוח ולעצום עיניים, לזוז, להתפתל.",
+  symptoms:["כבדות גדולה","כאבי גב","קשיי נשימה","כאבי רצועה","עייפות"],
+  tips:["שבוע 27 — אחרון השליש השני!","הכיני תיק ללידה","סיימי כל בדיקות שליש שני","קבעי ביקורים תכופים יותר"],
+  expect:"ברוכים הבאים לשליש השלישי! מעכשיו ביקורים כל 2-3 שבועות.",
+  focus:"סיום שליש שני — כניסה לשלב האחרון!",
+  home:"להכין הכל ל'יום שיציאו'",
+  talk:"לסדר עניינים מעשיים — עבודה, ביטוח לידה",
+  tasks:["סיים/י כל בדיקות שליש שני","הכין/י תיק ללידה","רשמ/י לבית חולים"],
+  tests:[{name:"אולטרסאונד גדילה",desc:"משקל עובר, מים, שליה",stdRange:"EFW ≈ 875 גרם"},{name:"שתן",desc:"שגרה",stdRange:""},{name:"לחץ דם",desc:"שגרה",stdRange:""}]
+},
+28:{
+  emoji:"🌱",
+  size:"37 ס\"מ",
+  sizeCompare:"חציל",
+  weight:"1 ק\"ג",
+  dev:"שליש שלישי! קילוגרם! המוח מתחיל לקבל קמטים (גירוסים). תנועות עיניים מהירות (REM) — חולם! ריאות כמעט מוכנות. אם יוולד עכשיו — סיכוי הישרדות גבוה.",
+  symptoms:["צירי בראקסטון-היקס (לא כואבים)","קוצר נשימה","כאבי גב חזקים","נפיחות ורגליים כבדות"],
+  tips:["הבחין/י בין צירי BH לצירים אמיתיים","חיסון שפעת ו-DTP עכשיו","ספר/י תנועות 10 ב-2 שעות","שוח/י עם רופא על תנוחת ראש"],
+  expect:"מביקור הבא — כל 2 שבועות. בדיקות ביופיזיות אם נדרש.",
+  focus:"כניסה לשליש שלישי — מעקב הדוק",
+  home:"לסיים חדר ילדים לחלוטין",
+  talk:"לדון בלוגיסטיקה של יום הלידה",
+  tasks:["חיסון DTP לאם","חיסון שפעת","בדיקת GBS (ב-35-37)","סיים/י תוכנית לידה"],
+  tests:[{name:"CBC + ברזל",desc:"ספירת דם ואנמיה",stdRange:"Hgb ≥ 10.5"},{name:"לחץ דם",desc:"רעלת הריון",stdRange:"< 140/90"},{name:"שתן",desc:"חלבון, זיהום",stdRange:""},{name:"אולטרסאונד שליש שלישי",desc:"גדילה, מיצוב",stdRange:""}]
+},
+29:{
+  emoji:"✨",
+  size:"38 ס\"מ",
+  sizeCompare:"אקורנה סקוואש",
+  weight:"1.15 ק\"ג",
+  dev:"העצמות מסתיידות. הלוף של שומן ממשיך. ראש רב מגיע לתנוחת לידה (ראש למטה). עיניים מגיבות לאור. אוזניים שלמות. תנועות חזקות מאוד.",
+  symptoms:["קוצר נשימה","עלייה קלה ב-BP","עייפות עמוקה","כאבי גב","ייתכן דיכאון קל (prenatal)"],
+  tips:["שוחי בבריכה — מקל על גב","נחי בשעות קבועות","הכיני פלייליסט להנקה","שוח/י עם רופא על מצב רוח"],
+  expect:"בשבוע 32 אולטרסאונד גדילה חשוב. בדיקת NST תתחיל אם נדרש.",
+  focus:"מעקב תנועות ולחץ דם",
+  home:"לוודא ציוד מוכן: מיטה, עגלה, מושב רכב",
+  talk:"לדון מה קורה אחרי לידה — עזרה, שינה",
+  tasks:["ספר/י תנועות יומית","בדק/י לחץ דם","סיים/י קניות לתינוק"],
+  tests:[{name:"שתן",desc:"שגרה",stdRange:""},{name:"לחץ דם",desc:"ניטור הדוק",stdRange:"< 140/90"}]
+},
+30:{
+  emoji:"🌙",
+  size:"40 ס\"מ",
+  sizeCompare:"כרוב גדול",
+  weight:"1.3 ק\"ג",
+  dev:"1.3 ק\"ג! המוח מתפתח בקצב מהיר. שומן ממשיך להצטבר. ציפורני ידיים וציפורני רגליים שלמות. שיעורת ראש. תנועות פחות חופשיות (פחות מקום).",
+  symptoms:["צרבות חזקות","קוצר נשימה","כבדות","כאבי אגן","ייתכן BV (דלקת נרתיק)"],
+  tips:["הימנעי ממרבדים ורצפות","אל תרימי משאות","שמרי על קשר עם רופא/ה","הכיני שאלות לביקור"],
+  expect:"10 שבועות לסיום! כל שבוע עכשיו חשוב. המוח צובר 250,000 נוירונים/דקה.",
+  focus:"מעקב גדילה ותנועות",
+  home:"לוודא מושב בטיחות לרכב מותקן",
+  talk:"לדון בנושאי הנקה vs. פורמולה",
+  tasks:["קבע/י אולטרסאונד גדילה לשבוע 32","בצע/י ביקור רפואי","תרגל/י נשימות לידה"],
+  tests:[{name:"CBC",desc:"ספירת דם",stdRange:""},{name:"לחץ דם",desc:"שגרה",stdRange:"< 140/90"},{name:"שתן",desc:"שגרה",stdRange:""}]
+},
+31:{
+  emoji:"💛",
+  size:"41 ס\"מ",
+  sizeCompare:"אננס",
+  weight:"1.5 ק\"ג",
+  dev:"1.5 ק\"ג! הריאות כמעט בשלות. שומן תת-עורי נוסף. ציפורניים שלמות. המוח מתפתח. תנועות עיניים מהירות — ישן ומחלים!",
+  symptoms:["כבדות גדולה","קוצר נשימה","עלייה שבועית 0.5 ק\"ג","ייתכן נחירות","שיהוקי עובר מורגשים"],
+  tips:["שתי מים הרבה — מניעת צירים מוקדמים","שמרי על פעילות עדינה","ספרי תנועות","נחי 30 דקות אחרי כל ארוחה"],
+  expect:"שבוע 32 — אולטרסאונד גדילה חשוב ותיאום הכל.",
+  focus:"מעקב תנועות ורמת מים",
+  home:"לוודא שהכל מוכן לאובמה — שקית, מסמכים",
+  talk:"לדון מי יגיע ראשון כשיתחיל הלידה",
+  tasks:["הכן/י תיק ללידה מלא","בדק/י ביטוח מולידה","שמ/י מסמכים חשובים בשקית"],
+  tests:[{name:"שתן",desc:"שגרה",stdRange:""},{name:"לחץ דם",desc:"שגרה",stdRange:""}]
+},
+32:{
+  emoji:"🌸",
+  size:"42 ס\"מ",
+  sizeCompare:"הדר גדול",
+  weight:"1.7 ק\"ג",
+  dev:"1.7 ק\"ג! ראש כמעט בתנוחת לידה. אחרי שבוע 32 — רוב הלידות המוקדמות סיכויי הישרדות מצוינים. שומן ממשיך. גוף מוכן לגדול עוד 2 ק\"ג תוך 8 שבועות.",
+  symptoms:["לחץ על שלפוחית","כאבי גב","BH מתכופות","קשיי שינה","עלייה 0.5 ק\"ג/שבוע"],
+  tips:["לישון על הצד שמאל","כרית בין הברכיים","אל תאכלי לפני שינה","שוח/י עם רופא אם BH תכופות"],
+  expect:"בשבועות 35-37 בדיקת GBS. שבוע 37 — 'מלא'.",
+  focus:"אולטרסאונד גדילה — בדיקה חשובה!",
+  home:"לוודא שהכל מוכן — תיק, מסמכים",
+  talk:"לקבוע מי מגיע לבית חולים",
+  tasks:["אולטרסאונד גדילה","בדיקת מיצוב עובר","תכנן/י הגעה לבית חולים"],
+  tests:[{name:"אולטרסאונד גדילה",desc:"EFW, נוזל, שליה, מיצוב",stdRange:"EFW ≈ 1.7 ק\"ג"},{name:"CTG/NST (אם נדרש)",desc:"ניטור לב עובר",stdRange:"Reactive NST"},{name:"לחץ דם",desc:"שגרה",stdRange:""},{name:"שתן",desc:"שגרה",stdRange:""}]
+},
+33:{
+  emoji:"🎀",
+  size:"43 ס\"מ",
+  sizeCompare:"אננס גדול",
+  weight:"1.9 ק\"ג",
+  dev:"כמעט 2 ק\"ג! הריאות כמעט בשלות לחלוטין. העובר מתכרבל לתנוחת לידה. ציפורניים ארוכות. השיניים כמעט שלמות. עור פחות מקומט.",
+  symptoms:["לחץ בחזה","קוצר נשימה","כאבי גב חזקים","עלייה ב-BP ייתכן"],
+  tips:["הפחיתי פעילות","הכיני שקית ומסמכים","תרגלי נשימות להרגעה","שוחי בבריכה — מקל כאב"],
+  expect:"שבוע 35 — בדיקת GBS. שבוע 36 — ביקורים שבועיים.",
+  focus:"מניעת לחץ ומנוחה",
+  home:"להכין שקית לידה מלאה",
+  talk:"לתדרך מי שיהיה לצידך",
+  tasks:["בדק/י לחץ דם בבית","הכין/י תיק לידה","תרגל/י נשימות"],
+  tests:[{name:"CBC",desc:"ספירת דם",stdRange:""},{name:"לחץ דם",desc:"ניטור",stdRange:""},{name:"שתן",desc:"שגרה",stdRange:""}]
+},
+34:{
+  emoji:"⭐",
+  size:"45 ס\"מ",
+  sizeCompare:"מלון גדול",
+  weight:"2.1 ק\"ג",
+  dev:"2.1 ק\"ג ועוד יגדל! ראש כלפי מטה כמעט תמיד. Surfactant בשלות. פנים שמנמנות ולטושות. שיניים בוגרות תחת שיני החלב. עור ורדרד חלק.",
+  symptoms:["לחץ חזק על אגן","שינה קשה מאוד","BH תכופות","ייתכן רגשות מעורבים","עייפות עמוקה"],
+  tips:["נחי הרבה","הכיני רשימת תפקידים ביום הלידה","בדקי מה מותר ואסור בבית חולים","שאלי על אפשרות Gentle C-section אם רלוונטי"],
+  expect:"כל שבוע עכשיו מגדיל את עיצוב המוח. כדאי להגיע ל-39 שבועות אם אפשר.",
+  focus:"מנוחה ואיסוף אנרגיה ללידה",
+  home:"לסדר בית — כביסות, קניות, אוכל להכנה",
+  talk:"לדון בתוכנית B — מה אם C/S",
+  tasks:["סיים/י הכנות מעשיות","בדק/י מסמכים ותעודות","הכין/י אוכל להקפאה"],
+  tests:[{name:"CTG/NST",desc:"ניטור לב עובר",stdRange:"Reactive"},{name:"לחץ דם",desc:"שגרה",stdRange:"< 140/90"},{name:"שתן",desc:"שגרה",stdRange:""}]
+},
+35:{
+  emoji:"🍼",
+  size:"46 ס\"מ",
+  sizeCompare:"ברוקולי ענק",
+  weight:"2.4 ק\"ג",
+  dev:"2.4 ק\"ג! הריאות בשלות לחלוטין. מערכת עיכול תקינה. עור שמנמן וחלק. שיניים עדיין מתחת לחניכיים. העובר כמעט מוכן לעולם!",
+  symptoms:["לחץ חזק על אגן","ירידת העובר לאגן (lightening)","נשימה קלה יותר","צרבות פחות","תכיפות שתן גבוהה"],
+  tips:["בדיקת GBS השבוע!","שמרי תיק ממש קרוב","תאמי עם בת/בן זוג על לוגיסטיקה","הכיני מוזיקה לחדר לידה"],
+  expect:"שבוע 37 = 'מלא'. בין 37-42 = לידה בזמן. קדימה!",
+  focus:"בדיקת GBS — חשובה!",
+  home:"הכל צריך להיות מוכן",
+  talk:"לדון מה קורה לחיות מחמד/ילדים גדולים ביום X",
+  tasks:["בצע/י בדיקת GBS","הכן/י הנחיות לבאים לבקר","שאל/י על אינדוקציה"],
+  tests:[{name:"בדיקת GBS (Strep B)",desc:"זיהום בנרתיק/פי הטבעת",stdRange:"שלילי"},{name:"אולטרסאונד גדילה",desc:"משקל, מים, מיצוב",stdRange:"EFW ≈ 2.4 ק\"ג"},{name:"CTG/NST",desc:"ניטור",stdRange:"Reactive"},{name:"לחץ דם",desc:"ניטור",stdRange:""}]
+},
+36:{
+  emoji:"🍯",
+  size:"47 ס\"מ",
+  sizeCompare:"ריק הד",
+  weight:"2.6 ק\"ג",
+  dev:"2.6 ק\"ג! ראש בתנוחת לידה (OP). הגוף אוסף שומן לסיום. מוח ממשיך לגדול. שיניים. ציפורניים ארוכות. עובר מוכן! רק עוד קצת לבגרות מוחית.",
+  symptoms:["עייפות קיצונית","ירידת העובר לאגן","BH ביחד","ייתכן יציאת פקק ריר","לחץ על פי הטבעת"],
+  tips:["הישארי קרוב לבית","ספר/י עם מי להתקשר","מנוחה מלאה","אכלי מזון עשיר לבניית מאגרים"],
+  expect:"שבוע 37 = לידה מלאה. שבוע 36 = עדיין מוקדם מעט — כל יום חשוב!",
+  focus:"מנוחה — הכנה אחרונה",
+  home:"שקית בדלת! מושב לרכב מותקן!",
+  talk:"לתדרך על כל תרחיש",
+  tasks:["בדקי תיק לידה","תאמי תחבורה","בדקי מה קורה עם עבודה"],
+  tests:[{name:"CTG/NST",desc:"ניטור שגרתי",stdRange:"Reactive"},{name:"לחץ דם",desc:"ניטור",stdRange:""},{name:"שתן",desc:"שגרה",stdRange:""}]
+},
+37:{
+  emoji:"🌱",
+  size:"48 ס\"מ",
+  sizeCompare:"ירק שוויצרי",
+  weight:"2.9 ק\"ג",
+  dev:"לידה מלאה! כמעט 3 ק\"ג. הריאות, מוח, לב — הכל בשל. שיניים בסיסיות. עור ורדרד חלק. שיעורת ראש. מוכן! רוב הלידות בין שבועות 37-42.",
+  symptoms:["BH מתכופות","ייתכן ירידת ריר","ייתכן שבירת מים","לחץ חזק באגן","כאבי גב מחמירים"],
+  tips:["תרגלי שיטת לידה","מנוחה!","ספרי תנועות","אל תהסס/י לפנות לבית חולים לכל שינוי"],
+  expect:"הלידה יכולה להתחיל בכל רגע! ממוצע לידה = שבוע 40.",
+  focus:"מוכנות ללידה בכל רגע",
+  home:"הכל מוכן? תיק? מסמכים? מושב רכב?",
+  talk:"לדון מי יהיה בחדר לידה",
+  tasks:["בדקי שוב תיק לידה","וודאי מסמכים","קרבי לבית חולים"],
+  tests:[{name:"CTG/NST",desc:"ניטור שגרתי",stdRange:"Reactive"},{name:"אולטרסאונד",desc:"מיצוב, מים, שליה",stdRange:""},{name:"לחץ דם",desc:"שגרה",stdRange:""}]
+},
+38:{
+  emoji:"✨",
+  size:"49 ס\"מ",
+  sizeCompare:"כרשה",
+  weight:"3.1 ק\"ג",
+  dev:"3+ ק\"ג! ראש מלא מ-38 ס\"מ. שיניים מכוסות, ציפורניים ארוכות, שיעורת ראש. שומן מצטבר. הגוף גומר לאסוף כל מה שצריך. מוכן לחלוטין לעולם!",
+  symptoms:["עייפות קיצונית","לחץ חזק","ייתכן שינוי בהפרשות","BH תכופות","קשיי שינה","חרדה ורגשות"],
+  tips:["קשיבי לגוף","פנה/י בכל שינוי","תרגלי נשימות","צפי בסרטוני לידה ל'חיזוק'","הכיני ביגוד לאחרי לידה"],
+  expect:"שעון מנה — הלידה מחכה. ממוצע לידה = 40+5 בנשים ראשונות.",
+  focus:"קשיבי לגוף — לידה בכל רגע",
+  home:"הכל מוכן! אין מה להוסיף",
+  talk:"לדון בחרדות ולקבל תמיכה",
+  tasks:["נוחי","תרגלי","הישארי קרוב לבית"],
+  tests:[{name:"CTG/NST",desc:"ניטור",stdRange:"Reactive"},{name:"לחץ דם",desc:"שגרה",stdRange:""}]
+},
+39:{
+  emoji:"🌙",
+  size:"50 ס\"מ",
+  sizeCompare:"ירקות גדולים",
+  weight:"3.3 ק\"ג",
+  dev:"3.3 ק\"ג. הכל שלם. ריאות, מוח, לב, כבד — בשלים לחלוטין. הגוף עוצר הצטברות שומן ומתכונן ליציאה. שליה מתחילה לרדת בתפקוד.",
+  symptoms:["לחץ עצום על אגן","ייתכן ירידה ב-BH לפני לידה","שלשול קל","ירידת ריר","הרגשה 'שהיום'"],
+  tips:["פנה/י מיד בכל שינוי","שרי/תרגלי","שתי הרבה","נוחי","תתכן/י להיות אמא בימים הקרובים!"],
+  expect:"שבוע 40 הוא מועד הלידה הנקוב. שבוע 41 עד 42 — ממתינות.",
+  focus:"מוכנות מנטלית",
+  home:"הכל מוכן",
+  talk:"לקבל תמיכה רגשית",
+  tasks:["נוחי","בדקי תנועות","פנה/י בכל שינוי"],
+  tests:[{name:"CTG/NST",desc:"ניטור שגרתי",stdRange:"Reactive"},{name:"אולטרסאונד",desc:"מים, שליה",stdRange:""},{name:"לחץ דם",desc:"שגרה",stdRange:""}]
+},
+40:{
+  emoji:"💛",
+  size:"51 ס\"מ",
+  sizeCompare:"אבטיח קטן",
+  weight:"3.4-3.5 ק\"ג",
+  dev:"שבוע הלידה הנקוב! 3.4-3.5 ק\"ג ממוצע. הכל שלם. מוכן. רק ממתין לאות מגוף האם להתחיל.",
+  symptoms:["כאבי בגב תחתון","לחץ חזק","ייתכן שבירת מים","צירים מתחילים","ייתכן שלשול"],
+  tips:["זה הזמן!","שמרי על רגיעה ככל האפשר","צירים כל 5 דקות / 1 דקה / שעה = בית חולים","אל תאכלי הרבה"],
+  expect:"כל לידה שונה. צירים, פקק, שבירת מים — כל אחד מהם יכול להתחיל. עכשיו הכל יקרה! 🌟",
+  focus:"יציאה לדרך — בהצלחה!",
+  home:"שקית! מסמכים! רכב מלא דלק!",
+  talk:"אהבה, תמיכה, נשימות ביחד",
+  tasks:["ללדת! 🎊","להתקשר בזמן הנכון","לשמור על קשר עם הצוות הרפואי"],
+  tests:[{name:"CTG בבית החולים",desc:"ניטור רצוף",stdRange:"Reactive"},{name:"בדיקות קבלה",desc:"BP, שתן, דם",stdRange:""}]
+}
+};
 
-    function escapeHtml(value) {
-      return String(value).replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
-    }
+// Default tasks per trimester
+function defaultTasks(week){
+  const base=["לכתוב סיכום קצר ביומן","לרשום שאלות לרופא/ה","לבדוק תורים פתוחים"];
+  if(week<=13) return [...base,"לתעד תוצאות בדיקות","לפתוח תיקיה למסמכים"];
+  if(week<=27) return [...base,"להתעדכן ברשימת ציוד","לבדוק תקציב"];
+  return [...base,"לוודא שתיק לידה מוכן","לבדוק מסמכים חשובים"];
+}
 
-    function readJson(key, fallback) {
-      try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
-      catch { return fallback; }
-    }
+// LS helpers
+const ls=(k,v)=>{if(v!==undefined){localStorage.setItem(k,typeof v==='object'?JSON.stringify(v):v);return v;}const r=localStorage.getItem(k);try{return JSON.parse(r);}catch{return r;}};
 
-    function writeJson(key, value) {
-      localStorage.setItem(key, JSON.stringify(value));
+// Build weeks array
+const weeks=Array.from({length:40},(_,i)=>{
+  const w=i+1;
+  const d=WEEK_DATA[w]||{};
+  return{
+    week:w,
+    emoji:d.emoji||"⭐",
+    title:d.title||"שבוע "+w,
+    size:d.size||"",
+    sizeCompare:d.sizeCompare||"",
+    weight:d.weight||"",
+    dev:d.dev||"",
+    symptoms:d.symptoms||[],
+    tips:d.tips||[],
+    expect:d.expect||"",
+    focus:d.focus||"",
+    home:d.home||"",
+    talk:d.talk||"",
+    tasks:[...defaultTasks(w),...(d.tasks||[])],
+    tests:d.tests||[]
+  };
+});
+
+// Render grid
+const grid=document.getElementById("weeksGrid");
+function renderGrid(){
+  const q=document.getElementById("searchInput").value.trim().toLowerCase();
+  const phase=document.getElementById("phaseFilter").value;
+  grid.innerHTML="";
+  weeks.filter(w=>{
+    if(phase==="tri1"&&w.week>13)return false;
+    if(phase==="tri2"&&(w.week<14||w.week>27))return false;
+    if(phase==="tri3"&&w.week<28)return false;
+    if(q){const h=`שבוע ${w.week} ${w.symptoms.join(" ")} ${w.dev} ${w.tips.join(" ")}`.toLowerCase();return h.includes(q);}
+    return true;
+  }).forEach(item=>{
+    const hasNote=!!ls(`wn_${item.week}`);
+    const c=document.createElement("article");
+    c.className="week-card"+(hasNote?" has-data":"");
+    c.innerHTML=`<div class="week-emoji">${item.emoji}</div>
+      <div class="week-num">שבוע ${item.week}</div>
+      <div class="week-lbl">${item.sizeCompare||""}</div>
+      <div class="week-size">${item.size} · ${item.weight}</div>
+      <span class="week-chip">פתח ←</span>`;
+    c.addEventListener("click",()=>openWeek(item.week));
+    grid.appendChild(c);
+  });
+}
+
+// Open week modal
+let currWeek=null;
+function openWeek(wn){
+  const w=weeks.find(x=>x.week===wn);
+  currWeek=wn;
+  document.getElementById("mTitle").textContent=`שבוע ${w.week} ${w.emoji}`;
+  document.getElementById("mSubtitle").textContent=`${w.sizeCompare} — ${w.size} — ${w.weight}`;
+
+  // Dev grid
+  document.getElementById("mDevGrid").innerHTML=`
+    <div class="dev-box"><div class="dev-icon">📏</div><div class="dev-label">גודל</div><div class="dev-val">${w.size}</div><div class="dev-desc">אורך קדקוד-עקב</div></div>
+    <div class="dev-box"><div class="dev-icon">⚖️</div><div class="dev-label">משקל</div><div class="dev-val">${w.weight}</div><div class="dev-desc">משקל משוער</div></div>
+    <div class="dev-box"><div class="dev-icon">🍎</div><div class="dev-label">בגודל</div><div class="dev-val">${w.sizeCompare}</div><div class="dev-desc">השוואה לפרי/ירק</div></div>
+    <div class="dev-box"><div class="dev-icon">📅</div><div class="dev-label">שליש</div><div class="dev-val">${w.week<=13?"1️⃣ ראשון":w.week<=27?"2️⃣ שני":"3️⃣ שלישי"}</div><div class="dev-desc">שליש הריון</div></div>
+  `;
+
+  // Development
+  document.getElementById("mDev").textContent=w.dev;
+
+  // Symptoms
+  const sym=document.getElementById("mSymptoms");
+  sym.innerHTML=w.symptoms.map(s=>`<span class="chip sym">🤒 ${s}</span>`).join("");
+
+  // Tips
+  const tips=document.getElementById("mTips");
+  tips.innerHTML=w.tips.map(t=>`<span class="chip tip">💡 ${t}</span>`).join("");
+
+  // Expect
+  document.getElementById("mExpect").textContent=w.expect;
+
+  // Info boxes
+  document.getElementById("mInfoBoxes").innerHTML=`
+    <div class="info-box"><b>🎯 מיקוד</b><span>${w.focus}</span></div>
+    <div class="info-box"><b>🏠 בית</b><span>${w.home}</span></div>
+    <div class="info-box"><b>💬 שיחה</b><span>${w.talk}</span></div>
+  `;
+
+  // Tasks
+  const tl=document.getElementById("mTasks");
+  tl.innerHTML="";
+  w.tasks.forEach((t,i)=>{
+    const id=`task_${wn}_${i}`;
+    const row=document.createElement("label");
+    row.className="task";
+    row.innerHTML=`<input type="checkbox" id="${id}"> <span>${t}</span>`;
+    const cb=row.querySelector("input");
+    cb.checked=ls(id)==="1";
+    cb.addEventListener("change",()=>ls(id,cb.checked?"1":"0"));
+    tl.appendChild(row);
+  });
+
+  // Tests
+  const tb=document.getElementById("mTestsBody");
+  tb.innerHTML="";
+  w.tests.forEach((t,i)=>{
+    const keyStatus=`ts_${wn}_${i}_status`;
+    const keyResult=`ts_${wn}_${i}_result`;
+    const keyNote=`ts_${wn}_${i}_note`;
+    const status=ls(keyStatus)||"pending";
+    const result=ls(keyResult)||"";
+    const note=ls(keyNote)||"";
+    const tr=document.createElement("tr");
+    tr.innerHTML=`
+      <td class="test-name">${t.name}</td>
+      <td style="color:var(--muted);font-size:13px">${t.desc}${t.stdRange?`<br><span style="color:#059669;font-size:11px">ערך תקין: ${t.stdRange}</span>`:""}</td>
+      <td>
+        <button class="test-status ${status}" data-key="${keyStatus}" data-wn="${wn}">
+          ${status==="done"?"✅ בוצע":status==="na"?"— לא רלוונטי":"⏳ ממתין"}
+        </button>
+      </td>
+      <td><input class="test-result-input" placeholder="הכנס תוצאה..." value="${result}" data-key="${keyResult}"/></td>
+      <td><input class="test-result-input" placeholder="הערה..." value="${note}" data-key="${keyNote}" style="max-width:120px"/></td>
+    `;
+    tr.querySelector(".test-status").addEventListener("click",function(){
+      const s=ls(this.dataset.key)||"pending";
+      const next=s==="pending"?"done":s==="done"?"na":"pending";
+      ls(this.dataset.key,next);
+      this.className=`test-status ${next}`;
+      this.textContent=next==="done"?"✅ בוצע":next==="na"?"— לא רלוונטי":"⏳ ממתין";
       renderDashboard();
-    }
-
-    function renderWeeks() {
-      const q = searchInput.value.trim().toLowerCase();
-      const selected = phaseFilter.value;
-      grid.innerHTML = "";
-
-      weeks
-        .filter(item => selected === "all" || item.phase === selected)
-        .filter(item => {
-          const haystack = `שבוע ${item.week} ${item.title} ${item.subtitle} ${item.focus} ${item.home} ${item.talk} ${item.info.flat().join(" ")} ${item.tasks.join(" ")}`.toLowerCase();
-          return !q || haystack.includes(q);
-        })
-        .forEach(item => {
-          const card = document.createElement("article");
-          card.className = "week-card";
-          card.innerHTML = `
-            <div class="week-emoji">${item.emoji}</div>
-            <div class="week-number">שבוע ${item.week}</div>
-            <div class="week-title">${item.title}</div>
-            <div class="week-meta">${comparisons[item.week - 1]} · ${lengths[item.week - 1]}</div>
-            <span class="week-chip">פתח טבלה שבועית</span>
-          `;
-          card.addEventListener("click", () => openWeek(item.week));
-          grid.appendChild(card);
-        });
-    }
-
-    function renderCustomTasks(week) {
-      const tasks = readJson(`custom_tasks_${week}`, []);
-      customTasksList.innerHTML = tasks.length ? "" : `<div class="empty-state">אין עדיין משימות אישיות לשבוע הזה.</div>`;
-      tasks.forEach((task, idx) => {
-        const row = document.createElement("div");
-        row.className = "saved-item";
-        row.innerHTML = `<div class="saved-item-main"><b>${escapeHtml(task.text)}</b><span>${task.done ? "בוצע ✅" : "פתוח"}</span></div><div class="action-row"><button class="btn small secondary" data-toggle="${idx}">${task.done ? "סימון כפתוח" : "סימון בוצע"}</button><button class="btn small secondary" data-delete="${idx}">מחיקה</button></div>`;
-        row.querySelector("[data-toggle]").addEventListener("click", () => {
-          tasks[idx].done = !tasks[idx].done;
-          writeJson(`custom_tasks_${week}`, tasks);
-          renderCustomTasks(week);
-        });
-        row.querySelector("[data-delete]").addEventListener("click", () => {
-          tasks.splice(idx, 1);
-          writeJson(`custom_tasks_${week}`, tasks);
-          renderCustomTasks(week);
-        });
-        customTasksList.appendChild(row);
-      });
-    }
-
-    function renderTests(week) {
-      const tests = readJson(`tests_${week}`, []);
-      testsList.innerHTML = tests.length ? "" : `<div class="empty-state">אין עדיין בדיקות שמורות לשבוע הזה.</div>`;
-      tests.forEach((test, idx) => {
-        const row = document.createElement("div");
-        row.className = "saved-item";
-        row.innerHTML = `<div class="saved-item-main"><b>${escapeHtml(test.name || "בדיקה")}</b><span>${escapeHtml(test.date || "ללא תאריך")} · ${escapeHtml(test.result || "ללא תוצאה")}</span><span>${escapeHtml(test.notes || "")}</span></div><button class="btn small secondary" data-delete="${idx}">מחיקה</button>`;
-        row.querySelector("[data-delete]").addEventListener("click", () => {
-          tests.splice(idx, 1);
-          writeJson(`tests_${week}`, tests);
-          renderTests(week);
-        });
-        testsList.appendChild(row);
-      });
-    }
-
-    function openWeek(week) {
-      const item = weeks.find(w => w.week === week);
-      currentWeek = week;
-      modalTitle.textContent = `שבוע ${item.week} ${item.emoji}`;
-      modalSubtitle.textContent = item.subtitle;
-      focusText.textContent = item.focus;
-      homeText.textContent = item.home;
-      talkText.textContent = item.talk;
-      weeklyInfoTable.innerHTML = item.info.map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`).join("");
-      taskList.innerHTML = "";
-
-      item.tasks.forEach((task, idx) => {
-        const id = `task_${week}_${idx}`;
-        const row = document.createElement("label");
-        row.className = "task";
-        row.innerHTML = `<input type="checkbox" id="${id}"> <span>${escapeHtml(task)}</span>`;
-        const checkbox = row.querySelector("input");
-        checkbox.checked = localStorage.getItem(id) === "1";
-        checkbox.addEventListener("change", () => {
-          localStorage.setItem(id, checkbox.checked ? "1" : "0");
-          renderDashboard();
-        });
-        taskList.appendChild(row);
-      });
-
-      weekNotes.value = localStorage.getItem(`week_note_${week}`) || "";
-      customTaskInput.value = "";
-      testName.value = "";
-      testDate.value = "";
-      testResult.value = "";
-      testNotes.value = "";
-      renderCustomTasks(week);
-      renderTests(week);
-      modal.classList.add("open");
-    }
-
-    function saveCurrentWeekNote() {
-      if (currentWeek) {
-        localStorage.setItem(`week_note_${currentWeek}`, weekNotes.value);
-        renderDashboard();
-      }
-    }
-
-    function addTaskForCurrentWeek() {
-      if (!currentWeek || !customTaskInput.value.trim()) return;
-      const tasks = readJson(`custom_tasks_${currentWeek}`, []);
-      tasks.push({ text: customTaskInput.value.trim(), done: false, createdAt: new Date().toISOString() });
-      customTaskInput.value = "";
-      writeJson(`custom_tasks_${currentWeek}`, tasks);
-      renderCustomTasks(currentWeek);
-    }
-
-    function addTestForCurrentWeek() {
-      if (!currentWeek || (!testName.value.trim() && !testResult.value.trim())) return;
-      const tests = readJson(`tests_${currentWeek}`, []);
-      tests.push({
-        name: testName.value.trim() || "בדיקה",
-        date: testDate.value,
-        result: testResult.value.trim(),
-        notes: testNotes.value.trim(),
-        createdAt: new Date().toISOString()
-      });
-      testName.value = "";
-      testDate.value = "";
-      testResult.value = "";
-      testNotes.value = "";
-      writeJson(`tests_${currentWeek}`, tests);
-      renderTests(currentWeek);
-    }
-
-    function collectTests() {
-      return weeks.flatMap(item => readJson(`tests_${item.week}`, []).map(test => ({ week: item.week, ...test })));
-    }
-
-    function renderDashboard() {
-      const allTests = collectTests();
-      const customTasks = weeks.flatMap(item => readJson(`custom_tasks_${item.week}`, []).map(task => ({ week: item.week, ...task })));
-      const notesCount = weeks.filter(item => (localStorage.getItem(`week_note_${item.week}`) || "").trim()).length;
-      const completedRecommended = Object.keys(localStorage).filter(key => key.startsWith("task_") && localStorage.getItem(key) === "1").length;
-      const completedCustom = customTasks.filter(task => task.done).length;
-
-      document.getElementById("testsCount").textContent = allTests.length;
-      document.getElementById("tasksCount").textContent = customTasks.length;
-      document.getElementById("notesCount").textContent = notesCount;
-      document.getElementById("completedCount").textContent = completedRecommended + completedCustom;
-
-      const wrap = document.getElementById("dashboardTableWrap");
-      if (!allTests.length) {
-        wrap.innerHTML = `<div class="empty-state">עדיין אין בדיקות בדשבורד. פתחו שבוע, הוסיפו בדיקה ותוצאה, והיא תופיע כאן בצורה מסודרת.</div>`;
-        return;
-      }
-
-      wrap.innerHTML = `
-        <table>
-          <thead><tr><th>שבוע</th><th>תאריך</th><th>בדיקה</th><th>תוצאה</th><th>הערות</th></tr></thead>
-          <tbody>
-            ${allTests.map(test => `<tr><td>שבוע ${escapeHtml(test.week)}</td><td>${escapeHtml(test.date || "—")}</td><td>${escapeHtml(test.name || "בדיקה")}</td><td>${escapeHtml(test.result || "—")}</td><td>${escapeHtml(test.notes || "—")}</td></tr>`).join("")}
-          </tbody>
-        </table>`;
-    }
-
-    closeModal.addEventListener("click", () => { saveCurrentWeekNote(); modal.classList.remove("open"); });
-    modal.addEventListener("click", (e) => { if (e.target === modal) { saveCurrentWeekNote(); modal.classList.remove("open"); } });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && modal.classList.contains("open")) { saveCurrentWeekNote(); modal.classList.remove("open"); } });
-    weekNotes.addEventListener("input", saveCurrentWeekNote);
-    addCustomTask.addEventListener("click", addTaskForCurrentWeek);
-    customTaskInput.addEventListener("keydown", (e) => { if (e.key === "Enter") addTaskForCurrentWeek(); });
-    addTest.addEventListener("click", addTestForCurrentWeek);
-
-    globalNote.value = localStorage.getItem("global_pregnancy_family_note") || "";
-    globalNote.addEventListener("input", () => localStorage.setItem("global_pregnancy_family_note", globalNote.value));
-
-    document.getElementById("clearNotes").addEventListener("click", () => {
-      const ok = confirm("לאפס את כל ההערות, המשימות, הבדיקות והתוצאות שנשמרו בדפדפן?");
-      if (!ok) return;
-      Object.keys(localStorage).forEach(key => {
-        if (key.startsWith("week_note_") || key.startsWith("task_") || key.startsWith("custom_tasks_") || key.startsWith("tests_") || key === "global_pregnancy_family_note") {
-          localStorage.removeItem(key);
-        }
-      });
-      globalNote.value = "";
-      if (currentWeek) openWeek(currentWeek);
-      renderDashboard();
     });
+    tr.querySelectorAll(".test-result-input").forEach(inp=>{
+      inp.addEventListener("input",()=>{ls(inp.dataset.key,inp.value);renderDashboard();});
+    });
+    tb.appendChild(tr);
+  });
 
-    document.getElementById("refreshDashboard").addEventListener("click", renderDashboard);
-    searchInput.addEventListener("input", renderWeeks);
-    phaseFilter.addEventListener("change", renderWeeks);
+  // Notes
+  document.getElementById("mNotes").value=ls(`wn_${wn}`)||"";
+  document.getElementById("weekModal").classList.add("open");
+}
 
-    renderWeeks();
+function saveNote(){if(currWeek){ls(`wn_${currWeek}`,document.getElementById("mNotes").value);}}
+document.getElementById("mNotes").addEventListener("input",saveNote);
+document.getElementById("closeModal").addEventListener("click",()=>{saveNote();document.getElementById("weekModal").classList.remove("open");renderGrid();});
+document.getElementById("weekModal").addEventListener("click",e=>{if(e.target===document.getElementById("weekModal")){saveNote();document.getElementById("weekModal").classList.remove("open");renderGrid();}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&document.getElementById("weekModal").classList.contains("open")){saveNote();document.getElementById("weekModal").classList.remove("open");renderGrid();}});
+
+// Global note
+const gn=document.getElementById("globalNote");
+gn.value=ls("global_note")||"";
+gn.addEventListener("input",()=>ls("global_note",gn.value));
+
+// Clear all
+document.getElementById("clearAll").addEventListener("click",()=>{
+  if(!confirm("לאפס את כל הנתונים, הערות, בדיקות וסימונים?"))return;
+  Object.keys(localStorage).forEach(k=>{if(k.startsWith("wn_")||k.startsWith("task_")||k.startsWith("ts_")||k==="global_note")localStorage.removeItem(k);});
+  gn.value="";
+  renderGrid();
+  renderDashboard();
+});
+
+// Tabs
+document.querySelectorAll(".tab").forEach(tab=>{
+  tab.addEventListener("click",()=>{
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+    tab.classList.add("active");
+    const t=tab.dataset.tab;
+    document.getElementById("weeksTab").style.display=t==="weeks"?"block":"none";
+    const dt=document.getElementById("dashboardTab");
+    dt.style.display=t==="dashboard"?"block":"none";
+    if(t==="dashboard")renderDashboard();
+  });
+});
+
+// Dashboard
+let dashFilter="all";
+document.querySelectorAll(".filter-chip").forEach(chip=>{
+  chip.addEventListener("click",()=>{
+    document.querySelectorAll(".filter-chip").forEach(c=>c.classList.remove("active"));
+    chip.classList.add("active");
+    dashFilter=chip.dataset.filter;
     renderDashboard();
-  </script>
+  });
+});
+document.getElementById("dashSearch").addEventListener("input",renderDashboard);
+
+function getAllTests(){
+  const all=[];
+  weeks.forEach(w=>{
+    w.tests.forEach((t,i)=>{
+      const keyStatus=`ts_${w.week}_${i}_status`;
+      const keyResult=`ts_${w.week}_${i}_result`;
+      const keyNote=`ts_${w.week}_${i}_note`;
+      all.push({
+        week:w.week,
+        name:t.name,
+        desc:t.desc,
+        stdRange:t.stdRange,
+        status:ls(keyStatus)||"pending",
+        result:ls(keyResult)||"",
+        note:ls(keyNote)||""
+      });
+    });
+  });
+  return all;
+}
+
+function renderDashboard(){
+  const all=getAllTests();
+  const done=all.filter(t=>t.status==="done").length;
+  const withResult=all.filter(t=>t.result.trim()).length;
+  const pending=all.filter(t=>t.status==="pending").length;
+  const kpis=document.getElementById("dashKpis");
+  kpis.innerHTML=`
+    <div class="kpi"><div class="kpi-icon">🔬</div><div><div class="kpi-num">${all.length}</div><div class="kpi-lbl">סה"כ בדיקות</div></div></div>
+    <div class="kpi"><div class="kpi-icon">✅</div><div><div class="kpi-num" style="color:#059669">${done}</div><div class="kpi-lbl">בוצעו</div></div></div>
+    <div class="kpi"><div class="kpi-icon">⏳</div><div><div class="kpi-num" style="color:#d97706">${pending}</div><div class="kpi-lbl">ממתינות</div></div></div>
+    <div class="kpi"><div class="kpi-icon">📊</div><div><div class="kpi-num" style="color:#7c3aed">${withResult}</div><div class="kpi-lbl">עם תוצאה</div></div></div>
+    <div class="kpi"><div class="kpi-icon">📈</div><div><div class="kpi-num" style="color:#ec4899">${all.length?Math.round(done/all.length*100):0}%</div><div class="kpi-lbl">אחוז ביצוע</div></div></div>
+  `;
+
+  const q=document.getElementById("dashSearch").value.toLowerCase();
+  const tbody=document.getElementById("dashTableBody");
+  tbody.innerHTML="";
+  let filtered=all.filter(t=>{
+    if(dashFilter==="done"&&t.status!=="done")return false;
+    if(dashFilter==="pending"&&t.status!=="pending")return false;
+    if(dashFilter==="has-result"&&!t.result.trim())return false;
+    if(q&&!`${t.name} ${t.desc} ${t.result}`.toLowerCase().includes(q))return false;
+    return true;
+  });
+  if(!filtered.length){
+    tbody.innerHTML=`<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:30px">לא נמצאו בדיקות</td></tr>`;
+    return;
+  }
+  filtered.forEach(t=>{
+    const tr=document.createElement("tr");
+    const statusClass=t.status==="done"?"done":t.status==="na"?"empty":"pending";
+    const statusLabel=t.status==="done"?"✅ בוצע":t.status==="na"?"—":"⏳ ממתין";
+    tr.innerHTML=`
+      <td><span class="week-tag">שבוע ${t.week}</span></td>
+      <td><strong>${t.name}</strong></td>
+      <td style="color:var(--muted);font-size:13px">${t.desc}${t.stdRange?`<br><span style="color:#059669;font-size:11px">✓ ${t.stdRange}</span>`:""}</td>
+      <td><span class="result-pill ${statusClass}">${statusLabel}</span></td>
+      <td style="font-size:13px">${t.result?`<strong>${t.result}</strong>`:`<span style="color:var(--muted)">טרם הוזן</span>`}${t.note?`<br><span style="color:var(--muted);font-size:12px">${t.note}</span>`:""}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// Export CSV
+document.getElementById("exportBtn").addEventListener("click",()=>{
+  const all=getAllTests();
+  const rows=[["שבוע","שם בדיקה","תיאור","ערך תקין","סטטוס","תוצאה","הערה"]];
+  all.forEach(t=>rows.push([t.week,t.name,t.desc,t.stdRange,t.status==="done"?"בוצע":t.status==="na"?"לא רלוונטי":"ממתין",t.result,t.note]));
+  const csv="\uFEFF"+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(",")).join("\n");
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+  a.download="בדיקות_הריון.csv";
+  a.click();
+});
+
+// Filters
+document.getElementById("searchInput").addEventListener("input",renderGrid);
+document.getElementById("phaseFilter").addEventListener("change",renderGrid);
+
+// Init
+renderGrid();
+</script>
 </body>
 </html>
