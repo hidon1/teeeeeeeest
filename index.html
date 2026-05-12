@@ -90,6 +90,9 @@ h1{
   background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(236,72,153,.15));font-size:24px}
 .stat b{display:block;font-size:15px}
 .stat small{color:var(--muted);font-size:13px;line-height:1.5}
+.hero-orb{position:absolute;left:26px;top:24px;width:92px;height:92px;opacity:.9;animation:pulseGlow 3.6s ease-in-out infinite}
+.hero-orb svg{width:100%;height:100%;filter:drop-shadow(0 18px 24px rgba(236,72,153,.18))}
+@keyframes pulseGlow{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.06) rotate(-4deg)}}
 
 /* TABS */
 .tabs{
@@ -176,6 +179,44 @@ h1{
   outline:none;background:rgba(255,255,255,.9);
   color:var(--text);line-height:1.6;font-family:'Heebo',sans-serif;font-size:14px;
 }
+
+
+/* PREGNANCY PROFILE */
+.profile-card{
+  position:relative;overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,255,255,.9),rgba(255,241,248,.78));
+}
+.profile-card:before{content:"";position:absolute;inset:auto -50px -70px auto;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(236,72,153,.2),transparent 68%);animation:floaty 8s ease-in-out infinite}
+.profile-grid{display:grid;grid-template-columns:1fr;gap:10px;position:relative;z-index:1}
+.field-label{font-size:12px;font-weight:900;color:var(--primary);display:block;margin-bottom:5px}
+.profile-input,.profile-select{
+  width:100%;border:1px solid var(--border);border-radius:15px;padding:11px 13px;
+  background:rgba(255,255,255,.92);outline:none;font-family:'Heebo',sans-serif;font-weight:700;color:var(--text);
+}
+.due-big{
+  margin:12px 0;padding:16px;border-radius:22px;text-align:center;
+  background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(236,72,153,.13));
+  border:1px solid rgba(124,58,237,.16);position:relative;z-index:1;
+}
+.due-big .due-date{font-family:'Frank Ruhl Libre',serif;font-size:30px;font-weight:900;color:var(--primary);line-height:1.05}
+.due-big .due-label{font-size:12px;color:var(--muted);font-weight:800;margin-top:5px}
+.profile-mini{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:relative;z-index:1}
+.mini-pill{padding:10px;border-radius:16px;background:rgba(255,255,255,.72);border:1px solid var(--border);font-size:12px;color:var(--muted);font-weight:700}
+.mini-pill b{display:block;color:var(--text);font-size:15px;margin-top:2px}
+.spark-svg{width:28px;height:28px;vertical-align:middle;animation:spinSoft 7s linear infinite}
+@keyframes spinSoft{to{transform:rotate(360deg)}}
+.week-date{font-size:11px;color:#059669;font-weight:800;margin-top:4px}
+.week-card.current-week{border-color:rgba(236,72,153,.48);box-shadow:0 14px 36px rgba(236,72,153,.17)}
+.week-card.current-week .week-chip{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff}
+.note-preview{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sex-banner{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:13px 15px;border-radius:20px;background:linear-gradient(135deg,rgba(6,182,212,.12),rgba(236,72,153,.11));border:1px solid var(--border);margin-bottom:12px}
+.sex-banner strong{color:var(--primary)}
+.sex-select{border:1px solid var(--border);border-radius:14px;padding:8px 12px;background:white;font-family:'Heebo',sans-serif;font-weight:800;color:var(--text)}
+.custom-test-box{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin:10px 0 12px;padding:12px;border-radius:18px;background:rgba(124,58,237,.06);border:1px dashed rgba(124,58,237,.22)}
+.custom-test-box input{border:1px solid var(--border);border-radius:12px;padding:9px 11px;font-family:'Heebo',sans-serif;outline:none;background:white}
+.test-type-pill{display:inline-flex;margin-top:4px;padding:3px 8px;border-radius:999px;background:rgba(6,182,212,.1);color:#0e7490;font-size:11px;font-weight:900}
+.table-actions{display:flex;gap:6px;align-items:center}
+.icon-btn{border:none;border-radius:10px;background:rgba(239,68,68,.1);color:#b91c1c;width:30px;height:30px;cursor:pointer;font-weight:900}
 
 /* MODAL */
 .modal{
@@ -350,6 +391,7 @@ h1{
   .toolbar{grid-template-columns:1fr}
   .side-panel{position:static}
   .info-3{grid-template-columns:1fr}
+  .custom-test-box{grid-template-columns:1fr}
   .dev-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:500px){
@@ -366,15 +408,16 @@ h1{
 <main class="app">
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-orb" aria-hidden="true"><svg viewBox="0 0 120 120" role="img"><defs><linearGradient id="babyGlow" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ec4899"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs><circle cx="60" cy="60" r="47" fill="url(#babyGlow)" opacity=".14"/><path d="M60 23c20 0 36 16 36 36S80 96 60 96 24 80 24 60 40 23 60 23Z" fill="#fff" opacity=".82"/><path d="M44 56c7-17 26-17 33-1 5 12-3 27-17 27S39 68 44 56Z" fill="url(#babyGlow)" opacity=".72"/><circle cx="52" cy="55" r="3" fill="#1e1033"/><circle cx="68" cy="55" r="3" fill="#1e1033"/><path d="M53 67c5 4 10 4 15 0" fill="none" stroke="#1e1033" stroke-width="4" stroke-linecap="round"/></svg></div>
     <div>
       <div class="badge">👶 יומן הריון מורחב שבועי</div>
       <h1>מסע ההריון שלנו<br>שבוע אחרי שבוע</h1>
-      <p>מידע רפואי מפורט לכל שבוע · גודל העובר · שלבי התפתחות · תסמינים · טיפים · בדיקות · הערות אישיות · דשבורד תוצאות.</p>
+      <p>מידע שבועי חי לפי תאריך וסת אחרון · בדיקות מותאמות אישית עם תוצאות שמתעדכנות אוטומטית · מין עובר · הערות קטנות לכל שבוע · דשבורד מרהיב.</p>
     </div>
     <aside class="hero-stats">
-      <div class="stat"><div class="stat-icon">📅</div><div><b>40 שבועות</b><small>מידע מפורט לכל שבוע</small></div></div>
-      <div class="stat"><div class="stat-icon">🔬</div><div><b>מעקב בדיקות</b><small>תיעוד תוצאות ודשבורד</small></div></div>
-      <div class="stat"><div class="stat-icon">📝</div><div><b>הערות אישיות</b><small>נשמרות בדפדפן</small></div></div>
+      <div class="stat"><div class="stat-icon">📅</div><div><b>תאריכים חכמים</b><small>חישוב שבוע נוכחי ותאריך לידה משוער</small></div></div>
+      <div class="stat"><div class="stat-icon">🔬</div><div><b>בדיקות אישיות</b><small>את מחליטה מה להזין — התוצאה מעדכנת סטטוס</small></div></div>
+      <div class="stat"><div class="stat-icon">💗</div><div><b>מין עובר ונתונים</b><small>עדכון מין עובר והתאמת אומדני גדילה</small></div></div>
     </aside>
   </section>
 
@@ -400,6 +443,18 @@ h1{
     <div class="layout">
       <div class="weeks-grid" id="weeksGrid"></div>
       <aside class="side-panel">
+        <div class="panel profile-card">
+          <h2><svg class="spark-svg" viewBox="0 0 48 48" aria-hidden="true"><path fill="#ec4899" d="M24 3l5.4 13.2L43 18l-10.1 9.2L35.8 41 24 33.8 12.2 41l2.9-13.8L5 18l13.6-1.8L24 3z"/><circle cx="24" cy="24" r="7" fill="#fff" opacity=".85"/></svg> פרופיל ההריון</h2>
+          <div class="profile-grid">
+            <label><span class="field-label">תאריך אחרון של מחזור</span><input type="date" class="profile-input" id="lmpInput"/></label>
+            <label><span class="field-label">מין העובר</span><select class="profile-select" id="fetalSexInput"><option value="unknown">עוד לא ידוע</option><option value="female">בת 🎀</option><option value="male">בן 🧸</option></select></label>
+          </div>
+          <div class="due-big"><div class="due-date" id="dueDateBig">בחרי תאריך</div><div class="due-label">תאריך לידה משוער</div></div>
+          <div class="profile-mini">
+            <div class="mini-pill">שבוע נוכחי<b id="currentWeekMini">—</b></div>
+            <div class="mini-pill">מין העובר<b id="sexMini">עוד לא עודכן</b></div>
+          </div>
+        </div>
         <div class="panel">
           <h2>⭐ איך להשתמש?</h2>
           <ul>
@@ -449,6 +504,7 @@ h1{
             <tr>
               <th>שבוע</th>
               <th>שם הבדיקה</th>
+              <th>סוג</th>
               <th>תיאור</th>
               <th>סטטוס</th>
               <th>תוצאה / ערכים</th>
@@ -503,6 +559,11 @@ h1{
 
     <!-- TESTS TABLE -->
     <div class="sec-title">🔬 בדיקות לשבוע זה</div>
+    <div class="custom-test-box">
+      <input id="customTestName" placeholder="שם בדיקה שהחלטת להוסיף..."/>
+      <input id="customTestType" placeholder="סוג / תחום הבדיקה (דם, שתן, אולטרסאונד...)"/>
+      <button class="btn btn-sm" id="addCustomTest" type="button">➕ הוספה</button>
+    </div>
     <div class="tests-table-wrap">
       <table class="tests-table">
         <thead>
@@ -1139,8 +1200,76 @@ function defaultTasks(week){
   return [...base,"לוודא שתיק לידה מוכן","לבדוק מסמכים חשובים"];
 }
 
-// LS helpers
+// LS helpers + safe rendering
 const ls=(k,v)=>{if(v!==undefined){localStorage.setItem(k,typeof v==='object'?JSON.stringify(v):v);return v;}const r=localStorage.getItem(k);try{return JSON.parse(r);}catch{return r;}};
+const esc=v=>String(v??"").replace(/[&<>'"]/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[ch]));
+const fmtDate=d=>d?new Intl.DateTimeFormat("he-IL",{day:"2-digit",month:"2-digit",year:"numeric"}).format(d):"";
+const addDays=(d,days)=>{const x=new Date(d);x.setDate(x.getDate()+days);return x;};
+const fetalSexLabel=()=>({unknown:"עוד לא עודכן",female:"בת 🎀",male:"בן 🧸"}[ls("fetal_sex")||"unknown"]);
+
+function getPregnancyProfile(){
+  const raw=ls("lmp_date");
+  if(!raw)return {lmp:null,due:null,currentWeek:null};
+  const lmp=new Date(`${raw}T00:00:00`);
+  if(Number.isNaN(lmp.getTime()))return {lmp:null,due:null,currentWeek:null};
+  const today=new Date();today.setHours(0,0,0,0);
+  const days=Math.floor((today-lmp)/86400000);
+  return {lmp,due:addDays(lmp,280),currentWeek:days>=0?Math.min(40,Math.max(1,Math.floor(days/7)+1)):null,days};
+}
+function getWeekRange(week){
+  const {lmp}=getPregnancyProfile();
+  if(!lmp)return null;
+  return {start:addDays(lmp,(week-1)*7),end:addDays(lmp,(week*7)-1)};
+}
+function weekRangeText(week){const r=getWeekRange(week);return r?`${fmtDate(r.start)}–${fmtDate(r.end)}`:"";}
+
+function adjustedWeightText(w){
+  const sex=ls("fetal_sex")||"unknown";
+  if(sex==="unknown"||w.week<18)return w.weight;
+  const text=w.weight||"";
+  const kg=text.match(/([0-9]+(?:\.[0-9]+)?)\s*ק\"ג/);
+  const gr=text.match(/([0-9]+(?:\.[0-9]+)?)\s*גרם/);
+  let grams=null;
+  if(kg)grams=parseFloat(kg[1])*1000;
+  if(gr)grams=parseFloat(gr[1]);
+  if(!grams)return text;
+  const factor=sex==="male"?1.03:0.98;
+  const adjusted=Math.round(grams*factor/10)*10;
+  const label=sex==="male"?"מותאם לבן" : "מותאם לבת";
+  return adjusted>=1000?`${(adjusted/1000).toFixed(1)} ק״ג (${label})`:`${adjusted} גרם (${label})`;
+}
+
+function inferTestType(t){
+  const text=`${t.type||""} ${t.name||""} ${t.desc||""}`;
+  if(t.type)return t.type;
+  if(/אולטרסאונד|סקירה|שקיפות|גדילה|מיצוב|דופק|FHR|NST|CTG/i.test(text))return "אולטרסאונד / ניטור";
+  if(/דם|CBC|hCG|TSH|ספירת|גלוקוז|סוכר|ברזל|Rh|נוגדנים/i.test(text))return "בדיקת דם";
+  if(/שתן|חלבון/i.test(text))return "בדיקת שתן";
+  if(/GBS|משטח|Strep/i.test(text))return "משטח";
+  return "כללי";
+}
+
+function getCustomTests(week){return ls(`custom_tests_${week}`)||[];}
+function setCustomTests(week,tests){ls(`custom_tests_${week}`,tests);}
+function getWeekTests(week){
+  const w=weeks.find(x=>x.week===week);
+  const base=(w.tests||[]).map((t,i)=>({...t,type:inferTestType(t),custom:false,key:`${i}`,legacyIndex:i}));
+  const custom=getCustomTests(week).map(t=>({...t,type:t.type||"בדיקה אישית",desc:t.desc||"בדיקה שהוזנה ידנית",stdRange:t.stdRange||"",custom:true,key:`custom_${t.id}`}));
+  return [...base,...custom];
+}
+function testStorageKeys(week,t){
+  const suffix=t.custom?t.key:t.legacyIndex;
+  return {status:`ts_${week}_${suffix}_status`,result:`ts_${week}_${suffix}_result`,note:`ts_${week}_${suffix}_note`};
+}
+
+function getTasksForWeek(w){
+  const tasks=[...w.tasks];
+  const range=weekRangeText(w.week);
+  if(range)tasks.unshift(`לעקוב השבוע לפי התאריכים: ${range}`);
+  if(w.week>=10&&w.week<=22)tasks.unshift("בדקי האם כבר אפשר לברר את מין העובר, ואז עדכני בפרופיל כדי להתאים את נתוני הגדילה");
+  if(w.week===40)tasks.unshift("לוודא שהתאריך המשוער והמסמכים מופיעים במקום נגיש");
+  return tasks;
+}
 
 // Build weeks array
 const weeks=Array.from({length:40},(_,i)=>{
@@ -1165,27 +1294,45 @@ const weeks=Array.from({length:40},(_,i)=>{
   };
 });
 
+// Render pregnancy profile
+function updateProfileUI(){
+  const lmpInput=document.getElementById("lmpInput");
+  const sexInput=document.getElementById("fetalSexInput");
+  if(lmpInput)lmpInput.value=ls("lmp_date")||"";
+  if(sexInput)sexInput.value=ls("fetal_sex")||"unknown";
+  const profile=getPregnancyProfile();
+  document.getElementById("dueDateBig").textContent=profile.due?fmtDate(profile.due):"בחרי תאריך";
+  document.getElementById("currentWeekMini").textContent=profile.currentWeek?`שבוע ${profile.currentWeek}`:"—";
+  document.getElementById("sexMini").textContent=fetalSexLabel();
+}
+
 // Render grid
 const grid=document.getElementById("weeksGrid");
 function renderGrid(){
+  updateProfileUI();
   const q=document.getElementById("searchInput").value.trim().toLowerCase();
   const phase=document.getElementById("phaseFilter").value;
+  const {currentWeek}=getPregnancyProfile();
   grid.innerHTML="";
   weeks.filter(w=>{
     if(phase==="tri1"&&w.week>13)return false;
     if(phase==="tri2"&&(w.week<14||w.week>27))return false;
     if(phase==="tri3"&&w.week<28)return false;
-    if(q){const h=`שבוע ${w.week} ${w.symptoms.join(" ")} ${w.dev} ${w.tips.join(" ")}`.toLowerCase();return h.includes(q);}
+    if(q){const h=`שבוע ${w.week} ${w.symptoms.join(" ")} ${w.dev} ${w.tips.join(" ")} ${getWeekTests(w.week).map(t=>`${t.name} ${t.type}`).join(" ")}`.toLowerCase();return h.includes(q);}
     return true;
   }).forEach(item=>{
-    const hasNote=!!ls(`wn_${item.week}`);
+    const note=ls(`wn_${item.week}`)||"";
+    const hasData=!!note||getWeekTests(item.week).some((t)=>{const k=testStorageKeys(item.week,t);return (ls(k.result)||"").trim()||(ls(k.status)||"pending")!=="pending";});
     const c=document.createElement("article");
-    c.className="week-card"+(hasNote?" has-data":"");
+    c.className="week-card"+(hasData?" has-data":"")+(currentWeek===item.week?" current-week":"");
+    const dateText=weekRangeText(item.week);
     c.innerHTML=`<div class="week-emoji">${item.emoji}</div>
       <div class="week-num">שבוע ${item.week}</div>
-      <div class="week-lbl">${item.sizeCompare||""}</div>
-      <div class="week-size">${item.size} · ${item.weight}</div>
-      <span class="week-chip">פתח ←</span>`;
+      <div class="week-lbl">${esc(item.sizeCompare||"")}</div>
+      <div class="week-size">${esc(item.size)} · ${esc(adjustedWeightText(item))}</div>
+      ${dateText?`<div class="week-date">${dateText}</div>`:""}
+      ${note?`<div class="note-preview">📝 ${esc(note)}</div>`:""}
+      <span class="week-chip">${currentWeek===item.week?"השבוע שלך ✨":"פתח ←"}</span>`;
     c.addEventListener("click",()=>openWeek(item.week));
     grid.appendChild(c);
   });
@@ -1196,73 +1343,65 @@ let currWeek=null;
 function openWeek(wn){
   const w=weeks.find(x=>x.week===wn);
   currWeek=wn;
+  const dateText=weekRangeText(wn);
   document.getElementById("mTitle").textContent=`שבוע ${w.week} ${w.emoji}`;
-  document.getElementById("mSubtitle").textContent=`${w.sizeCompare} — ${w.size} — ${w.weight}`;
+  document.getElementById("mSubtitle").textContent=`${w.sizeCompare} — ${w.size} — ${adjustedWeightText(w)}${dateText?` — ${dateText}`:""}`;
 
-  // Dev grid
   document.getElementById("mDevGrid").innerHTML=`
-    <div class="dev-box"><div class="dev-icon">📏</div><div class="dev-label">גודל</div><div class="dev-val">${w.size}</div><div class="dev-desc">אורך קדקוד-עקב</div></div>
-    <div class="dev-box"><div class="dev-icon">⚖️</div><div class="dev-label">משקל</div><div class="dev-val">${w.weight}</div><div class="dev-desc">משקל משוער</div></div>
-    <div class="dev-box"><div class="dev-icon">🍎</div><div class="dev-label">בגודל</div><div class="dev-val">${w.sizeCompare}</div><div class="dev-desc">השוואה לפרי/ירק</div></div>
-    <div class="dev-box"><div class="dev-icon">📅</div><div class="dev-label">שליש</div><div class="dev-val">${w.week<=13?"1️⃣ ראשון":w.week<=27?"2️⃣ שני":"3️⃣ שלישי"}</div><div class="dev-desc">שליש הריון</div></div>
+    <div class="dev-box"><div class="dev-icon">📏</div><div class="dev-label">גודל</div><div class="dev-val">${esc(w.size)}</div><div class="dev-desc">אורך קדקוד-עקב</div></div>
+    <div class="dev-box"><div class="dev-icon">⚖️</div><div class="dev-label">משקל</div><div class="dev-val">${esc(adjustedWeightText(w))}</div><div class="dev-desc">משקל משוער לפי ${esc(fetalSexLabel())}</div></div>
+    <div class="dev-box"><div class="dev-icon">🍎</div><div class="dev-label">בגודל</div><div class="dev-val">${esc(w.sizeCompare)}</div><div class="dev-desc">השוואה לפרי/ירק</div></div>
+    <div class="dev-box"><div class="dev-icon">📅</div><div class="dev-label">שליש</div><div class="dev-val">${w.week<=13?"1️⃣ ראשון":w.week<=27?"2️⃣ שני":"3️⃣ שלישי"}</div><div class="dev-desc">${dateText||"עדכני וסת אחרון להצגת תאריכים"}</div></div>
   `;
 
-  // Development
   document.getElementById("mDev").textContent=w.dev;
-
-  // Symptoms
-  const sym=document.getElementById("mSymptoms");
-  sym.innerHTML=w.symptoms.map(s=>`<span class="chip sym">🤒 ${s}</span>`).join("");
-
-  // Tips
-  const tips=document.getElementById("mTips");
-  tips.innerHTML=w.tips.map(t=>`<span class="chip tip">💡 ${t}</span>`).join("");
-
-  // Expect
+  document.getElementById("mSymptoms").innerHTML=w.symptoms.map(s=>`<span class="chip sym">🤒 ${esc(s)}</span>`).join("");
+  document.getElementById("mTips").innerHTML=w.tips.map(t=>`<span class="chip tip">💡 ${esc(t)}</span>`).join("");
   document.getElementById("mExpect").textContent=w.expect;
-
-  // Info boxes
   document.getElementById("mInfoBoxes").innerHTML=`
-    <div class="info-box"><b>🎯 מיקוד</b><span>${w.focus}</span></div>
-    <div class="info-box"><b>🏠 בית</b><span>${w.home}</span></div>
-    <div class="info-box"><b>💬 שיחה</b><span>${w.talk}</span></div>
+    <div class="info-box"><b>🎯 מיקוד</b><span>${esc(w.focus)}</span></div>
+    <div class="info-box"><b>🏠 בית</b><span>${esc(w.home)}</span></div>
+    <div class="info-box"><b>💬 שיחה</b><span>${esc(w.talk)}</span></div>
   `;
 
-  // Tasks
   const tl=document.getElementById("mTasks");
-  tl.innerHTML="";
-  w.tasks.forEach((t,i)=>{
+  tl.innerHTML=`<div class="sex-banner"><span>💗 מין העובר: <strong>${esc(fetalSexLabel())}</strong></span><select class="sex-select" id="modalSexSelect"><option value="unknown">עוד לא ידוע</option><option value="female">בת 🎀</option><option value="male">בן 🧸</option></select></div>`;
+  document.getElementById("modalSexSelect").value=ls("fetal_sex")||"unknown";
+  document.getElementById("modalSexSelect").addEventListener("change",e=>{ls("fetal_sex",e.target.value);updateProfileUI();openWeek(wn);renderGrid();renderDashboard();});
+  getTasksForWeek(w).forEach((t,i)=>{
     const id=`task_${wn}_${i}`;
     const row=document.createElement("label");
     row.className="task";
-    row.innerHTML=`<input type="checkbox" id="${id}"> <span>${t}</span>`;
+    row.innerHTML=`<input type="checkbox" id="${id}"> <span>${esc(t)}</span>`;
     const cb=row.querySelector("input");
     cb.checked=ls(id)==="1";
     cb.addEventListener("change",()=>ls(id,cb.checked?"1":"0"));
     tl.appendChild(row);
   });
 
-  // Tests
+  document.getElementById("customTestName").value="";
+  document.getElementById("customTestType").value="";
+  renderWeekTests(wn);
+
+  document.getElementById("mNotes").value=ls(`wn_${wn}`)||"";
+  document.getElementById("weekModal").classList.add("open");
+}
+
+function renderWeekTests(wn){
   const tb=document.getElementById("mTestsBody");
   tb.innerHTML="";
-  w.tests.forEach((t,i)=>{
-    const keyStatus=`ts_${wn}_${i}_status`;
-    const keyResult=`ts_${wn}_${i}_result`;
-    const keyNote=`ts_${wn}_${i}_note`;
-    const status=ls(keyStatus)||"pending";
-    const result=ls(keyResult)||"";
-    const note=ls(keyNote)||"";
+  getWeekTests(wn).forEach(t=>{
+    const keys=testStorageKeys(wn,t);
+    const result=ls(keys.result)||"";
+    const status=result.trim()?"done":(ls(keys.status)||"pending");
+    const note=ls(keys.note)||"";
     const tr=document.createElement("tr");
     tr.innerHTML=`
-      <td class="test-name">${t.name}</td>
-      <td style="color:var(--muted);font-size:13px">${t.desc}${t.stdRange?`<br><span style="color:#059669;font-size:11px">ערך תקין: ${t.stdRange}</span>`:""}</td>
-      <td>
-        <button class="test-status ${status}" data-key="${keyStatus}" data-wn="${wn}">
-          ${status==="done"?"✅ בוצע":status==="na"?"— לא רלוונטי":"⏳ ממתין"}
-        </button>
-      </td>
-      <td><input class="test-result-input" placeholder="הכנס תוצאה..." value="${result}" data-key="${keyResult}"/></td>
-      <td><input class="test-result-input" placeholder="הערה..." value="${note}" data-key="${keyNote}" style="max-width:120px"/></td>
+      <td class="test-name">${esc(t.name)}${t.custom?`<div class="test-type-pill">נוסף ידנית</div>`:""}</td>
+      <td style="color:var(--muted);font-size:13px">${esc(t.desc||"")}<div class="test-type-pill">${esc(inferTestType(t))}</div>${t.stdRange?`<br><span style="color:#059669;font-size:11px">ערך תקין: ${esc(t.stdRange)}</span>`:""}</td>
+      <td><div class="table-actions"><button class="test-status ${status}" data-key="${keys.status}">${status==="done"?"✅ בוצע":status==="na"?"— לא רלוונטי":"⏳ ממתין"}</button>${t.custom?`<button class="icon-btn" data-delete="${t.id}" title="מחיקת בדיקה">×</button>`:""}</div></td>
+      <td><input class="test-result-input" placeholder="הכנס תוצאה..." value="${esc(result)}" data-key="${keys.result}" data-status-key="${keys.status}"/></td>
+      <td><input class="test-result-input" placeholder="הערה..." value="${esc(note)}" data-key="${keys.note}" style="max-width:120px"/></td>
     `;
     tr.querySelector(".test-status").addEventListener("click",function(){
       const s=ls(this.dataset.key)||"pending";
@@ -1270,37 +1409,71 @@ function openWeek(wn){
       ls(this.dataset.key,next);
       this.className=`test-status ${next}`;
       this.textContent=next==="done"?"✅ בוצע":next==="na"?"— לא רלוונטי":"⏳ ממתין";
-      renderDashboard();
+      renderDashboard();renderGrid();
     });
     tr.querySelectorAll(".test-result-input").forEach(inp=>{
-      inp.addEventListener("input",()=>{ls(inp.dataset.key,inp.value);renderDashboard();});
+      inp.addEventListener("input",()=>{
+        ls(inp.dataset.key,inp.value);
+        if(inp.dataset.statusKey){
+          const val=inp.value.trim();
+          let next=ls(inp.dataset.statusKey)||"pending";
+          if(val)next="done";
+          else if(next==="done")next="pending";
+          ls(inp.dataset.statusKey,next);
+          const btn=tr.querySelector(".test-status");
+          btn.className=`test-status ${next}`;
+          btn.textContent=next==="done"?"✅ בוצע":next==="na"?"— לא רלוונטי":"⏳ ממתין";
+        }
+        renderDashboard();renderGrid();
+      });
+    });
+    const del=tr.querySelector("[data-delete]");
+    if(del)del.addEventListener("click",()=>{
+      const tests=getCustomTests(wn).filter(x=>String(x.id)!==String(del.dataset.delete));
+      setCustomTests(wn,tests);
+      localStorage.removeItem(`ts_${wn}_custom_${del.dataset.delete}_status`);
+      localStorage.removeItem(`ts_${wn}_custom_${del.dataset.delete}_result`);
+      localStorage.removeItem(`ts_${wn}_custom_${del.dataset.delete}_note`);
+      renderWeekTests(wn);renderDashboard();renderGrid();
     });
     tb.appendChild(tr);
   });
-
-  // Notes
-  document.getElementById("mNotes").value=ls(`wn_${wn}`)||"";
-  document.getElementById("weekModal").classList.add("open");
 }
 
-function saveNote(){if(currWeek){ls(`wn_${currWeek}`,document.getElementById("mNotes").value);}}
+function saveNote(){if(currWeek){ls(`wn_${currWeek}`,document.getElementById("mNotes").value);renderGrid();}}
 document.getElementById("mNotes").addEventListener("input",saveNote);
 document.getElementById("closeModal").addEventListener("click",()=>{saveNote();document.getElementById("weekModal").classList.remove("open");renderGrid();});
 document.getElementById("weekModal").addEventListener("click",e=>{if(e.target===document.getElementById("weekModal")){saveNote();document.getElementById("weekModal").classList.remove("open");renderGrid();}});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&document.getElementById("weekModal").classList.contains("open")){saveNote();document.getElementById("weekModal").classList.remove("open");renderGrid();}});
+
+document.getElementById("addCustomTest").addEventListener("click",()=>{
+  if(!currWeek)return;
+  const name=document.getElementById("customTestName").value.trim();
+  const type=document.getElementById("customTestType").value.trim();
+  if(!name){document.getElementById("customTestName").focus();return;}
+  const tests=getCustomTests(currWeek);
+  tests.push({id:Date.now(),name,type:type||"בדיקה אישית",desc:"בדיקה שהוזנה לפי החלטתך"});
+  setCustomTests(currWeek,tests);
+  document.getElementById("customTestName").value="";
+  document.getElementById("customTestType").value="";
+  renderWeekTests(currWeek);renderDashboard();renderGrid();
+});
 
 // Global note
 const gn=document.getElementById("globalNote");
 gn.value=ls("global_note")||"";
 gn.addEventListener("input",()=>ls("global_note",gn.value));
 
+// Profile events
+document.getElementById("lmpInput").addEventListener("change",e=>{ls("lmp_date",e.target.value);renderGrid();renderDashboard();});
+document.getElementById("fetalSexInput").addEventListener("change",e=>{ls("fetal_sex",e.target.value);renderGrid();renderDashboard();if(currWeek)openWeek(currWeek);});
+
 // Clear all
 document.getElementById("clearAll").addEventListener("click",()=>{
   if(!confirm("לאפס את כל הנתונים, הערות, בדיקות וסימונים?"))return;
-  Object.keys(localStorage).forEach(k=>{if(k.startsWith("wn_")||k.startsWith("task_")||k.startsWith("ts_")||k==="global_note")localStorage.removeItem(k);});
+  Object.keys(localStorage).forEach(k=>{if(k.startsWith("wn_")||k.startsWith("task_")||k.startsWith("ts_")||k.startsWith("custom_tests_")||["global_note","lmp_date","fetal_sex"].includes(k))localStorage.removeItem(k);});
   gn.value="";
-  renderGrid();
-  renderDashboard();
+  updateProfileUI();renderGrid();renderDashboard();
 });
 
 // Tabs
@@ -1331,19 +1504,12 @@ document.getElementById("dashSearch").addEventListener("input",renderDashboard);
 function getAllTests(){
   const all=[];
   weeks.forEach(w=>{
-    w.tests.forEach((t,i)=>{
-      const keyStatus=`ts_${w.week}_${i}_status`;
-      const keyResult=`ts_${w.week}_${i}_result`;
-      const keyNote=`ts_${w.week}_${i}_note`;
-      all.push({
-        week:w.week,
-        name:t.name,
-        desc:t.desc,
-        stdRange:t.stdRange,
-        status:ls(keyStatus)||"pending",
-        result:ls(keyResult)||"",
-        note:ls(keyNote)||""
-      });
+    getWeekTests(w.week).forEach(t=>{
+      const keys=testStorageKeys(w.week,t);
+      const result=ls(keys.result)||"";
+      let status=ls(keys.status)||"pending";
+      if(result.trim()&&status==="pending")status="done";
+      all.push({week:w.week,name:t.name,type:inferTestType(t),desc:t.desc,stdRange:t.stdRange,status,result,note:ls(keys.note)||"",custom:t.custom});
     });
   });
   return all;
@@ -1360,7 +1526,7 @@ function renderDashboard(){
     <div class="kpi"><div class="kpi-icon">✅</div><div><div class="kpi-num" style="color:#059669">${done}</div><div class="kpi-lbl">בוצעו</div></div></div>
     <div class="kpi"><div class="kpi-icon">⏳</div><div><div class="kpi-num" style="color:#d97706">${pending}</div><div class="kpi-lbl">ממתינות</div></div></div>
     <div class="kpi"><div class="kpi-icon">📊</div><div><div class="kpi-num" style="color:#7c3aed">${withResult}</div><div class="kpi-lbl">עם תוצאה</div></div></div>
-    <div class="kpi"><div class="kpi-icon">📈</div><div><div class="kpi-num" style="color:#ec4899">${all.length?Math.round(done/all.length*100):0}%</div><div class="kpi-lbl">אחוז ביצוע</div></div></div>
+    <div class="kpi"><div class="kpi-icon">💗</div><div><div class="kpi-num" style="color:#ec4899;font-size:20px">${esc(fetalSexLabel())}</div><div class="kpi-lbl">מין העובר</div></div></div>
   `;
 
   const q=document.getElementById("dashSearch").value.toLowerCase();
@@ -1370,11 +1536,11 @@ function renderDashboard(){
     if(dashFilter==="done"&&t.status!=="done")return false;
     if(dashFilter==="pending"&&t.status!=="pending")return false;
     if(dashFilter==="has-result"&&!t.result.trim())return false;
-    if(q&&!`${t.name} ${t.desc} ${t.result}`.toLowerCase().includes(q))return false;
+    if(q&&!`${t.name} ${t.type} ${t.desc} ${t.result}`.toLowerCase().includes(q))return false;
     return true;
   });
   if(!filtered.length){
-    tbody.innerHTML=`<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:30px">לא נמצאו בדיקות</td></tr>`;
+    tbody.innerHTML=`<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:30px">לא נמצאו בדיקות</td></tr>`;
     return;
   }
   filtered.forEach(t=>{
@@ -1383,10 +1549,11 @@ function renderDashboard(){
     const statusLabel=t.status==="done"?"✅ בוצע":t.status==="na"?"—":"⏳ ממתין";
     tr.innerHTML=`
       <td><span class="week-tag">שבוע ${t.week}</span></td>
-      <td><strong>${t.name}</strong></td>
-      <td style="color:var(--muted);font-size:13px">${t.desc}${t.stdRange?`<br><span style="color:#059669;font-size:11px">✓ ${t.stdRange}</span>`:""}</td>
+      <td><strong>${esc(t.name)}</strong>${t.custom?`<div class="test-type-pill">אישי</div>`:""}</td>
+      <td><span class="test-type-pill">${esc(t.type)}</span></td>
+      <td style="color:var(--muted);font-size:13px">${esc(t.desc||"")}${t.stdRange?`<br><span style="color:#059669;font-size:11px">✓ ${esc(t.stdRange)}</span>`:""}</td>
       <td><span class="result-pill ${statusClass}">${statusLabel}</span></td>
-      <td style="font-size:13px">${t.result?`<strong>${t.result}</strong>`:`<span style="color:var(--muted)">טרם הוזן</span>`}${t.note?`<br><span style="color:var(--muted);font-size:12px">${t.note}</span>`:""}</td>
+      <td style="font-size:13px">${t.result?`<strong>${esc(t.result)}</strong>`:`<span style="color:var(--muted)">טרם הוזן</span>`}${t.note?`<br><span style="color:var(--muted);font-size:12px">${esc(t.note)}</span>`:""}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -1395,9 +1562,9 @@ function renderDashboard(){
 // Export CSV
 document.getElementById("exportBtn").addEventListener("click",()=>{
   const all=getAllTests();
-  const rows=[["שבוע","שם בדיקה","תיאור","ערך תקין","סטטוס","תוצאה","הערה"]];
-  all.forEach(t=>rows.push([t.week,t.name,t.desc,t.stdRange,t.status==="done"?"בוצע":t.status==="na"?"לא רלוונטי":"ממתין",t.result,t.note]));
-  const csv="\uFEFF"+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(",")).join("\n");
+  const rows=[["שבוע","שם בדיקה","סוג","תיאור","ערך תקין","סטטוס","תוצאה","הערה"]];
+  all.forEach(t=>rows.push([t.week,t.name,t.type,t.desc,t.stdRange,t.status==="done"?"בוצע":t.status==="na"?"לא רלוונטי":"ממתין",t.result,t.note]));
+  const csv="\uFEFF"+rows.map(r=>r.map(c=>`"${String(c??"").replace(/"/g,'""')}"`).join(",")).join("\n");
   const a=document.createElement("a");
   a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
   a.download="בדיקות_הריון.csv";
@@ -1405,10 +1572,11 @@ document.getElementById("exportBtn").addEventListener("click",()=>{
 });
 
 // Filters
-document.getElementById("searchInput").addEventListener("input",renderGrid);
+ document.getElementById("searchInput").addEventListener("input",renderGrid);
 document.getElementById("phaseFilter").addEventListener("change",renderGrid);
 
 // Init
+updateProfileUI();
 renderGrid();
 </script>
 </body>
